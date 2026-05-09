@@ -1,0 +1,32 @@
+services:
+  db:
+    image: timescale/timescaledb:latest-pg16
+    environment:
+      POSTGRES_DB: oloo
+      POSTGRES_USER: oloo
+      POSTGRES_PASSWORD: oloo
+    ports:
+      - "5432:5432"
+    volumes:
+      - timescale-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U oloo -d oloo"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  crawler:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ACCESS_TOKEN: ${ACCESS_TOKEN:?Set ACCESS_TOKEN in .env}
+      DATABASE_URL: postgres://oloo:oloo@db:5432/oloo
+      CRAWL_INTERVAL_MS: ${CRAWL_INTERVAL_MS:-60000}
+      REQUEST_TIMEOUT_MS: ${REQUEST_TIMEOUT_MS:-30000}
+      RUN_STATIC_ON_START: ${RUN_STATIC_ON_START:-true}
+    restart: unless-stopped
+
+volumes:
+  timescale-data:

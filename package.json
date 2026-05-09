@@ -5,14 +5,24 @@
 	"license": "Apache-2.0",
 	"author": "Elvis Mao",
 	"type": "module",
-	"main": "index.js",
+	"main": "dist/index.js",
 	"scripts": {
-		"format": "prettier --write ."
+		"build": "tsc",
+		"dev": "pnpm build && node dist/index.js",
+		"format": "prettier --write .",
+		"start": "node dist/index.js"
+	},
+	"dependencies": {
+		"dotenv": "^17.2.3",
+		"pg": "^8.16.3"
 	},
 	"devDependencies": {
+		"@types/node": "^24.10.1",
+		"@types/pg": "^8.15.6",
 		"prettier": "^3.8.3",
 		"prettier-plugin-organize-imports": "^4.3.0",
-		"prettier-plugin-packagejson": "^3.0.2"
+		"prettier-plugin-packagejson": "^3.0.2",
+		"typescript": "^5.9.3"
 	},
 	"packageManager": "pnpm@11.0.9+sha512.34ce82e6780233cf9cad8685029a8f81d2e06196c5a9bad98879f7424940c6817c4e4524fb7d38b8553ceed48b9758b8ebaf1abd3600c232c4c8cf7366086f38"
 }
