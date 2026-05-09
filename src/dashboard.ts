@@ -178,7 +178,7 @@ const normalizeFleet = (row: FleetSummaryRow | undefined) => ({
 	lastStatusAt: toIso(row?.last_status_at ?? null)
 });
 
-const dashboardHtml = String.raw`<!doctype html>
+const dashboardHtml = `<!doctype html>
 <html lang="zh-Hant">
 <head>
 	<meta charset="utf-8">
