@@ -160,6 +160,19 @@ CREATE TABLE IF NOT EXISTS station_scooter_counts (
 SELECT create_hypertable('station_scooter_counts', 'observed_at', if_not_exists => TRUE);
 CREATE INDEX IF NOT EXISTS station_scooter_counts_station_idx ON station_scooter_counts (station_id, observed_at DESC);
 
+CREATE TABLE IF NOT EXISTS station_vehicle_counts (
+	observed_at TIMESTAMPTZ NOT NULL,
+	station_id INTEGER,
+	vehicle_count INTEGER NOT NULL,
+	active_vehicle_count INTEGER NOT NULL,
+	available_vehicle_count INTEGER NOT NULL,
+	rented_vehicle_count INTEGER NOT NULL,
+	crawl_run_id BIGINT REFERENCES crawl_runs (id)
+);
+
+SELECT create_hypertable('station_vehicle_counts', 'observed_at', if_not_exists => TRUE);
+CREATE INDEX IF NOT EXISTS station_vehicle_counts_station_idx ON station_vehicle_counts (station_id, observed_at DESC);
+
 CREATE TABLE IF NOT EXISTS vehicle_info_observations (
 	observed_at TIMESTAMPTZ NOT NULL,
 	vehicle_id INTEGER,
@@ -230,6 +243,61 @@ CREATE TABLE IF NOT EXISTS vehicle_status_observations (
 SELECT create_hypertable('vehicle_status_observations', 'observed_at', if_not_exists => TRUE);
 CREATE INDEX IF NOT EXISTS vehicle_status_observations_modem_idx ON vehicle_status_observations (modem_id, observed_at DESC);
 
+CREATE OR REPLACE VIEW latest_vehicle_info AS
+SELECT DISTINCT ON (modem_id) *
+FROM vehicle_info_observations
+WHERE modem_id IS NOT NULL
+ORDER BY modem_id, observed_at DESC;
+
+CREATE OR REPLACE VIEW latest_vehicle_status AS
+SELECT DISTINCT ON (modem_id) *
+FROM vehicle_status_observations
+WHERE modem_id IS NOT NULL
+ORDER BY modem_id, observed_at DESC;
+
+CREATE OR REPLACE VIEW current_vehicle_locations AS
+SELECT
+	i.observed_at AS info_observed_at,
+	s.observed_at AS status_observed_at,
+	i.vehicle_id,
+	i.engine_license_number,
+	i.vehicle_model,
+	i.modem_id,
+	i.imei,
+	i.account_id IS NOT NULL AS is_rented,
+	i.is_active,
+	i.rental_station_id,
+	i.rental_id,
+	i.available_distance,
+	i.available_travel_time,
+	s.msg_type,
+	s.gps_time,
+	s.latitude,
+	s.longitude,
+	s.altitude,
+	s.speed,
+	s.direction,
+	s.odometer,
+	s.vehicle_status,
+	s.main_power,
+	s.battery_power,
+	s.csq,
+	s.engine_rpm,
+	s.vehicle_speed,
+	s.fuel_level_input,
+	s.obd_odometer,
+	s.mcu_motor_rpm,
+	s.obd_speed,
+	s.bms_batt_soc,
+	s.mtr_odo_data,
+	s.bcm_power_distribution_status,
+	s.bms_charging_status,
+	s.last_charge_time,
+	i.source_updated_at AS info_updated_at,
+	s.source_updated_at AS status_updated_at
+FROM latest_vehicle_info i
+LEFT JOIN latest_vehicle_status s ON s.modem_id = i.modem_id;
+
 CREATE OR REPLACE VIEW latest_scooter_info AS
 SELECT DISTINCT ON (imei) *
 FROM scooter_info_observations
@@ -266,6 +334,11 @@ CREATE OR REPLACE VIEW current_station_scooter_counts AS
 SELECT DISTINCT ON (station_id) *
 FROM station_scooter_counts
 ORDER BY station_id NULLS LAST, observed_at DESC;
+
+CREATE OR REPLACE VIEW current_station_vehicle_counts AS
+SELECT DISTINCT ON (station_id) *
+FROM station_vehicle_counts
+ORDER BY station_id NULLS LAST, observed_at DESC;
 `);
 };
 
@@ -275,7 +348,7 @@ export const insertRows = async (client: DbClient, table: string, columns: strin
 	for (let start = 0; start < rows.length; start += chunkSize) {
 		const chunk = rows.slice(start, start + chunkSize);
 		const values: unknown[] = [];
-		const placeholders = chunk.map((row, rowIndex) => {
+		const placeholders = chunk.map(row => {
 			const rowPlaceholders = row.map(value => {
 				values.push(value);
 				return `$${values.length}`;

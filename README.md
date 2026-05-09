@@ -33,11 +33,16 @@ docker compose up --build
 - `scooter_info_observations`：每分鐘車輛所屬站點、是否 active、是否被帳號借用等資訊。
 - `scooter_status_observations`：每分鐘車輛狀態、經緯度、電量、速度、鎖定狀態。
 - `station_scooter_counts`：每分鐘每站車輛數、可用車數、被借走車數。
+- `vehicle_info_observations`：每分鐘車輛 id、車牌、車型、通訊模組、可行駛距離與租借狀態。
+- `vehicle_status_observations`：每分鐘車輛 GPS、速度、里程、電源、OBD、BMS 等狀態。
+- `station_vehicle_counts`：每分鐘每站車輛數、可用車數、被借走車數。
 
 常用 view：
 
 - `current_scooter_locations`：每台車最新車輛資訊 + 最新位置。
 - `current_station_scooter_counts`：每個站點最新車輛數。
+- `current_vehicle_locations`：每台車最新車輛資訊 + 最新位置與車況。
+- `current_station_vehicle_counts`：每個站點最新車輛數。
 
 ### 查詢範例
 

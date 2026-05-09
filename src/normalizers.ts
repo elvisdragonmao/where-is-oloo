@@ -14,6 +14,7 @@ export const insertNormalizedObservations = async (client: DbClient, endpointNam
 			return;
 		case "vehicles-infos":
 			await insertVehicleInfos(client, observedAt, crawlRunId, items);
+			await insertStationVehicleCounts(client, observedAt, crawlRunId, items);
 			return;
 		case "vehicle-statuses":
 			await insertVehicleStatuses(client, observedAt, crawlRunId, items);
@@ -230,6 +231,46 @@ const insertStationScooterCounts = async (client: DbClient, observedAt: string, 
 			count.activeScooterCount,
 			count.availableScooterCount,
 			count.rentedScooterCount,
+			crawlRunId
+		])
+	);
+};
+
+const insertStationVehicleCounts = async (client: DbClient, observedAt: string, crawlRunId: number, items: JsonObject[]) => {
+	type Count = {
+		vehicleCount: number;
+		activeVehicleCount: number;
+		availableVehicleCount: number;
+		rentedVehicleCount: number;
+	};
+
+	const counts = new Map<string, Count>();
+
+	for (const item of items) {
+		const stationId = parseInteger(item.rentalStationId);
+		const key = stationId === null ? "__null__" : String(stationId);
+		const count = counts.get(key) ?? { vehicleCount: 0, activeVehicleCount: 0, availableVehicleCount: 0, rentedVehicleCount: 0 };
+		const isActive = parseBoolean(item.isActive) === true;
+		const isRented = item.accountId !== null && item.accountId !== undefined;
+
+		count.vehicleCount += 1;
+		if (isActive) count.activeVehicleCount += 1;
+		if (isActive && !isRented) count.availableVehicleCount += 1;
+		if (isRented) count.rentedVehicleCount += 1;
+		counts.set(key, count);
+	}
+
+	await insertRows(
+		client,
+		"station_vehicle_counts",
+		["observed_at", "station_id", "vehicle_count", "active_vehicle_count", "available_vehicle_count", "rented_vehicle_count", "crawl_run_id"],
+		Array.from(counts.entries()).map(([stationId, count]) => [
+			observedAt,
+			stationId === "__null__" ? null : Number.parseInt(stationId, 10),
+			count.vehicleCount,
+			count.activeVehicleCount,
+			count.availableVehicleCount,
+			count.rentedVehicleCount,
 			crawlRunId
 		])
 	);
