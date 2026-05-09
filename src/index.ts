@@ -1,9 +1,11 @@
 import { loadConfig } from "./config.js";
 import { runDynamicCrawl, runStaticCrawl } from "./crawler.js";
+import { startDashboard } from "./dashboard.js";
 import { createDb, migrate } from "./db.js";
 
 const config = loadConfig();
 const db = createDb(config);
+let dashboard: ReturnType<typeof startDashboard> | null = null;
 
 let dynamicCrawlRunning = false;
 
@@ -23,6 +25,9 @@ const runDynamicCrawlSafely = async () => {
 
 const shutdown = async (signal: string) => {
 	console.log(JSON.stringify({ level: "info", message: "shutdown", signal }));
+	if (dashboard) {
+		await new Promise<void>(resolve => dashboard?.close(() => resolve()));
+	}
 	await db.end();
 	process.exit(0);
 };
@@ -33,6 +38,7 @@ process.on("SIGTERM", () => void shutdown("SIGTERM"));
 console.log(JSON.stringify({ level: "info", message: "starting crawler", crawlIntervalMs: config.crawlIntervalMs }));
 await migrate(db);
 console.log(JSON.stringify({ level: "info", message: "database migration complete" }));
+dashboard = startDashboard(db, config);
 
 if (config.runStaticOnStart) {
 	await runStaticCrawl(db, config);

@@ -19,4 +19,5 @@ RUN corepack enable
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --prod --frozen-lockfile
 COPY --from=build /app/dist ./dist
+EXPOSE 3456
 CMD ["pnpm", "start"]

@@ -24,8 +24,12 @@ services:
       ACCESS_TOKEN: ${ACCESS_TOKEN:?Set ACCESS_TOKEN in .env}
       DATABASE_URL: postgres://oloo:oloo@db:5432/oloo
       CRAWL_INTERVAL_MS: ${CRAWL_INTERVAL_MS:-60000}
-      REQUEST_TIMEOUT_MS: ${REQUEST_TIMEOUT_MS:-30000}
+      REQUEST_TIMEOUT_MS: ${REQUEST_TIMEOUT_MS:-34560}
       RUN_STATIC_ON_START: ${RUN_STATIC_ON_START:-true}
+      DASHBOARD_HOST: 0.0.0.0
+      DASHBOARD_PORT: ${DASHBOARD_PORT:-3456}
+    ports:
+      - "${DASHBOARD_PORT:-3456}:3456"
     restart: unless-stopped
 
 volumes:

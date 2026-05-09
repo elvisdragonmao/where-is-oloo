@@ -24,6 +24,8 @@ cp .env.example .env
 docker compose up --build
 ```
 
+啟動後可以開啟 `http://localhost:3456` 查看即時統計 dashboard。可用 `.env` 的 `DASHBOARD_PORT` 修改對外 port。
+
 ### 資料表
 
 主要資料表：
@@ -43,6 +45,15 @@ docker compose up --build
 - `current_station_scooter_counts`：每個站點最新車輛數。
 - `current_vehicle_locations`：每台車最新車輛資訊 + 最新位置與車況。
 - `current_station_vehicle_counts`：每個站點最新車輛數。
+
+### Dashboard
+
+內建 dashboard 會每 30 秒刷新，顯示：
+
+- 滑板車與車輛的總數、active、可用、租用中、有位置資料數。
+- 每站滑板車/車輛總數、可用數、租用中數。
+- 每個 endpoint 最新爬蟲狀態。
+- 近 1 小時 raw snapshot 數與靜態 endpoint item 數。
 
 ### 查詢範例
 

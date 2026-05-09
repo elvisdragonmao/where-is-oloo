@@ -6,6 +6,8 @@ export type Config = {
 	crawlIntervalMs: number;
 	requestTimeoutMs: number;
 	runStaticOnStart: boolean;
+	dashboardHost: string;
+	dashboardPort: number;
 };
 
 const parsePositiveInteger = (value: string | undefined, fallback: number) => {
@@ -27,6 +29,8 @@ export const loadConfig = (): Config => {
 		databaseUrl: process.env.DATABASE_URL ?? "postgres://oloo:oloo@localhost:5432/oloo",
 		crawlIntervalMs: parsePositiveInteger(process.env.CRAWL_INTERVAL_MS, 60_000),
 		requestTimeoutMs: parsePositiveInteger(process.env.REQUEST_TIMEOUT_MS, 30_000),
-		runStaticOnStart: process.env.RUN_STATIC_ON_START !== "false"
+		runStaticOnStart: process.env.RUN_STATIC_ON_START !== "false",
+		dashboardHost: process.env.DASHBOARD_HOST ?? "0.0.0.0",
+		dashboardPort: parsePositiveInteger(process.env.DASHBOARD_PORT, 3456)
 	};
 };
