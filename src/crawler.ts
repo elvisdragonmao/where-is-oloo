@@ -11,18 +11,35 @@ type FetchResult = {
 	payload: unknown;
 };
 
+type CrawlOutcome = {
+	endpoint: string;
+	mode: EndpointDefinition["mode"];
+	status: "ok" | "error";
+	itemCount: number;
+	observedAt: string;
+	finishedAt: string;
+	error?: string;
+};
+
 export const runStaticCrawl = async (db: Db, config: Config) => {
+	const outcomes: CrawlOutcome[] = [];
+
 	for (const endpoint of staticEndpoints) {
-		await crawlEndpoint(db, config, endpoint);
+		outcomes.push(await crawlEndpoint(db, config, endpoint));
 	}
+
+	logCrawlSummary("static crawl cycle finished", outcomes);
 };
 
 export const runDynamicCrawl = async (db: Db, config: Config) => {
 	const observedAt = new Date().toISOString();
+	const outcomes: CrawlOutcome[] = [];
 
 	for (const endpoint of dynamicEndpoints) {
-		await crawlEndpoint(db, config, endpoint, observedAt);
+		outcomes.push(await crawlEndpoint(db, config, endpoint, observedAt));
 	}
+
+	logCrawlSummary("dynamic crawl cycle finished", outcomes);
 };
 
 const crawlEndpoint = async (db: Db, config: Config, endpoint: EndpointDefinition, observedAt = new Date().toISOString()) => {
@@ -45,14 +62,40 @@ const crawlEndpoint = async (db: Db, config: Config, endpoint: EndpointDefinitio
 
 		await client.query("UPDATE crawl_runs SET finished_at = now(), status = 'ok', http_status = $1, item_count = $2 WHERE id = $3", [result.status, items.length, crawlRunId]);
 		await client.query("COMMIT");
-		console.log(JSON.stringify({ level: "info", message: "crawl ok", endpoint: endpoint.name, mode: endpoint.mode, itemCount: items.length, observedAt }));
+
+		const finishedAt = new Date().toISOString();
+		const outcome = { endpoint: endpoint.name, mode: endpoint.mode, status: "ok" as const, itemCount: items.length, observedAt, finishedAt };
+		console.log(JSON.stringify({ level: "info", message: "crawl ok", ...outcome }));
+		return outcome;
 	} catch (error) {
 		await client.query("ROLLBACK").catch(() => undefined);
-		await client.query("UPDATE crawl_runs SET finished_at = now(), status = 'error', error = $1 WHERE id = $2", [error instanceof Error ? error.message : String(error), crawlRunId]);
-		console.error(JSON.stringify({ level: "error", message: "crawl failed", endpoint: endpoint.name, error: error instanceof Error ? error.message : String(error) }));
+		const errorMessage = error instanceof Error ? error.message : String(error);
+		await client.query("UPDATE crawl_runs SET finished_at = now(), status = 'error', error = $1 WHERE id = $2", [errorMessage, crawlRunId]);
+
+		const finishedAt = new Date().toISOString();
+		const outcome = { endpoint: endpoint.name, mode: endpoint.mode, status: "error" as const, itemCount: 0, observedAt, finishedAt, error: errorMessage };
+		console.error(JSON.stringify({ level: "error", message: "crawl failed", ...outcome }));
+		return outcome;
 	} finally {
 		client.release();
 	}
+};
+
+const logCrawlSummary = (message: string, outcomes: CrawlOutcome[]) => {
+	const okOutcomes = outcomes.filter(outcome => outcome.status === "ok");
+	const lastSuccessfulCrawlAt = okOutcomes.at(-1)?.finishedAt ?? null;
+
+	console.log(
+		JSON.stringify({
+			level: "info",
+			message,
+			endpointCount: outcomes.length,
+			okEndpointCount: okOutcomes.length,
+			failedEndpointCount: outcomes.length - okOutcomes.length,
+			totalItemCount: okOutcomes.reduce((sum, outcome) => sum + outcome.itemCount, 0),
+			lastSuccessfulCrawlAt
+		})
+	);
 };
 
 const fetchJson = async (endpoint: EndpointDefinition, config: Config): Promise<FetchResult> => {

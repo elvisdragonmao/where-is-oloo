@@ -105,7 +105,7 @@ SELECT
 	sc.observed_at AS last_scooter_seen_at,
 	vc.observed_at AS last_vehicle_seen_at
 FROM current_station_scooter_counts sc
-FULL OUTER JOIN current_station_vehicle_counts vc ON vc.station_id IS NOT DISTINCT FROM sc.station_id
+FULL OUTER JOIN current_station_vehicle_counts vc ON vc.station_id = sc.station_id
 LEFT JOIN static_endpoint_items station
 	ON station.endpoint_name = 'scooter-rental-stations-active-stations'
 	AND station.source_id = COALESCE(sc.station_id, vc.station_id)::text
