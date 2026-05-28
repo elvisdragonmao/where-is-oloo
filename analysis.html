@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="zh-Hant">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Oloo 站點可用車分析</title>
+		<style>
+			:root {
+				color-scheme: light;
+				--bg: #f5f7fb;
+				--panel: #ffffff;
+				--panel-soft: #f0f4f8;
+				--text: #1d2433;
+				--muted: #687385;
+				--line: #d9e0ea;
+				--line-strong: #b9c4d4;
+				--accent: #0f766e;
+				--accent-soft: #d9f4ef;
+				--warn: #b45309;
+				--bad: #b91c1c;
+				--shadow: 0 8px 24px rgba(20, 31, 49, 0.08);
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				background: var(--bg);
+				color: var(--text);
+				font-family:
+					ui-sans-serif,
+					system-ui,
+					-apple-system,
+					BlinkMacSystemFont,
+					"Segoe UI",
+					sans-serif;
+			}
+
+			header,
+			main {
+				width: min(1440px, calc(100vw - 32px));
+				margin: 0 auto;
+			}
+
+			header {
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) auto;
+				gap: 24px;
+				align-items: end;
+				padding: 24px 0 16px;
+			}
+
+			h1 {
+				margin: 0;
+				font-size: 32px;
+				line-height: 1.1;
+				letter-spacing: 0;
+			}
+
+			.meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				justify-content: flex-end;
+				color: var(--muted);
+				font-size: 13px;
+			}
+
+			.badge {
+				display: inline-flex;
+				align-items: center;
+				min-height: 28px;
+				padding: 0 10px;
+				border: 1px solid var(--line);
+				border-radius: 999px;
+				background: var(--panel);
+				white-space: nowrap;
+			}
+
+			main {
+				display: grid;
+				gap: 14px;
+				padding-bottom: 32px;
+			}
+
+			.panel {
+				border: 1px solid var(--line);
+				border-radius: 8px;
+				background: var(--panel);
+				box-shadow: var(--shadow);
+			}
+
+			.toolbar {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(150px, 1fr)) auto;
+				gap: 10px;
+				padding: 12px;
+				align-items: end;
+			}
+
+			label {
+				display: grid;
+				gap: 6px;
+				color: var(--muted);
+				font-size: 12px;
+				font-weight: 650;
+			}
+
+			select,
+			input,
+			button,
+			a.button {
+				height: 38px;
+				border: 1px solid var(--line-strong);
+				border-radius: 8px;
+				background: #fff;
+				color: var(--text);
+				font: inherit;
+				font-size: 14px;
+			}
+
+			select,
+			input {
+				width: 100%;
+				padding: 0 10px;
+			}
+
+			button,
+			a.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 6px;
+				padding: 0 12px;
+				cursor: pointer;
+				text-decoration: none;
+			}
+
+			button.primary {
+				border-color: var(--accent);
+				background: var(--accent);
+				color: #fff;
+			}
+
+			button:hover,
+			a.button:hover {
+				border-color: var(--accent);
+			}
+
+			.stat-grid {
+				display: grid;
+				grid-template-columns: repeat(4, minmax(0, 1fr));
+				gap: 10px;
+			}
+
+			.stat {
+				padding: 14px;
+			}
+
+			.stat span {
+				display: block;
+				color: var(--muted);
+				font-size: 12px;
+				font-weight: 650;
+			}
+
+			.stat strong {
+				display: block;
+				margin-top: 8px;
+				font-size: 28px;
+				line-height: 1;
+			}
+
+			.chart-block {
+				padding: 14px;
+			}
+
+			.chart-head {
+				display: flex;
+				justify-content: space-between;
+				gap: 16px;
+				align-items: baseline;
+				margin-bottom: 12px;
+			}
+
+			.chart-head h2 {
+				margin: 0;
+				font-size: 17px;
+				letter-spacing: 0;
+			}
+
+			.chart-head .hint {
+				color: var(--muted);
+				font-size: 13px;
+				text-align: right;
+			}
+
+			.range-tools {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin: 10px 0 12px;
+			}
+
+			.range-inputs {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 12px;
+				margin-top: 10px;
+			}
+
+			input[type="range"] {
+				padding: 0;
+				accent-color: var(--accent);
+			}
+
+			.svg-wrap {
+				position: relative;
+				width: 100%;
+				min-height: 180px;
+			}
+
+			svg {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+
+			.legend {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px 14px;
+				margin-top: 10px;
+				color: var(--muted);
+				font-size: 12px;
+			}
+
+			.legend-item {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+			}
+
+			.dot {
+				width: 10px;
+				height: 10px;
+				border-radius: 999px;
+				background: currentColor;
+			}
+
+			.station-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+				gap: 12px;
+			}
+
+			.station-card {
+				border: 1px solid var(--line);
+				border-radius: 8px;
+				background: var(--panel);
+				overflow: hidden;
+			}
+
+			.station-card header {
+				width: 100%;
+				display: grid;
+				grid-template-columns: minmax(0, 1fr) auto;
+				gap: 8px;
+				padding: 12px 12px 0;
+			}
+
+			.station-card h3 {
+				margin: 0;
+				overflow: hidden;
+				font-size: 15px;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.station-card .campus {
+				color: var(--muted);
+				font-size: 12px;
+			}
+
+			.station-card .chart-mini {
+				padding: 4px 10px 10px;
+			}
+
+			.station-stats {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 1px;
+				border-top: 1px solid var(--line);
+				background: var(--line);
+			}
+
+			.station-stats div {
+				padding: 8px;
+				background: var(--panel-soft);
+				text-align: center;
+			}
+
+			.station-stats span {
+				display: block;
+				color: var(--muted);
+				font-size: 11px;
+			}
+
+			.station-stats strong {
+				display: block;
+				margin-top: 4px;
+				font-size: 14px;
+			}
+
+			.empty,
+			.error {
+				padding: 28px;
+				border: 1px solid var(--line);
+				border-radius: 8px;
+				background: var(--panel);
+				color: var(--muted);
+				text-align: center;
+			}
+
+			.error {
+				color: var(--bad);
+			}
+
+			@media (max-width: 920px) {
+				header,
+				main {
+					width: min(100vw - 20px, 1440px);
+				}
+
+				header,
+				.toolbar,
+				.range-inputs {
+					grid-template-columns: 1fr;
+				}
+
+				.meta {
+					justify-content: flex-start;
+				}
+
+				.stat-grid {
+					grid-template-columns: repeat(2, minmax(0, 1fr));
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1>Oloo 站點可用車數</h1>
+			</div>
+			<div class="meta" id="meta"></div>
+		</header>
+
+		<main>
+			<section class="panel toolbar" aria-label="filters">
+				<label>
+					校區
+					<select id="campusFilter">
+						<option value="all">全部</option>
+						<option value="交大">交大</option>
+						<option value="清大">清大</option>
+						<option value="其他">其他</option>
+						<option value="未分站">未分站</option>
+					</select>
+				</label>
+				<label>
+					車種
+					<select id="fleetFilter">
+						<option value="fleet">全部</option>
+						<option value="scooter">滑板車</option>
+						<option value="vehicle">車輛</option>
+					</select>
+				</label>
+				<label>
+					指標
+					<select id="metricFilter">
+						<option value="available">可用</option>
+						<option value="rented">租用中</option>
+						<option value="total">總數</option>
+					</select>
+				</label>
+				<label>
+					搜尋
+					<input id="searchInput" type="search" placeholder="站名或編號" />
+				</label>
+				<a class="button" href="exports/analysis/station_counts_5min.csv" download>CSV</a>
+			</section>
+
+			<section class="stat-grid" id="stats"></section>
+
+			<section class="panel chart-block">
+				<div class="chart-head">
+					<h2>總覽</h2>
+					<div class="hint" id="rangeLabel"></div>
+				</div>
+				<div class="range-tools">
+					<button type="button" data-window="86400000">1 天</button>
+					<button type="button" data-window="259200000">3 天</button>
+					<button type="button" data-window="604800000">7 天</button>
+					<button type="button" class="primary" data-window="all">全部</button>
+				</div>
+				<div id="overviewChart" class="svg-wrap"></div>
+				<div class="range-inputs">
+					<label>
+						開始
+						<input id="startSlider" type="range" value="0" min="0" max="0" />
+					</label>
+					<label>
+						結束
+						<input id="endSlider" type="range" value="0" min="0" max="0" />
+					</label>
+				</div>
+			</section>
+
+			<section class="panel chart-block">
+				<div class="chart-head">
+					<h2>各站疊線</h2>
+					<div class="hint" id="seriesCount"></div>
+				</div>
+				<div id="mainChart" class="svg-wrap"></div>
+				<div id="legend" class="legend"></div>
+			</section>
+
+			<section>
+				<div class="chart-head">
+					<h2>各站折線</h2>
+					<div class="hint" id="smallCount"></div>
+				</div>
+				<div id="smallMultiples" class="station-grid"></div>
+			</section>
+		</main>
+
+		<script>
+			const dataUrl = new URLSearchParams(location.search).get("data") || "exports/analysis/station_counts_5min.csv";
+			const summaryUrl = "exports/analysis/summary.json";
+			const palette = ["#0f766e", "#2563eb", "#b45309", "#be123c", "#7c3aed", "#15803d", "#c2410c", "#0891b2", "#9333ea", "#4d7c0f", "#dc2626", "#0369a1"];
+			const metricLabels = {
+				available: "可用",
+				rented: "租用中",
+				total: "總數"
+			};
+			const fleetLabels = {
+				fleet: "全部",
+				scooter: "滑板車",
+				vehicle: "車輛"
+			};
+			const numericColumns = [
+				"station_id",
+				"latitude",
+				"longitude",
+				"total_parking_space",
+				"scooter_total_avg",
+				"scooter_available_avg",
+				"scooter_rented_avg",
+				"vehicle_total_avg",
+				"vehicle_available_avg",
+				"vehicle_rented_avg",
+				"fleet_total_avg",
+				"fleet_available_avg",
+				"fleet_rented_avg"
+			];
+			const elements = {
+				campusFilter: document.querySelector("#campusFilter"),
+				endSlider: document.querySelector("#endSlider"),
+				fleetFilter: document.querySelector("#fleetFilter"),
+				legend: document.querySelector("#legend"),
+				mainChart: document.querySelector("#mainChart"),
+				meta: document.querySelector("#meta"),
+				metricFilter: document.querySelector("#metricFilter"),
+				overviewChart: document.querySelector("#overviewChart"),
+				rangeLabel: document.querySelector("#rangeLabel"),
+				searchInput: document.querySelector("#searchInput"),
+				seriesCount: document.querySelector("#seriesCount"),
+				smallCount: document.querySelector("#smallCount"),
+				smallMultiples: document.querySelector("#smallMultiples"),
+				startSlider: document.querySelector("#startSlider"),
+				stats: document.querySelector("#stats")
+			};
+			const state = {
+				campus: "all",
+				endIndex: 0,
+				fleet: "fleet",
+				metric: "available",
+				query: "",
+				startIndex: 0
+			};
+
+			let rows = [];
+			let stations = [];
+			let times = [];
+			let summary = null;
+
+			const escapeHtml = value => String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");
+
+			const formatNumber = value => {
+				if (!Number.isFinite(value)) return "0";
+				return new Intl.NumberFormat("zh-TW", { maximumFractionDigits: value >= 10 ? 0 : 1 }).format(value);
+			};
+
+			const formatPercent = value => `${formatNumber(value * 100)}%`;
+
+			const formatTime = value =>
+				new Intl.DateTimeFormat("zh-TW", {
+					timeZone: "Asia/Taipei",
+					month: "2-digit",
+					day: "2-digit",
+					hour: "2-digit",
+					minute: "2-digit"
+				}).format(value);
+
+			const parseCsv = text => {
+				const parsedRows = [];
+				let row = [];
+				let cell = "";
+				let quoted = false;
+
+				for (let index = 0; index < text.length; index += 1) {
+					const char = text[index];
+
+					if (quoted) {
+						if (char === '"' && text[index + 1] === '"') {
+							cell += '"';
+							index += 1;
+						} else if (char === '"') {
+							quoted = false;
+						} else {
+							cell += char;
+						}
+						continue;
+					}
+
+					if (char === '"') {
+						quoted = true;
+					} else if (char === ",") {
+						row.push(cell);
+						cell = "";
+					} else if (char === "\n") {
+						row.push(cell);
+						parsedRows.push(row);
+						row = [];
+						cell = "";
+					} else if (char !== "\r") {
+						cell += char;
+					}
+				}
+
+				if (cell.length > 0 || row.length > 0) {
+					row.push(cell);
+					parsedRows.push(row);
+				}
+
+				const headers = parsedRows.shift() ?? [];
+				return parsedRows.filter(values => values.some(value => value.length > 0)).map(values => Object.fromEntries(headers.map((header, index) => [header, values[index] ?? ""])));
+			};
+
+			const normalizeRows = parsedRows =>
+				parsedRows
+					.map(row => {
+						const normalized = { ...row };
+						for (const column of numericColumns) {
+							normalized[column] = row[column] === "" ? null : Number(row[column]);
+						}
+						normalized.bucketDate = new Date(row.bucket);
+						normalized.bucketMs = normalized.bucketDate.getTime();
+						normalized.stationKey = normalized.station_id === null ? "none" : String(normalized.station_id);
+						normalized.station_name = normalized.station_name || "未分站";
+						normalized.campus = normalized.campus || "其他";
+						return normalized;
+					})
+					.filter(row => Number.isFinite(row.bucketMs));
+
+			const buildStations = normalizedRows => {
+				const byStation = new Map();
+
+				for (const row of normalizedRows) {
+					if (!byStation.has(row.stationKey)) {
+						byStation.set(row.stationKey, {
+							campus: row.campus,
+							color: palette[byStation.size % palette.length],
+							id: row.station_id,
+							latitude: row.latitude,
+							longitude: row.longitude,
+							name: row.station_name,
+							number: row.station_number,
+							rows: [],
+							totalParkingSpace: row.total_parking_space
+						});
+					}
+					byStation.get(row.stationKey).rows.push(row);
+				}
+
+				return Array.from(byStation.values())
+					.map(station => ({
+						...station,
+						rows: station.rows.sort((a, b) => a.bucketMs - b.bucketMs)
+					}))
+					.sort((a, b) => `${a.campus}:${a.name}`.localeCompare(`${b.campus}:${b.name}`, "zh-Hant"));
+			};
+
+			const valueColumn = () => `${state.fleet}_${state.metric}_avg`;
+
+			const rowValue = row => {
+				const value = Number(row[valueColumn()]);
+				return Number.isFinite(value) ? value : 0;
+			};
+
+			const visibleStations = () => {
+				const query = state.query.trim().toLocaleLowerCase("zh-Hant");
+				return stations.filter(station => {
+					if (state.campus !== "all" && station.campus !== state.campus) return false;
+					if (!query) return true;
+					return `${station.name} ${station.number ?? ""}`.toLocaleLowerCase("zh-Hant").includes(query);
+				});
+			};
+
+			const inWindow = row => row.bucketMs >= times[state.startIndex] && row.bucketMs <= times[state.endIndex];
+
+			const stationPoints = station =>
+				station.rows
+					.filter(inWindow)
+					.map(row => ({ x: row.bucketMs, y: rowValue(row) }))
+					.filter(point => Number.isFinite(point.y));
+
+			const aggregatePoints = selectedStations => {
+				const byTime = new Map();
+				for (const station of selectedStations) {
+					for (const row of station.rows) {
+						if (!inWindow(row)) continue;
+						byTime.set(row.bucketMs, (byTime.get(row.bucketMs) ?? 0) + rowValue(row));
+					}
+				}
+				return Array.from(byTime.entries())
+					.map(([x, y]) => ({ x, y }))
+					.sort((a, b) => a.x - b.x);
+			};
+
+			const samplePoints = (points, maxPoints) => {
+				if (points.length <= maxPoints) return points;
+				const step = Math.ceil(points.length / maxPoints);
+				return points.filter((_, index) => index % step === 0 || index === points.length - 1);
+			};
+
+			const niceMax = value => {
+				if (!Number.isFinite(value) || value <= 1) return 1;
+				const magnitude = 10 ** Math.floor(Math.log10(value));
+				const normalized = value / magnitude;
+				const nice = normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
+				return nice * magnitude;
+			};
+
+			const summarizePoints = points => {
+				if (points.length === 0) return { avg: 0, max: 0, min: 0, zeroRate: 0 };
+				const values = points.map(point => point.y);
+				const sum = values.reduce((total, value) => total + value, 0);
+				return {
+					avg: sum / values.length,
+					max: Math.max(...values),
+					min: Math.min(...values),
+					zeroRate: values.filter(value => value <= 0.05).length / values.length
+				};
+			};
+
+			const pathFor = (points, xMin, xMax, yMax, width, height, margin, maxPoints) => {
+				const sampled = samplePoints(points, maxPoints);
+				const innerWidth = width - margin.left - margin.right;
+				const innerHeight = height - margin.top - margin.bottom;
+				const xSpan = Math.max(1, xMax - xMin);
+				const ySpan = Math.max(1, yMax);
+
+				return sampled
+					.map((point, index) => {
+						const x = margin.left + ((point.x - xMin) / xSpan) * innerWidth;
+						const y = margin.top + innerHeight - (point.y / ySpan) * innerHeight;
+						return `${index === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
+					})
+					.join(" ");
+			};
+
+			const lineChart = (series, options = {}) => {
+				const width = 960;
+				const height = options.compact ? 168 : 320;
+				const margin = options.compact ? { top: 12, right: 12, bottom: 24, left: 30 } : { top: 18, right: 18, bottom: 42, left: 48 };
+				const allPoints = series.flatMap(item => item.points);
+				const xMin = times[state.startIndex] ?? 0;
+				const xMax = times[state.endIndex] ?? xMin + 1;
+				const yMax = niceMax(Math.max(0, ...allPoints.map(point => point.y)));
+				const innerWidth = width - margin.left - margin.right;
+				const innerHeight = height - margin.top - margin.bottom;
+				const ticks = [0, yMax / 2, yMax];
+				const xTicks = [xMin, xMin + (xMax - xMin) / 2, xMax];
+
+				if (allPoints.length === 0) {
+					return `<div class="empty">沒有資料</div>`;
+				}
+
+				const grid = ticks
+					.map(value => {
+						const y = margin.top + innerHeight - (value / yMax) * innerHeight;
+						return `
+							<line x1="${margin.left}" x2="${width - margin.right}" y1="${y}" y2="${y}" stroke="#d9e0ea" stroke-width="1" />
+							<text x="${margin.left - 8}" y="${y + 4}" text-anchor="end" fill="#687385" font-size="12">${formatNumber(value)}</text>
+						`;
+					})
+					.join("");
+				const xLabels = xTicks
+					.map(value => {
+						const x = margin.left + ((value - xMin) / Math.max(1, xMax - xMin)) * innerWidth;
+						return `<text x="${x}" y="${height - 8}" text-anchor="middle" fill="#687385" font-size="12">${formatTime(value)}</text>`;
+					})
+					.join("");
+				const paths = series
+					.filter(item => item.points.length > 0)
+					.map(
+						item => `
+							<path d="${pathFor(item.points, xMin, xMax, yMax, width, height, margin, options.compact ? 300 : 900)}"
+								fill="none"
+								stroke="${item.color}"
+								stroke-width="${options.compact ? 2 : 1.8}"
+								stroke-linejoin="round"
+								stroke-linecap="round"
+								opacity="${options.compact ? 1 : 0.82}">
+								<title>${escapeHtml(item.name)}</title>
+							</path>
+						`
+					)
+					.join("");
+
+				return `
+					<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="line chart">
+						<rect x="0" y="0" width="${width}" height="${height}" rx="8" fill="#ffffff" />
+						${grid}
+						<line x1="${margin.left}" x2="${margin.left}" y1="${margin.top}" y2="${height - margin.bottom}" stroke="#b9c4d4" />
+						<line x1="${margin.left}" x2="${width - margin.right}" y1="${height - margin.bottom}" y2="${height - margin.bottom}" stroke="#b9c4d4" />
+						${paths}
+						${xLabels}
+					</svg>
+				`;
+			};
+
+			const renderMeta = () => {
+				const first = times[0] ? formatTime(times[0]) : "-";
+				const last = times.at(-1) ? formatTime(times.at(-1)) : "-";
+				const bucket = summary?.bucket ?? "5 minutes";
+				elements.meta.innerHTML = `
+					<span class="badge">${escapeHtml(bucket)}</span>
+					<span class="badge">${first} - ${last}</span>
+					<span class="badge">${formatNumber(rows.length)} 筆</span>
+				`;
+			};
+
+			const renderStats = selectedStations => {
+				const points = selectedStations.flatMap(stationPoints);
+				const aggregate = summarizePoints(points);
+				const currentStationCount = selectedStations.length;
+				const windowHours = Math.max(0, (times[state.endIndex] - times[state.startIndex]) / 3600000);
+
+				elements.stats.innerHTML = [
+					["站點", `${formatNumber(currentStationCount)} / ${formatNumber(stations.length)}`],
+					["平均", formatNumber(aggregate.avg)],
+					["最高", formatNumber(aggregate.max)],
+					["歸零率", formatPercent(aggregate.zeroRate)],
+					["車種", fleetLabels[state.fleet]],
+					["指標", metricLabels[state.metric]],
+					["時間", `${formatNumber(windowHours)} 小時`],
+					["資料點", formatNumber(points.length)]
+				]
+					.map(
+						([label, value]) => `
+							<div class="panel stat">
+								<span>${escapeHtml(label)}</span>
+								<strong>${escapeHtml(value)}</strong>
+							</div>
+						`
+					)
+					.join("");
+			};
+
+			const renderOverview = selectedStations => {
+				const points = aggregatePoints(selectedStations);
+				elements.overviewChart.innerHTML = lineChart([{ name: "總量", color: "#0f766e", points }], { compact: false });
+				elements.rangeLabel.textContent = `${formatTime(times[state.startIndex])} - ${formatTime(times[state.endIndex])}`;
+			};
+
+			const renderMainChart = selectedStations => {
+				const series = selectedStations.map(station => ({
+					color: station.color,
+					name: station.name,
+					points: stationPoints(station)
+				}));
+				elements.mainChart.innerHTML = lineChart(series, { compact: false });
+				elements.seriesCount.textContent = `${formatNumber(series.length)} 條線`;
+				elements.legend.innerHTML = series
+					.slice(0, 48)
+					.map(
+						item => `
+							<span class="legend-item" style="color: ${item.color}">
+								<span class="dot"></span>
+								<span>${escapeHtml(item.name)}</span>
+							</span>
+						`
+					)
+					.join("");
+			};
+
+			const renderSmallMultiples = selectedStations => {
+				elements.smallCount.textContent = `${formatNumber(selectedStations.length)} 站`;
+				elements.smallMultiples.innerHTML = selectedStations
+					.map(station => {
+						const points = stationPoints(station);
+						const stats = summarizePoints(points);
+						const chart = lineChart([{ name: station.name, color: station.color, points }], { compact: true });
+
+						return `
+							<article class="station-card">
+								<header>
+									<div>
+										<h3 title="${escapeHtml(station.name)}">${escapeHtml(station.name)}</h3>
+										<div class="campus">${escapeHtml(station.campus)} ${escapeHtml(station.number ?? "")}</div>
+									</div>
+									<span class="badge">${escapeHtml(station.totalParkingSpace ?? "-")} 格</span>
+								</header>
+								<div class="chart-mini">${chart}</div>
+								<div class="station-stats">
+									<div><span>平均</span><strong>${formatNumber(stats.avg)}</strong></div>
+									<div><span>最低</span><strong>${formatNumber(stats.min)}</strong></div>
+									<div><span>最高</span><strong>${formatNumber(stats.max)}</strong></div>
+									<div><span>歸零</span><strong>${formatPercent(stats.zeroRate)}</strong></div>
+								</div>
+							</article>
+						`;
+					})
+					.join("");
+			};
+
+			const render = () => {
+				if (times.length === 0) return;
+				const selectedStations = visibleStations();
+				elements.startSlider.value = String(state.startIndex);
+				elements.endSlider.value = String(state.endIndex);
+
+				renderMeta();
+				renderStats(selectedStations);
+				renderOverview(selectedStations);
+				renderMainChart(selectedStations);
+				renderSmallMultiples(selectedStations);
+			};
+
+			const clampRange = () => {
+				state.startIndex = Math.max(0, Math.min(state.startIndex, times.length - 2));
+				state.endIndex = Math.max(1, Math.min(state.endIndex, times.length - 1));
+				if (state.startIndex >= state.endIndex) {
+					state.startIndex = Math.max(0, state.endIndex - 1);
+				}
+			};
+
+			const setWindowByDuration = durationMs => {
+				if (durationMs === "all") {
+					state.startIndex = 0;
+					state.endIndex = times.length - 1;
+					render();
+					return;
+				}
+
+				const endTime = times[state.endIndex] ?? times.at(-1);
+				const startTime = endTime - Number(durationMs);
+				state.startIndex = Math.max(
+					0,
+					times.findIndex(value => value >= startTime)
+				);
+				clampRange();
+				render();
+			};
+
+			const zoomAt = (ratio, factor) => {
+				const currentSpan = state.endIndex - state.startIndex;
+				const nextSpan = Math.round(Math.max(6, Math.min(times.length - 1, currentSpan * factor)));
+				const center = state.startIndex + currentSpan * ratio;
+				state.startIndex = Math.round(center - nextSpan * ratio);
+				state.endIndex = state.startIndex + nextSpan;
+				if (state.startIndex < 0) {
+					state.endIndex -= state.startIndex;
+					state.startIndex = 0;
+				}
+				if (state.endIndex > times.length - 1) {
+					const overflow = state.endIndex - (times.length - 1);
+					state.startIndex -= overflow;
+					state.endIndex = times.length - 1;
+				}
+				clampRange();
+				render();
+			};
+
+			const bindControls = () => {
+				elements.campusFilter.addEventListener("change", event => {
+					state.campus = event.target.value;
+					render();
+				});
+				elements.fleetFilter.addEventListener("change", event => {
+					state.fleet = event.target.value;
+					render();
+				});
+				elements.metricFilter.addEventListener("change", event => {
+					state.metric = event.target.value;
+					render();
+				});
+				elements.searchInput.addEventListener("input", event => {
+					state.query = event.target.value;
+					render();
+				});
+				elements.startSlider.addEventListener("input", event => {
+					state.startIndex = Number(event.target.value);
+					clampRange();
+					render();
+				});
+				elements.endSlider.addEventListener("input", event => {
+					state.endIndex = Number(event.target.value);
+					clampRange();
+					render();
+				});
+				document.querySelectorAll("[data-window]").forEach(button => {
+					button.addEventListener("click", () => setWindowByDuration(button.dataset.window));
+				});
+				elements.overviewChart.addEventListener(
+					"wheel",
+					event => {
+						event.preventDefault();
+						const rect = elements.overviewChart.getBoundingClientRect();
+						const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+						zoomAt(ratio, event.deltaY > 0 ? 1.25 : 0.8);
+					},
+					{ passive: false }
+				);
+			};
+
+			const initialize = async () => {
+				try {
+					const [csvResponse, summaryResponse] = await Promise.all([fetch(dataUrl), fetch(summaryUrl).catch(() => null)]);
+					if (!csvResponse.ok) throw new Error(`Cannot load ${dataUrl}`);
+
+					rows = normalizeRows(parseCsv(await csvResponse.text()));
+					stations = buildStations(rows);
+					times = Array.from(new Set(rows.map(row => row.bucketMs))).sort((a, b) => a - b);
+					summary = summaryResponse?.ok ? await summaryResponse.json() : null;
+
+					if (times.length === 0) {
+						document.querySelector("main").innerHTML = '<div class="empty">沒有可視覺化的資料</div>';
+						return;
+					}
+
+					state.startIndex = 0;
+					state.endIndex = times.length - 1;
+					elements.startSlider.max = String(times.length - 1);
+					elements.endSlider.max = String(times.length - 1);
+
+					bindControls();
+					render();
+				} catch (error) {
+					document.querySelector("main").innerHTML = `
+						<div class="error">
+							資料載入失敗。請先執行 pnpm export:analysis 與 pnpm analysis:serve。
+							<br />
+							${escapeHtml(error.message)}
+						</div>
+					`;
+				}
+			};
+
+			initialize();
+		</script>
+	</body>
+</html>

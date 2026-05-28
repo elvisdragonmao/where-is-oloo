@@ -55,6 +55,45 @@ docker compose up --build
 - 每個 endpoint 最新爬蟲狀態。
 - 近 1 小時 raw snapshot 數與靜態 endpoint item 數。
 
+### 匯出與視覺化分析
+
+先完整備份目前 Postgres/TimescaleDB：
+
+```sh
+pnpm dump:local
+```
+
+預設會輸出到 `exports/dumps/oloo-*.dump`。如果不在 compose 專案目錄執行，也可以指定既有容器名稱：
+
+```sh
+DB_CONTAINER=where-is-oloo-db-1 pnpm dump:local
+```
+
+產生適合前端視覺化的站點時間序列 CSV：
+
+```sh
+pnpm export:analysis
+```
+
+預設會用 `5 minutes` 聚合 `station_scooter_counts` 與 `station_vehicle_counts`，輸出：
+
+- `exports/analysis/station_counts_5min.csv`
+- `exports/analysis/summary.json`
+
+可用環境變數調整時間粒度或範圍：
+
+```sh
+ANALYSIS_BUCKET="1 minute" ANALYSIS_START="2026-05-01" ANALYSIS_END="2026-05-28" pnpm export:analysis
+```
+
+啟動分析頁：
+
+```sh
+pnpm analysis:serve
+```
+
+開啟 `http://127.0.0.1:3457`，可以篩選交大/清大、滑板車/車輛，並縮放時間範圍查看各站可用車數折線圖。
+
 ### 查詢範例
 
 查看目前每站可用車數：
