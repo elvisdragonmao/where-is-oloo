@@ -1,6 +1,7 @@
 services:
   db:
     image: timescale/timescaledb:latest-pg16
+    restart: unless-stopped
     environment:
       POSTGRES_DB: oloo
       POSTGRES_USER: oloo
