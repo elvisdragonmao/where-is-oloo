@@ -1,6 +1,8 @@
 node_modules
 dist
+**/dist
 .env
 .git
 example_data
+exports
 oloo.jpeg

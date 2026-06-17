@@ -1,0 +1,422 @@
+:root {
+	color-scheme: light;
+	--paper: #ffffff;
+	--canvas: #dddddd;
+	--ink: #111111;
+	--muted: #444444;
+	--light: #f3f3f3;
+	--line: #c9c9c9;
+	--rule: #222222;
+	--blue: #1f4e79;
+	--red: #8d2f2f;
+	--green: #2d5f4f;
+	--gold: #83621c;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--canvas);
+	color: var(--ink);
+	font-family: "Times New Roman", "Noto Serif TC", "Songti TC", serif;
+	font-size: 3.45mm;
+	line-height: 1.55;
+}
+
+body {
+	margin: 0;
+}
+
+button {
+	font: inherit;
+}
+
+.print-toolbar {
+	position: fixed;
+	z-index: 20;
+	top: 6mm;
+	right: 6mm;
+}
+
+.print-toolbar button {
+	min-height: 10mm;
+	padding: 0 4mm;
+	border: 0.25mm solid #111111;
+	border-radius: 1mm;
+	background: #ffffff;
+	color: #111111;
+	box-shadow: 0 1.5mm 5mm rgba(0, 0, 0, 0.18);
+	cursor: pointer;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+	font-size: 3.1mm;
+	font-weight: 700;
+}
+
+.print-toolbar button:hover {
+	background: #f1f1f1;
+}
+
+.document {
+	display: grid;
+	gap: 7mm;
+	justify-content: center;
+	padding: 10mm 0 14mm;
+}
+
+.page {
+	position: relative;
+	width: 210mm;
+	height: 297mm;
+	overflow: hidden;
+	padding: 22mm 24mm 20mm;
+	background: var(--paper);
+	box-shadow: 0 3mm 14mm rgba(0, 0, 0, 0.16);
+	break-after: page;
+	page-break-after: always;
+}
+
+.page-header,
+.page-footer {
+	display: flex;
+	justify-content: space-between;
+	color: #666666;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+	font-size: 2.45mm;
+	font-weight: 600;
+	letter-spacing: 0;
+}
+
+.page-header {
+	border-bottom: 0.25mm solid var(--line);
+	padding-bottom: 2.5mm;
+}
+
+.page-footer {
+	position: absolute;
+	right: 24mm;
+	bottom: 11mm;
+	left: 24mm;
+	border-top: 0.25mm solid var(--line);
+	padding-top: 2mm;
+}
+
+.page-content {
+	padding-bottom: 8mm;
+}
+
+.page--cover {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 30mm 28mm 22mm;
+	text-align: center;
+}
+
+.cover-kicker {
+	margin-top: 14mm;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+	font-size: 4mm;
+	font-weight: 700;
+	letter-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+	margin-block: 0;
+}
+
+h1 {
+	margin: 20mm auto 0;
+	max-width: 138mm;
+	font-size: 9.8mm;
+	font-weight: 700;
+	line-height: 1.28;
+	letter-spacing: 0;
+}
+
+.page--cover > p {
+	margin: 12mm auto 0;
+	max-width: 132mm;
+	color: var(--ink);
+	font-size: 4mm;
+	line-height: 1.8;
+}
+
+.cover-footer {
+	margin-top: auto;
+	border-top: 0.25mm solid var(--rule);
+	padding-top: 5mm;
+	color: var(--muted);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+	font-size: 3mm;
+	font-weight: 600;
+}
+
+h2 {
+	margin-top: 8mm;
+	padding-bottom: 2mm;
+	border-bottom: 0.35mm solid var(--rule);
+	font-size: 5.8mm;
+	font-weight: 700;
+	line-height: 1.28;
+	letter-spacing: 0;
+}
+
+h3 {
+	margin-top: 5mm;
+	font-size: 3.8mm;
+	font-weight: 700;
+	line-height: 1.35;
+	letter-spacing: 0;
+}
+
+p {
+	margin-top: 3mm;
+	color: var(--ink);
+	font-size: 3.35mm;
+	text-align: justify;
+	text-indent: 2em;
+}
+
+.meta-list {
+	width: 120mm;
+	margin: 24mm auto 0;
+	border-top: 0.25mm solid var(--rule);
+	border-bottom: 0.25mm solid var(--rule);
+	padding: 5mm 0;
+	text-align: left;
+}
+
+.meta-list div {
+	display: grid;
+	grid-template-columns: 28mm 1fr;
+	gap: 4mm;
+	padding: 1.6mm 0;
+}
+
+.meta-list dt {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+	font-size: 3mm;
+	font-weight: 700;
+}
+
+.meta-list dd {
+	margin: 0;
+	font-size: 3.2mm;
+	line-height: 1.55;
+}
+
+.toc {
+	margin-top: 9mm;
+	border-top: 0.25mm solid var(--rule);
+	padding-top: 4mm;
+}
+
+.toc h3 {
+	margin-top: 0;
+}
+
+.toc ol {
+	margin: 3mm 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.toc li {
+	display: grid;
+	grid-template-columns: auto 12mm;
+	gap: 4mm;
+	align-items: baseline;
+	border-bottom: 0.25mm dotted #999999;
+	padding: 1.6mm 0;
+	color: var(--ink);
+	font-size: 3.15mm;
+}
+
+.toc li span:first-child {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.toc li span:last-child {
+	text-align: right;
+}
+
+.figure {
+	margin: 4mm 0 3mm;
+	break-inside: avoid;
+}
+
+figcaption {
+	margin-bottom: 1.5mm;
+	font-size: 3mm;
+	line-height: 1.4;
+}
+
+figcaption strong {
+	display: block;
+	font-weight: 700;
+}
+
+figcaption span {
+	display: block;
+	margin-top: 0.5mm;
+	color: var(--muted);
+	font-size: 2.8mm;
+}
+
+.chart-canvas {
+	width: 100%;
+	height: 58mm;
+	border-top: 0.25mm solid var(--line);
+	border-bottom: 0.25mm solid var(--line);
+}
+
+[data-chart="station-risk"],
+[data-chart="unavailable-stations"] {
+	height: 66mm;
+}
+
+[data-chart="friday-strategy"] {
+	height: 64mm;
+}
+
+[data-chart="rebalance-events"],
+[data-chart="recovery-types"] {
+	height: 62mm;
+}
+
+.table-wrap {
+	width: 100%;
+	margin-top: 3.6mm;
+	overflow: hidden;
+	break-inside: avoid;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 2.8mm;
+	line-height: 1.34;
+}
+
+.page--dense table {
+	font-size: 2.45mm;
+	line-height: 1.24;
+}
+
+caption {
+	margin-bottom: 1.5mm;
+	color: var(--ink);
+	font-size: 3.15mm;
+	font-weight: 700;
+	text-align: left;
+}
+
+th,
+td {
+	padding: 1.2mm 1.3mm;
+	border-bottom: 0.25mm solid var(--line);
+	text-align: left;
+	vertical-align: top;
+}
+
+.page--dense th,
+.page--dense td {
+	padding: 0.95mm 1.05mm;
+}
+
+th {
+	border-top: 0.3mm solid var(--rule);
+	border-bottom: 0.3mm solid var(--rule);
+	background: #f7f7f7;
+	color: var(--ink);
+	font-weight: 700;
+}
+
+td {
+	color: var(--ink);
+}
+
+tr:last-child td {
+	border-bottom: 0.3mm solid var(--rule);
+}
+
+@media (max-width: 230mm) {
+	html {
+		font-size: 3.25mm;
+	}
+
+	.document {
+		gap: 5mm;
+		padding: 4mm 0 8mm;
+	}
+
+	.page {
+		width: calc(100vw - 8mm);
+		height: calc((100vw - 8mm) * 1.4142857);
+		padding: 12mm 10mm 12mm;
+	}
+
+	.page-footer {
+		right: 10mm;
+		left: 10mm;
+	}
+
+	.page--cover {
+		padding: 18mm 12mm 14mm;
+	}
+
+	h1 {
+		font-size: 7.2mm;
+	}
+
+	h2 {
+		font-size: 5.2mm;
+	}
+
+	.meta-list {
+		width: 100%;
+	}
+}
+
+@media print {
+	@page {
+		size: A4;
+		margin: 0;
+	}
+
+	html,
+	body {
+		width: 210mm;
+		background: #ffffff;
+	}
+
+	.print-toolbar {
+		display: none;
+	}
+
+	.document {
+		display: block;
+		padding: 0;
+	}
+
+	.page {
+		width: 210mm;
+		height: 297mm;
+		margin: 0;
+		box-shadow: none;
+		break-after: page;
+		page-break-after: always;
+	}
+
+	.page:last-child {
+		break-after: auto;
+		page-break-after: auto;
+	}
+}

@@ -10,6 +10,15 @@
 
 這個專案會用 Node.js + TypeScript 定期抓 oloo API，將會變動的 endpoint 每分鐘寫入 PostgreSQL + TimescaleDB；較不會變動的站點、方案、電子圍籬等資料在啟動時抓一次並 upsert。
 
+### 專案結構
+
+這個 repo 是 pnpm monorepo：
+
+- `apps/crawler`：oloo API 爬蟲、PostgreSQL / TimescaleDB schema、即時 dashboard、資料匯出 scripts。
+- `apps/report`：期末報告前端，使用 Vite + ECharts，版面以 A4 與 `mm` 為主。
+
+root scripts 會轉呼叫對應 workspace package，因此日常操作仍可在 repo root 執行。
+
 ### 啟動
 
 先建立 `.env`：
@@ -55,6 +64,24 @@ docker compose up --build
 - 每個 endpoint 最新爬蟲狀態。
 - 近 1 小時 raw snapshot 數與靜態 endpoint item 數。
 
+### 期末報告前端
+
+期末報告頁已整理成 Vite + ECharts 前端，來源碼集中在 `apps/report/src/`：
+
+```sh
+pnpm report:dev
+```
+
+開啟 `http://127.0.0.1:5173/report/` 查看報告。報告版面以一頁一張 A4 和 `mm` 為主要排版單位，圖表使用 ECharts SVG renderer，右上角有列印按鈕可叫出瀏覽器列印流程並匯出 PDF。
+
+產生靜態報告：
+
+```sh
+pnpm build:report
+```
+
+輸出會放在 `apps/report/dist/`。
+
 ### 匯出與視覺化分析
 
 先完整備份目前 Postgres/TimescaleDB：
@@ -63,7 +90,7 @@ docker compose up --build
 pnpm dump:local
 ```
 
-預設會輸出到 `exports/dumps/oloo-*.dump`。如果不在 compose 專案目錄執行，也可以指定既有容器名稱：
+預設會輸出到 `apps/crawler/exports/dumps/oloo-*.dump`。如果不在 compose 專案目錄執行，也可以指定既有容器名稱：
 
 ```sh
 DB_CONTAINER=where-is-oloo-db-1 pnpm dump:local
@@ -77,8 +104,8 @@ pnpm export:analysis
 
 預設會用 `5 minutes` 聚合 `station_scooter_counts` 與 `station_vehicle_counts`，輸出：
 
-- `exports/analysis/station_counts_5min.csv`
-- `exports/analysis/summary.json`
+- `apps/crawler/exports/analysis/station_counts_5min.csv`
+- `apps/crawler/exports/analysis/summary.json`
 
 可用環境變數調整時間粒度或範圍：
 
@@ -93,6 +120,12 @@ pnpm analysis:serve
 ```
 
 開啟 `http://127.0.0.1:3457`，可以篩選交大/清大、滑板車/車輛，並縮放時間範圍查看各站可用車數折線圖。
+
+若要專門看每個週一與週五交大/清大各站和總體的「總車數 / 可借車數」變化，開啟：
+
+```text
+http://127.0.0.1:3457/weekday-analysis.html
+```
 
 ### 查詢範例
 

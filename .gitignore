@@ -2,3 +2,5 @@ node_modules/
 dist/
 .env
 exports/
+.idea/
+.DS_Store

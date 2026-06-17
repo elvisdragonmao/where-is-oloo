@@ -1,0 +1,27 @@
+{
+	"name": "@where-is-oloo/crawler",
+	"version": "1.0.0",
+	"private": true,
+	"license": "Apache-2.0",
+	"type": "module",
+	"main": "dist/index.js",
+	"scripts": {
+		"analysis": "pnpm export:analysis && pnpm analysis:serve",
+		"analysis:serve": "node scripts/serve-analysis.mjs",
+		"build": "tsc -p tsconfig.json",
+		"dev": "pnpm build && node dist/index.js",
+		"dump:local": "node scripts/dump-local.mjs",
+		"export:analysis": "node scripts/export-analysis.mjs",
+		"start": "node dist/index.js",
+		"typecheck": "tsc -p tsconfig.json --noEmit"
+	},
+	"dependencies": {
+		"dotenv": "^17.2.3",
+		"pg": "^8.16.3"
+	},
+	"devDependencies": {
+		"@types/node": "^24.10.1",
+		"@types/pg": "^8.15.6",
+		"typescript": "^5.9.3"
+	}
+}

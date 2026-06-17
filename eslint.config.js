@@ -7,14 +7,20 @@ const nodeGlobals = {
 	URL: "readonly"
 };
 
+const browserGlobals = {
+	document: "readonly",
+	ResizeObserver: "readonly",
+	window: "readonly"
+};
+
 export default [
 	{
-		ignores: ["dist/**", "node_modules/**"]
+		ignores: ["**/dist/**", "node_modules/**"]
 	},
 	js.configs.recommended,
 	...tseslint.configs.recommended,
 	{
-		files: ["scripts/**/*.mjs"],
+		files: ["apps/crawler/scripts/**/*.mjs"],
 		languageOptions: {
 			ecmaVersion: 2022,
 			globals: nodeGlobals,
@@ -22,13 +28,32 @@ export default [
 		}
 	},
 	{
-		files: ["src/**/*.ts"],
+		files: ["apps/crawler/src/**/*.ts"],
 		languageOptions: {
 			ecmaVersion: 2022,
+			globals: nodeGlobals,
 			sourceType: "module"
 		},
 		rules: {
 			"@typescript-eslint/no-explicit-any": "error"
+		}
+	},
+	{
+		files: ["apps/report/src/**/*.ts"],
+		languageOptions: {
+			ecmaVersion: 2022,
+			globals: browserGlobals,
+			sourceType: "module"
+		},
+		rules: {
+			"@typescript-eslint/no-explicit-any": "error"
+		}
+	},
+	{
+		files: ["apps/report/vite.config.ts"],
+		languageOptions: {
+			ecmaVersion: 2022,
+			sourceType: "module"
 		}
 	}
 ];
