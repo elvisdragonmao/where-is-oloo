@@ -228,6 +228,8 @@ p {
 
 .toc h3 {
 	margin-top: 0;
+	font-size: 5.8mm;
+	line-height: 1.28;
 }
 
 .toc ol {

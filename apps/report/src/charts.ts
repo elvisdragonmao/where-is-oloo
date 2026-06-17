@@ -55,6 +55,13 @@ const numberTooltip = (value: unknown) => Number(value).toFixed(2);
 const names = <T>(items: T[], pick: (item: T) => string) => items.map(pick);
 const values = <T>(items: T[], pick: (item: T) => number) => items.map(pick);
 const campusColor = (campus: string) => (campus === "清大" ? colors.nthu : colors.nctu);
+const recoveryColor = (type: string) => {
+	if (type.includes("未恢復")) return colors.red;
+	if (type.includes("換電") || type.includes("修復")) return colors.nctu;
+	if (type.includes("大量")) return colors.gold;
+	if (type.includes("歸還")) return colors.green;
+	return colors.gray;
+};
 
 const strategyOption = (scope: StrategyScope): EChartsCoreOption => {
 	const rows = strategySeries[scope];
@@ -155,12 +162,12 @@ export const chartOptions: Record<ChartId, EChartsCoreOption> = {
 		xAxis: { type: "category", data: names(batteryBands, row => row.band), axisLabel: { interval: 0 } },
 		yAxis: { type: "value", max: 100, ...percentAxis },
 		series: [
-			{ name: "風險訊號比例", type: "bar", data: values(batteryBands, row => row.riskSignalRate) },
+			{ name: "不可借率", type: "bar", data: values(batteryBands, row => row.unavailableRate) },
 			{ name: "errorMsg 比例", type: "line", data: batteryBands.map(row => (row.errorObservations / Math.max(row.total, 1)) * 100), symbolSize: 5 }
 		]
 	},
 	"recovery-types": {
-		color: [colors.green, colors.red, colors.gold],
+		color: [colors.nctu, colors.green, colors.gold, colors.red],
 		legend: { bottom: 0, textStyle: baseText },
 		tooltip: { trigger: "item" },
 		series: [
@@ -169,7 +176,7 @@ export const chartOptions: Record<ChartId, EChartsCoreOption> = {
 				type: "pie",
 				radius: ["35%", "64%"],
 				center: ["50%", "45%"],
-				data: recoveryTypes.map(row => ({ name: row.type, value: row.episodes })),
+				data: recoveryTypes.map(row => ({ name: row.type, value: row.episodes, itemStyle: { color: recoveryColor(row.type) } })),
 				label: { formatter: "{b}\n{d}%" }
 			}
 		]

@@ -24,7 +24,9 @@ import {
 	recoveryTable,
 	reportMeta,
 	stationRiskTable,
+	statisticalTestTable,
 	strategyTable,
+	testParagraphs,
 	type TableData
 } from "./data";
 
@@ -95,7 +97,7 @@ const contents = () => `
 			<li><span>每日與星期策略</span><span>3</span></li>
 			<li><span>校區與站點缺車拆解</span><span>6</span></li>
 			<li><span>車況原因與電量</span><span>8</span></li>
-			<li><span>缺車恢復、限制與結論</span><span>11</span></li>
+			<li><span>統計檢定、缺車恢復與結論</span><span>11</span></li>
 		</ol>
 	</nav>
 `;
@@ -116,7 +118,7 @@ app.innerHTML = `
 			</dl>
 			<footer class="cover-footer">統計學期末報告</footer>
 		</section>
-		${page("summary", "摘要與研究問題", `${paragraphs(introParagraphs)}${paragraphs(motivationParagraphs)}${contents()}`)}
+		${page("summary", "摘要與研究問題", `${paragraphs(motivationParagraphs)}${paragraphs(introParagraphs)}${contents()}`)}
 		${page("data", "資料蒐集、指標定義與分析方法", `${paragraphs(dataParagraphs)}${table(indicatorTable)}${subheading("分析方法")}${paragraphs(methodParagraphs)}`, "page--dense")}
 		${page(
 			"strategy-daily",
@@ -160,14 +162,14 @@ app.innerHTML = `
 			"reasons",
 			"Q3：有車但不能借的可能原因",
 			`${paragraphs(q3Paragraphs)}
-			${chartFigure("reason-signals", "低電量與官方 errorMsg 風險訊號", "Connection: close 視為 API 傳輸雜訊，未列入車輛錯誤類型。")}
+			${chartFigure("reason-signals", "不可借快照中的重疊訊號", "低電量與 errorMsg 可能同時出現，比例不可直接相加。")}
 			${table(reasonTable)}`,
 			"page--dense"
 		)}
 		${page(
 			"errors",
 			"Q3：官方 errorMsg 類型",
-			`${chartFigure("error-messages", "官方 errorMsg Top 10", "errorMsg 保留官方字串，用來描述系統回報的異常類型。")}
+			`${chartFigure("error-messages", "不可借快照中的官方 errorMsg Top 10", "errorMsg 保留官方字串，用來描述系統回報的異常類型。")}
 			${table(errorMessageTable)}`,
 			"page--dense"
 		)}
@@ -175,10 +177,11 @@ app.innerHTML = `
 			"battery",
 			"Q4：電量與車況風險",
 			`${paragraphs(q4Paragraphs)}
-			${chartFigure("battery-bands", "每 10% 電量區間的車況風險訊號比例", "此圖是風險訊號比例，不是所有車輛中的不可借率；實際電量門檻需另行重算。")}
+			${chartFigure("battery-bands", "每 10% 電量區間的不可借率估計", "分母是在站且非租借的車輛快照；快照每 6 小時抽取 15 分鐘。")}
 			${table(batteryTable)}`,
 			"page--dense"
 		)}
+		${page("tests", "統計檢定", `${paragraphs(testParagraphs)}${table(statisticalTestTable)}`, "page--dense")}
 		${page(
 			"recovery",
 			"Q5：缺車後多久恢復",

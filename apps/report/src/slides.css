@@ -1,0 +1,242 @@
+:root {
+	color-scheme: light;
+	--ink: #111111;
+	--muted: #4a4a4a;
+	--line: #c8c8c8;
+	--paper: #ffffff;
+	--canvas: #d8d8d8;
+	--nthu: #6b4aa0;
+	--nctu: #1f5f9f;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--canvas);
+	color: var(--ink);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+	font-size: 16px;
+	line-height: 1.45;
+}
+
+body {
+	margin: 0;
+}
+
+button {
+	font: inherit;
+}
+
+.deck-toolbar {
+	position: fixed;
+	z-index: 10;
+	top: 14px;
+	right: 14px;
+}
+
+.deck-toolbar button {
+	border: 1px solid var(--ink);
+	border-radius: 4px;
+	background: #ffffff;
+	padding: 8px 14px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.deck {
+	display: grid;
+	gap: 18px;
+	justify-content: center;
+	padding: 28px 0;
+}
+
+.slide {
+	position: relative;
+	width: 320mm;
+	height: 180mm;
+	overflow: hidden;
+	background: var(--paper);
+	padding: 14mm 18mm 13mm;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
+	break-after: page;
+}
+
+.slide::after {
+	position: absolute;
+	right: 18mm;
+	bottom: 8mm;
+	width: 22mm;
+	height: 2mm;
+	background: var(--nctu);
+	border-left: 11mm solid var(--nthu);
+	content: "";
+}
+
+.slide header {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid var(--line);
+	padding-bottom: 3mm;
+	font-size: 3.4mm;
+	font-weight: 700;
+	letter-spacing: 0;
+}
+
+.slide h1 {
+	max-width: 245mm;
+	margin: 6mm 0 6mm;
+	font-size: 10.5mm;
+	line-height: 1.16;
+	letter-spacing: 0;
+}
+
+.slide-body {
+	display: grid;
+	gap: 5mm;
+	align-content: start;
+}
+
+.lead {
+	max-width: 250mm;
+	margin: 0;
+	font-size: 7mm;
+	line-height: 1.35;
+}
+
+p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 4.4mm;
+}
+
+ul {
+	display: grid;
+	gap: 3mm;
+	margin: 0;
+	padding-left: 7mm;
+	font-size: 4.8mm;
+}
+
+li::marker {
+	color: var(--nctu);
+}
+
+.meta {
+	display: grid;
+	grid-template-columns: repeat(2, max-content);
+	gap: 3mm 10mm;
+	margin-top: 8mm;
+	font-size: 4.4mm;
+}
+
+.metric-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 4mm;
+}
+
+.metric-grid.compact {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metric {
+	min-height: 23mm;
+	border-top: 1px solid var(--ink);
+	padding-top: 4mm;
+}
+
+.metric span {
+	display: block;
+	color: var(--muted);
+	font-size: 3.6mm;
+	font-weight: 700;
+}
+
+.metric strong {
+	display: block;
+	margin-top: 2mm;
+	font-size: 6.8mm;
+	line-height: 1.1;
+}
+
+.slide-chart {
+	width: 100%;
+	height: 66mm;
+	border-top: 1px solid var(--line);
+	border-bottom: 1px solid var(--line);
+}
+
+.two-charts {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 8mm;
+}
+
+.two-charts .slide-chart {
+	height: 54mm;
+}
+
+.slide--cover {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.slide--cover header {
+	position: absolute;
+	top: 14mm;
+	right: 18mm;
+	left: 18mm;
+}
+
+.slide--cover h1 {
+	max-width: 250mm;
+	font-size: 13mm;
+}
+
+@media screen and (max-width: 1200px) {
+	.deck {
+		padding: 14px;
+	}
+
+	.slide {
+		width: calc(100vw - 28px);
+		height: calc((100vw - 28px) * 0.5625);
+		padding: 5vw;
+	}
+
+	.slide h1 {
+		font-size: 5vw;
+	}
+}
+
+@media print {
+	@page {
+		size: 320mm 180mm;
+		margin: 0;
+	}
+
+	html,
+	body {
+		width: 320mm;
+		background: #ffffff;
+	}
+
+	.deck-toolbar {
+		display: none;
+	}
+
+	.deck {
+		display: block;
+		padding: 0;
+	}
+
+	.slide {
+		width: 320mm;
+		height: 180mm;
+		margin: 0;
+		box-shadow: none;
+	}
+}

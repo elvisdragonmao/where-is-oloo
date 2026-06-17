@@ -10,7 +10,8 @@ export default defineConfig({
 		outDir: "dist",
 		rollupOptions: {
 			input: {
-				report: resolve("report/index.html")
+				report: resolve("report/index.html"),
+				slides: resolve("slides/index.html")
 			}
 		}
 	},

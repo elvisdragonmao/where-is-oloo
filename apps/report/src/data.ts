@@ -53,9 +53,11 @@ export type ErrorMessageCount = {
 export type BatteryBand = {
 	band: string;
 	total: number;
-	riskSignal: number;
+	unavailable: number;
 	errorObservations: number;
-	riskSignalRate: number;
+	unavailableRate: number;
+	ciLow: number;
+	ciHigh: number;
 };
 
 export type RebalanceEvent = {
@@ -121,6 +123,43 @@ type GeneratedBatteryBand = {
 	risk_signal_rate: number;
 };
 
+type GeneratedBatteryAvailabilityBand = {
+	band: string;
+	sort_order: number;
+	total_observations: number;
+	unavailable_observations: number;
+	error_observations: number;
+	unavailable_error_observations: number;
+	unavailable_rate: number;
+	ci_low: number;
+	ci_high: number;
+};
+
+type GeneratedBatteryThreshold = {
+	threshold: number;
+	total_observations: number;
+	under_threshold_observations: number;
+	unavailable_observations: number;
+	unavailable_under_threshold_observations: number;
+	under_threshold_share_of_all: number;
+	unavailable_rate_under_threshold: number;
+	share_of_unavailable: number;
+};
+
+type GeneratedNightStationConcentration = {
+	campus: string;
+	station_name: string;
+	share: number;
+	station_rank: number;
+	available_sum: number;
+};
+
+type GeneratedUnavailableErrorMessage = {
+	error_msg: string;
+	observations: number;
+	share_of_unavailable: number;
+};
+
 type GeneratedRecoveryType = {
 	recovery_type: string;
 	episodes: number;
@@ -128,6 +167,26 @@ type GeneratedRecoveryType = {
 	recovered_episodes: number;
 	median_minutes_to_recovery: number | null;
 	average_minutes_to_recovery: number | null;
+};
+
+type GeneratedStatisticalTest = {
+	name: string;
+	hypothesis: string;
+	metric: string;
+	group_a: string;
+	group_b: string;
+	n_a: number;
+	event_a: number;
+	rate_a: number;
+	n_b: number;
+	event_b: number;
+	rate_b: number;
+	difference_percentage_points: number;
+	ci_low: number;
+	ci_high: number;
+	z: number;
+	p_value: number;
+	conclusion: string;
 };
 
 type GeneratedRebalanceStation = {
@@ -147,6 +206,7 @@ type GeneratedReportData = {
 	campusHour: GeneratedCampusHour[];
 	dailyStrategy: GeneratedStrategy[];
 	stationRisk: GeneratedStationRisk[];
+	nightStationConcentration: GeneratedNightStationConcentration[];
 	signalSummary: {
 		status_observations: number;
 		risk_signal_observations: number;
@@ -156,10 +216,30 @@ type GeneratedReportData = {
 		gps_abnormal_observations: number;
 	};
 	batteryBands: GeneratedBatteryBand[];
+	batteryAvailabilitySummary: {
+		joined_observations: number;
+		unavailable_observations: number;
+		available_observations: number;
+		unavailable_low_30_observations: number;
+		unavailable_low_35_observations: number;
+		unavailable_low_40_observations: number;
+		unavailable_rate: number;
+		low_30_share_of_unavailable: number;
+		low_35_share_of_unavailable: number;
+		low_40_share_of_unavailable: number;
+		error_share_of_unavailable: number;
+		sample_minutes: number;
+		sample_every_hours: number;
+		sample_windows: number;
+	};
+	batteryAvailabilityBands: GeneratedBatteryAvailabilityBand[];
+	batteryThresholdCandidates: GeneratedBatteryThreshold[];
+	unavailableErrorMessages: GeneratedUnavailableErrorMessage[];
 	errorMessages: GeneratedErrorMessage[];
 	reasonSignals: GeneratedReasonSignal[];
 	recoverySummary: GeneratedRecoveryType[];
 	rebalanceStations: GeneratedRebalanceStation[];
+	statisticalTests: GeneratedStatisticalTest[];
 	routeLimitation: string;
 };
 
@@ -173,6 +253,7 @@ const round = (value: number, digits = 1) => {
 };
 const percentText = (value: number, digits = 1) => `${round(value, digits).toFixed(digits)}%`;
 const numberText = (value: number, digits = 0) => value.toLocaleString("zh-TW", { maximumFractionDigits: digits, minimumFractionDigits: digits });
+const pValueText = (value: number) => (value < 0.000001 ? "<0.000001" : value.toFixed(6));
 const hourText = (hour: number) => `${String(hour).padStart(2, "0")}:00`;
 const minuteText = (value: number | null) => (value === null ? "NA" : `${numberText(value, 0)} 分鐘`);
 const errorMsgTranslations: Record<string, string> = {
@@ -284,34 +365,44 @@ export const stationRisks: StationRisk[] = data.stationRisk.map(row => ({
 	availableAverage: round(row.available_avg, 2)
 }));
 
-const vehicleErrorMessages = data.errorMessages.filter(row => row.error_msg !== "Connection: close");
+const unavailableVehicleErrorMessages = data.unavailableErrorMessages.filter(row => row.error_msg !== "Connection: close");
 
 export const reasonSignals: ReasonSignal[] = [
-	...data.reasonSignals
-		.filter(row => row.reason !== "Connection: close")
-		.map(row => ({
-			reason: row.reason,
-			observations: row.observations,
-			share: round(row.share_of_signal_observations, 2)
-		}))
+	{
+		reason: "低電量（<35%）",
+		observations: data.batteryAvailabilitySummary.unavailable_low_35_observations,
+		share: round(data.batteryAvailabilitySummary.low_35_share_of_unavailable, 2)
+	},
+	...unavailableVehicleErrorMessages.map(row => ({
+		reason: row.error_msg,
+		observations: row.observations,
+		share: round(row.share_of_unavailable, 2)
+	}))
 ].slice(0, 10);
 
-export const errorMessages: ErrorMessageCount[] = vehicleErrorMessages.slice(0, 10).map(row => ({
+export const errorMessages: ErrorMessageCount[] = unavailableVehicleErrorMessages.slice(0, 10).map(row => ({
 	message: row.error_msg,
 	observations: row.observations,
-	share: round(row.share_of_all, 2)
+	share: round(row.share_of_unavailable, 2)
 }));
 
-export const batteryBands: BatteryBand[] = data.batteryBands
+export const batteryBands: BatteryBand[] = data.batteryAvailabilityBands
 	.slice()
 	.sort((a, b) => a.sort_order - b.sort_order)
 	.map(row => ({
 		band: row.band,
 		total: row.total_observations,
-		riskSignal: row.risk_signal_observations,
+		unavailable: row.unavailable_observations,
 		errorObservations: row.error_observations,
-		riskSignalRate: round(row.risk_signal_rate, 2)
+		unavailableRate: round(row.unavailable_rate, 2),
+		ciLow: round(row.ci_low, 2),
+		ciHigh: round(row.ci_high, 2)
 	}));
+
+const threshold35 = data.batteryThresholdCandidates.find(row => row.threshold === 35);
+const threshold30 = data.batteryThresholdCandidates.find(row => row.threshold === 30);
+const nightTopNctu = data.nightStationConcentration.filter(row => row.campus === "交大").slice(0, 3);
+const nightTopNctuShare = nightTopNctu.reduce((sum, row) => sum + numberValue(row.share), 0);
 
 const totalRebalanceEvents = data.rebalanceStations.reduce((sum, row) => sum + row.suspected_rebalance_events, 0);
 
@@ -332,30 +423,31 @@ export const recoveryTypes: RecoveryType[] = data.recoverySummary.map(row => ({
 }));
 
 export const introParagraphs = [
-	`本報告分析 ${reportMeta.dateRange} 的 oloo 清大、交大站點資料。核心問題不是單純看現場車數，而是學生常遇到的「借不到」：站點完全沒有可借車，或現場有車但系統判定不可借。`,
+	`本報告透過每分鐘呼叫官方 API 蒐集並分析 ${reportMeta.dateRange} 的 oloo 清大、交大站點資料。不只是單純看現場車數，而是學生常遇到的「借不到」：站點完全沒有可借車，或現場有車但系統判定不可借。`,
 	`站點層級結果顯示，清大平均缺車率約 ${percentText(campusMetrics.find(row => row.campus === "清大")?.shortageRate ?? 0)}，交大約 ${percentText(campusMetrics.find(row => row.campus === "交大")?.shortageRate ?? 0)}。最高風險站點是 ${stationRisks[0]?.station ?? "NA"}，缺車率達 ${percentText(stationRisks[0]?.shortageRate ?? 0)}。`,
-	`車況 API 方面，低電量（<30%）與官方 errorMsg 是最重要的風險訊號。扣除 API 傳輸雜訊「Connection: close」後，最常見的 errorMsg 是 ${errorMsgText(errorMessages[0]?.message ?? "NA")}，占全部車況觀測 ${percentText(errorMessages[0]?.share ?? 0, 2)}。`
+	`車況 API 方面，以 15 分鐘快照估計，在站且非租借車輛中約 ${percentText(data.batteryAvailabilitySummary.unavailable_rate, 2)} 處於不可借狀態；不可借快照中，${percentText(threshold35?.share_of_unavailable ?? 0, 2)} 電量低於 35%，官方 errorMsg 以 ${errorMsgText(errorMessages[0]?.message ?? "NA")} 最常見。`
 ];
 
 export const motivationParagraphs = [
-	"oloo 對清大、交大學生來說已經是校園移動的一部分。清交校園有明顯坡道，從宿舍、餐廳到教學區，步行經常需要十五到二十分鐘；如果剛好借不到車，通勤時間和體力成本會被放大。",
-	"因此，本研究把日常使用經驗轉成三個可量化問題：什麼時段與校區比較容易借不到；哪些站點或路線節點最需要注意；借不到時較可能是沒有車、低電量，還是官方 API 回報的故障或異常狀態。"
+	"oloo 對清大、交大學生來說是校園移動中不可或缺的一部分。交清校園有明顯坡道，從宿舍、餐廳到教學區，步行經常需要十五到二十分鐘；對於趕時間或是不想走路的學生來說，借不到車會造成很大的不便。",
+	"因此，本研究把日常使用經驗轉成三個可量化問題：什麼時段與校區比較容易借不到；哪些站點或路線節點最需要注意；以及借不到車的原因到底是什麼？為什麼常常看到明明有車但是不能借？"
 ];
 
 export const dataParagraphs = [
 	"資料由本專案的 Node.js + TypeScript crawler 蒐集。會變動的 oloo API endpoint 每分鐘寫入 PostgreSQL + TimescaleDB；較不會變動的站點、方案、電子圍籬等靜態資料在啟動時抓一次並 upsert。資料蒐集中間有因網路或服務不穩造成的缺漏，因此所有比例都以有效觀測為分母。",
-	`本次重算涵蓋 ${numberText(data.metadata.station_windows)} 個清大/交大站點 15 分鐘觀測窗、${numberText(data.signalSummary.status_observations)} 筆車況 API 觀測。站點分析採 15 分鐘窗；低庫存定義為可借車數低於 3 台；缺車恢復分析採 1 分鐘窗。`,
+	`本次重算涵蓋 ${numberText(data.metadata.station_windows)} 個清大/交大站點 15 分鐘觀測窗、${numberText(data.signalSummary.status_observations)} 筆車況 API 觀測；另抽取 ${numberText(data.batteryAvailabilitySummary.sample_windows)} 個跨全期間的 15 分鐘車況快照，用於估計電量與不可借率。站點分析採 15 分鐘窗；低庫存定義為可借車數低於 3 台；缺車恢復分析採 1 分鐘窗。`,
 	"車況 API 的 errorMsg 保留官方字串，並在括號補中文說明，例如 illegalMovement（異常移動）、illegalDisassembly（異常拆卸）、throttleAbnormal（油門異常）、communicationError（通訊錯誤）等。Connection: close 在報告圖表中視為 API 傳輸雜訊，不列入車輛錯誤 Top 類型。"
 ];
 
 export const methodParagraphs = [
-	"站點層級以缺車率、低庫存率、平均總車數與平均可借車數描述可用性。缺車率是可借車數等於 0 的觀測窗比例；低庫存率是可借車數低於 3 台的觀測窗比例。",
-	"補車/恢復分析先找出站點從非缺車進入缺車的 episode，再追蹤下一筆可借車數大於 0 的觀測。若恢復那筆可借車數達 5 台以上，或相對缺車開始時可借/總車數增加至少 5 台，歸類為疑似大量回補；其餘歸類為一般歸還或零散恢復。",
-	"車況 API 只能說明風險訊號，不能單獨證明最終借車失敗原因；因此本報告把站點可借車數當作主要結論來源，把電量與 errorMsg 當作解釋「有車但不能借」的輔助證據。"
+	"本報告以課程中的資料摘要與描述統計為主軸，先把每個站點 15 分鐘觀測窗整理成平均總車數、平均可借車數、缺車率與低庫存率，再用圖表呈現時間、校區與站點差異。",
+	"統計觀念上，可把每個觀測窗是否缺車視為 0/1 隨機變數；缺車率就是這個伯努利變數的樣本平均。清大與交大、星期一與星期五的比較，使用兩樣本比例 z 檢定與 95% 信賴區間，對應課程中的假設檢定與兩樣本決策。",
+	"補車/恢復分析先找出站點從非缺車進入缺車的 episode，再追蹤下一筆可借車數大於 0 的觀測。若恢復時總車數或可借車數突然增加至少 5 台，歸類為大量回補；若總車數幾乎不變但可借車恢復，歸類為換電/修復代理；總車數小幅增加則歸類為一般歸還。",
+	"車況 API 只能說明狀態訊號，不能單獨證明最終借車失敗原因；因此本報告把站點可借車數當作主要結論來源，把電量與 errorMsg 當作解釋「有車但不能借」的輔助證據。"
 ];
 
 export const q1Paragraphs = [
-	`清大與交大必須分開看。每日整體來看，清大最不利時段集中在 ${worstHours("每日整體", "清大").join("、")}；交大最不利時段集中在 ${worstHours("每日整體", "交大").join("、")}。圖中交大夜間總量看似較高，主要是 21:00-05:59 的可借車集中在十三舍、綜合一館與女二舍，三站約占夜間可借車三分之二。`,
+	`清大與交大必須分開看。每日整體來看，清大最不利時段集中在 ${worstHours("每日整體", "清大").join("、")}；交大最不利時段集中在 ${worstHours("每日整體", "交大").join("、")}。圖中交大夜間總量看似較高，主要是 21:00-05:59 的可借車集中在 ${nightTopNctu.map(row => row.station_name.replace("交大-", "")).join("、")}，三站合計約占夜間可借車 ${percentText(nightTopNctuShare)}。`,
 	`若以「怎麼比較借得到」為目標，清大每日較佳時段是 ${bestHours("每日整體", "清大").join("、")}；交大每日較佳時段是 ${bestHours("每日整體", "交大").join("、")}。這些建議只代表校區整體歷史平均；實際出發前仍要看附近站點，因為工程四館、二餐後門、體育館、科學一館等站仍常接近沒車。`
 ];
 
@@ -375,33 +467,33 @@ export const q2Paragraphs = [
 ];
 
 export const q3Paragraphs = [
-	`車況 API 的風險訊號中，低電量（<30%）有 ${numberText(data.signalSummary.low_battery_observations)} 筆；官方 errorMsg 有 ${numberText(data.signalSummary.error_observations)} 筆。扣除 Connection: close 後，前三個 errorMsg 是 ${errorMessages
+	`在不可借快照中，低電量與官方 errorMsg 會大量重疊。以電量門檻看，低於 35% 的快照占不可借快照 ${percentText(threshold35?.share_of_unavailable ?? 0, 2)}；若只看官方 errorMsg，扣除 Connection: close 後，前三個 errorMsg 是 ${errorMessages
 		.slice(0, 3)
 		.map(row => errorMsgText(row.message))
 		.join("、")}。`,
-	"因此，「有車但不能借」不能只寫成沒電。低電量是明確且大量的訊號；errorMsg 則指出還有 illegalMovement（異常移動）、illegalDisassembly（異常拆卸）、throttleAbnormal（油門異常）、communicationError（通訊錯誤）等故障或異常類型。"
+	"因此，「有車但不能借」不能只寫成單一原因。低電量是明確且大量的訊號；errorMsg 則指出還有 illegalMovement（異常移動）、illegalDisassembly（異常拆卸）、throttleAbnormal（油門異常）、communicationError（通訊錯誤）等異常類型。"
 ];
 
 export const q4Paragraphs = [
-	"電量圖目前呈現的是車況風險訊號比例，不是「所有車輛中不能借的比例」。因此低電量區間接近 100% 只能說明本報告把低電量本身視為風險訊號，不能直接拿來判斷實際 app 從幾 % 以下開始不能借。",
-	"若要回答真正的電量門檻，應重新把 scooter_info_observations 的可借狀態與 scooter_status_observations 的 power 依同車、同時間對齊，再計算每個電量區間的不可借率。使用經驗上可能接近 35% 以下，但本版報告未重算前不把 35% 寫成結論。"
+	`本版重算把 scooter_info 的可借狀態與 scooter_status 的 power 依同車、同 15 分鐘快照對齊，分母改為在清交站點內且非租借中的車輛快照。整體估計不可借率為 ${percentText(data.batteryAvailabilitySummary.unavailable_rate, 2)}。`,
+	`結果支持「35% 附近是重要門檻」：低於 30% 的快照不可借率為 ${percentText(threshold30?.unavailable_rate_under_threshold ?? 0, 2)}；低於 35% 的快照不可借率為 ${percentText(threshold35?.unavailable_rate_under_threshold ?? 0, 2)}，且占所有不可借快照 ${percentText(threshold35?.share_of_unavailable ?? 0, 2)}。`
 ];
 
 export const q5Paragraphs = [
-	`缺車 episode 共 ${numberText(recoveryTypes.reduce((sum, row) => sum + row.episodes, 0))} 次；其中 ${recoveryTypes[0]?.type ?? "NA"} 占 ${percentText(recoveryTypes[0]?.share ?? 0)}，疑似大量回補只占 ${percentText(recoveryTypes.find(row => row.type === "疑似大量回補")?.share ?? 0)}。`,
-	"這表示站點從沒車恢復，絕大多數不是一次大量補回，而是一般歸還或零散恢復。營運端若要改善體感，應把重點放在長期高缺車站點的調度與充電，而不是只看少數大量回補事件。"
+	`缺車 episode 共 ${numberText(recoveryTypes.reduce((sum, row) => sum + row.episodes, 0))} 次；其中 ${recoveryTypes[0]?.type ?? "NA"} 占 ${percentText(recoveryTypes[0]?.share ?? 0)}，大量回補只占 ${percentText(recoveryTypes.find(row => row.type === "大量回補")?.share ?? 0)}。`,
+	"這表示站點從沒車恢復，絕大多數不是一次大量補回，而是總車數不變但可借車恢復，或小量一般歸還。前者可能是換電、維修或系統狀態恢復，但本報告只能稱為代理指標，不直接等同人工換電。"
 ];
 
 export const limitationParagraphs = [
 	"限制一：本研究是期末報告，能重跑與人工檢查的時間有限，因此只能取得 2026-05-09 至 2026-06-17 左右的有限週期資訊。資料期間卡到學期末與一小段暑假，通勤型態可能已開始變化，不能直接代表整個學期。",
-	"限制二：車況 API 與 app 最終借車成功紀錄沒有可靠的一對一對齊，因此車況段落只能稱為風險訊號，不把它寫成完全因果。電量門檻也需要重新以「所有車輛為分母、不可借車為分子」計算，不能用目前的風險訊號圖判定實際門檻。",
-	"限制三：補車分析目前只能用站點總車數或可借車數突然增加作為代理指標，還不能分清楚大量回補、多人同時還車、或同一批車被換電池後重新可借。若要分開這三類，需要依候選事件窗口追同車 imei 的 power 與可借狀態；受硬體與資料量限制，全期間 join 可能要跑數小時，超出本次報告可接受成本。"
+	`限制二：電量不可借率使用每 ${numberText(data.batteryAvailabilitySummary.sample_every_hours, 0)} 小時取 ${numberText(data.batteryAvailabilitySummary.sample_minutes, 0)} 分鐘的系統性快照，共 ${numberText(data.batteryAvailabilitySummary.sample_windows)} 個快照窗。這比原本只看風險訊號更接近不可借率，但仍不是逐分鐘全量 join。`,
+	"限制三：補車分析目前用站點總車數與可借車數變化作為代理指標，能區分大量回補、一般歸還與換電/修復代理，但不能逐台證明是人工換電或系統修復。若要完全分清楚，需要對每個 episode 追同車 imei 的 power 與狀態；全期間逐 imei join 在本機硬體上會跑到數小時，超出期末報告可接受成本。"
 ];
 
 export const conclusionParagraphs = [
-	`車為什麼借不到？站點層級看，Top 10 高風險站點多半不是完全沒車，而是有車但不可借。以目前風險訊號口徑，低電量（<30%）有 ${numberText(data.signalSummary.low_battery_observations)} 筆，占風險訊號 ${percentText((data.signalSummary.low_battery_observations / data.signalSummary.risk_signal_observations) * 100, 2)}、占全部車況觀測 ${percentText((data.signalSummary.low_battery_observations / data.signalSummary.status_observations) * 100, 2)}。`,
-	`官方 errorMsg 方面，最多的是 ${errorMsgText(errorMessages[0]?.message ?? "NA")}，占全部車況觀測 ${percentText(errorMessages[0]?.share ?? 0, 2)}；後面依序是 ${errorMsgText(errorMessages[1]?.message ?? "NA")}，占 ${percentText(errorMessages[1]?.share ?? 0, 2)}、${errorMsgText(errorMessages[2]?.message ?? "NA")}，占 ${percentText(errorMessages[2]?.share ?? 0, 2)}，以及 ${errorMsgText(errorMessages[3]?.message ?? "NA")}，占 ${percentText(errorMessages[3]?.share ?? 0, 2)}。`,
-	"低電量仍然重要，但本版資料只能確認 <30% 被視為風險訊號，不能直接證明實際 app 是 30% 或 35% 以下不能借。要回答「幾 % 以下不能借」，需要重算電量區間不可借率，而不是沿用目前這張風險訊號圖。",
+	`車為什麼借不到？站點層級看，Top 10 高風險站點多半不是完全沒車，而是有車但不可借。電量快照顯示，低於 35% 的車幾乎都進入高風險區：低於 35% 的快照不可借率為 ${percentText(threshold35?.unavailable_rate_under_threshold ?? 0, 2)}，占全部不可借快照 ${percentText(threshold35?.share_of_unavailable ?? 0, 2)}。`,
+	`若只看官方 errorMsg，最大宗是 ${errorMsgText(errorMessages[0]?.message ?? "NA")}，占不可借快照 ${percentText(errorMessages[0]?.share ?? 0, 2)}；後面依序是 ${errorMsgText(errorMessages[1]?.message ?? "NA")} ${percentText(errorMessages[1]?.share ?? 0, 2)}、${errorMsgText(errorMessages[2]?.message ?? "NA")} ${percentText(errorMessages[2]?.share ?? 0, 2)}。低電量與 errorMsg 會重疊，因此不能把比例直接相加。`,
+	"換句話說，借不到不是單純「沒車」，也不是單一故障；它通常是站點庫存少、電量偏低與官方異常狀態一起出現。使用者最實用的做法，是避開缺車高峰，並且不要只看校區總量，要看附近站點是否真的有可借車。",
 	`怎麼比較借得到？星期一清大清晨 ${worstHours("星期一", "清大").slice(0, 2).join("、")} 最不利，上學前容易遇到缺車；若行程可調，清大 ${bestHours("星期一", "清大").slice(0, 2).join("、")} 後相對穩定。交大星期一中午到下午整體車量較穩，但仍要看附近站點，不能只看校區總量。`,
 	`星期五對交大學生最需要提早出發。資料中星期五交大 ${worstHours("星期五", "交大").slice(0, 2).join("、")} 風險最高，其中 17:00 平均可借約 ${numberText(numberValue(rowFor("星期五", "交大", 17)?.available_avg), 2)} 台、缺車率約 ${percentText(numberValue(rowFor("星期五", "交大", 17)?.shortage_rate))}；若要跨校或下坡移動，最好在 15:00 前完成，至少不要把出發時間拖到 16:00-17:00。`
 ];
@@ -414,8 +506,27 @@ export const indicatorTable: TableData = {
 		["低庫存率", "可借車數低於 3 台的 15 分鐘站點觀測窗比例。", "衡量接近沒車、選擇很少的狀態。"],
 		["有車但不可借", "總車數大於 0，但可借車數等於 0。", "區分車流不足與車況/系統不可用。"],
 		["車況風險訊號", "低電量、errorMsg、faultStatus 或 GPS 異常。", "輔助解釋有車但不能借。"],
-		["疑似大量回補", "缺車恢復時，可借車達 5 台以上，或可借/總車數增加至少 5 台。", "估計營運補車或大量回流。"]
+		["大量回補", "缺車恢復時，可借車達 5 台以上，或可借/總車數增加至少 5 台。", "估計營運補車或大量回流。"],
+		["換電/修復代理", "缺車恢復時總車數幾乎不變，但可借車數恢復。", "估計換電、維修或系統狀態恢復。"]
 	]
+};
+
+export const testParagraphs = [
+	"為了符合課程中的假設檢定要求，本報告把缺車與低庫存都視為 0/1 事件，針對校區差異與星期差異做兩樣本比例 z 檢定。由於資料量很大，p-value 幾乎都很小，因此解讀重點放在比例差與 95% 信賴區間是否具有實務意義。",
+	`結果顯示清大整體缺車率比交大高 ${numberText(Math.abs(data.statisticalTests[0]?.difference_percentage_points ?? 0), 2)} 個百分點；交大星期五缺車率則比星期一高 ${numberText(Math.abs(data.statisticalTests.find(row => row.name === "交大星期一與星期五缺車率比較")?.difference_percentage_points ?? 0), 2)} 個百分點，這直接支持星期五交大要提前借車的策略。`
+];
+
+export const statisticalTestTable: TableData = {
+	caption: "兩樣本比例 z 檢定摘要",
+	columns: ["檢定", "A", "B", "A-B", "95% CI", "p-value"],
+	rows: data.statisticalTests.map(row => [
+		row.name,
+		`${row.group_a} ${percentText(row.rate_a, 2)}`,
+		`${row.group_b} ${percentText(row.rate_b, 2)}`,
+		`${row.difference_percentage_points.toFixed(2)} pp`,
+		`${row.ci_low.toFixed(2)}-${row.ci_high.toFixed(2)} pp`,
+		pValueText(row.p_value)
+	])
 };
 
 export const strategyTable = (scope: StrategyScope): TableData => ({
@@ -454,21 +565,21 @@ export const stationRiskTable: TableData = {
 };
 
 export const reasonTable: TableData = {
-	caption: "車況風險訊號與官方 errorMsg",
-	columns: ["原因/訊號", "觀測數", "占風險訊號比例"],
+	caption: "不可借快照中的重疊訊號",
+	columns: ["原因/訊號", "觀測數", "占不可借快照比例"],
 	rows: reasonSignals.map(row => [row.reason, numberText(row.observations), percentText(row.share, 2)])
 };
 
 export const errorMessageTable: TableData = {
-	caption: "官方 errorMsg Top 10（已排除 Connection: close）",
-	columns: ["errorMsg", "觀測數", "占全部車況觀測"],
+	caption: "不可借快照中的官方 errorMsg Top 10（已排除 Connection: close）",
+	columns: ["errorMsg", "觀測數", "占不可借快照"],
 	rows: errorMessages.map(row => [row.message, numberText(row.observations), percentText(row.share, 2)])
 };
 
 export const batteryTable: TableData = {
-	caption: "每 10% 電量區間的車況風險訊號（非不可借率）",
-	columns: ["電量", "車況觀測", "風險訊號", "風險訊號比例", "errorMsg 觀測"],
-	rows: batteryBands.map(row => [row.band, numberText(row.total), numberText(row.riskSignal), percentText(row.riskSignalRate, 2), numberText(row.errorObservations)])
+	caption: "每 10% 電量區間的不可借率估計",
+	columns: ["電量", "快照觀測", "不可借", "不可借率", "95% CI"],
+	rows: batteryBands.map(row => [row.band, numberText(row.total), numberText(row.unavailable), percentText(row.unavailableRate, 2), `${percentText(row.ciLow, 2)}-${percentText(row.ciHigh, 2)}`])
 };
 
 export const recoveryTable: TableData = {
