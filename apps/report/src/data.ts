@@ -1,7 +1,4 @@
-export type PercentMetric = {
-	label: string;
-	value: number;
-};
+import generated from "./report-data.generated.json";
 
 export type TableData = {
 	caption: string;
@@ -9,69 +6,61 @@ export type TableData = {
 	rows: string[][];
 };
 
-export type HighRiskHour = {
+export type StrategyScope = "每日整體" | "星期一" | "星期五";
+
+export type StrategyPoint = {
 	hour: string;
-	shortageRate: number;
-	smoothedShortageRate: number;
-	lowStockRate: number;
-	availabilityRate: number;
+	nthuTotal: number;
+	nthuAvailable: number;
+	nctuTotal: number;
+	nctuAvailable: number;
+	nthuShortageRate: number;
+	nctuShortageRate: number;
 };
 
-export type FridayStrategy = {
-	hour: string;
-	rank: number;
-	availableAverage: number;
-	availabilityRate: number;
-	shortageRate: number;
-	lowStockRate: number;
-	score: number;
-};
-
-export type CampusComparison = {
+export type CampusMetric = {
 	campus: string;
-	stations: number;
-	windows: string;
 	shortageRate: number;
 	lowStockRate: number;
+	totalAverage: number;
 	availableAverage: number;
-	availabilityRate: number;
 };
 
 export type StationRisk = {
 	station: string;
+	campus: string;
 	windows: string;
 	shortageRate: number;
 	emptyStationRate: number;
 	unavailableWithVehicleRate: number;
 	lowStockRate: number;
+	totalAverage: number;
 	availableAverage: number;
-	highRiskShortageRate: number;
 };
 
-export type VehicleSignal = {
-	signal: string;
-	observations: string;
-	total: string;
-	prevalence: number;
-	diagnosis: string;
+export type ReasonSignal = {
+	reason: string;
+	observations: number;
+	share: number;
 };
 
 export type ErrorMessageCount = {
 	message: string;
-	observations: string;
-	rate: number;
+	observations: number;
+	share: number;
 };
 
 export type BatteryBand = {
 	band: string;
-	total: string;
-	unavailable: string;
-	unavailableRate: number;
-	rented: string;
+	total: number;
+	riskSignal: number;
+	errorObservations: number;
+	riskSignalRate: number;
 };
 
 export type RebalanceEvent = {
 	station: string;
+	campus: string;
 	events: number;
 	share: number;
 };
@@ -85,274 +74,411 @@ export type RecoveryType = {
 	averageMinutes: string;
 };
 
-export type UnavailableStation = {
-	station: string;
-	observations: string;
-	unavailableRate: number;
-	lowBatteryUnavailableRate: number;
-	gpsAbnormalRate: number;
-	averageBattery: number;
+type GeneratedCampusHour = {
+	campus: "清大" | "交大";
+	hour: number;
+	total_avg: number;
+	available_avg: number;
+	shortage_rate: number;
+	low_stock_rate: number;
 };
+
+type GeneratedStrategy = GeneratedCampusHour & {
+	scope: StrategyScope;
+};
+
+type GeneratedStationRisk = {
+	campus: string;
+	windows: number;
+	total_avg: number;
+	station_name: string;
+	available_avg: number;
+	shortage_rate: number;
+	low_stock_rate: number;
+	empty_station_rate: number;
+	unavailable_with_vehicle_rate: number;
+};
+
+type GeneratedReasonSignal = {
+	reason: string;
+	observations: number;
+	share_of_signal_observations: number;
+};
+
+type GeneratedErrorMessage = {
+	error_msg: string;
+	observations: number;
+	share_of_all: number;
+	share_of_signal_observations: number;
+};
+
+type GeneratedBatteryBand = {
+	band: string;
+	sort_order: number;
+	total_observations: number;
+	risk_signal_observations: number;
+	error_observations: number;
+	risk_signal_rate: number;
+};
+
+type GeneratedRecoveryType = {
+	recovery_type: string;
+	episodes: number;
+	share: number;
+	recovered_episodes: number;
+	median_minutes_to_recovery: number | null;
+	average_minutes_to_recovery: number | null;
+};
+
+type GeneratedRebalanceStation = {
+	station_name: string;
+	campus: string;
+	suspected_rebalance_events: number;
+};
+
+type GeneratedReportData = {
+	generatedAt: string;
+	metadata: {
+		data_start_at: string;
+		data_end_at: string;
+		station_count: number;
+		station_windows: number;
+	};
+	campusHour: GeneratedCampusHour[];
+	dailyStrategy: GeneratedStrategy[];
+	stationRisk: GeneratedStationRisk[];
+	signalSummary: {
+		status_observations: number;
+		risk_signal_observations: number;
+		low_battery_observations: number;
+		error_observations: number;
+		fault_observations: number;
+		gps_abnormal_observations: number;
+	};
+	batteryBands: GeneratedBatteryBand[];
+	errorMessages: GeneratedErrorMessage[];
+	reasonSignals: GeneratedReasonSignal[];
+	recoverySummary: GeneratedRecoveryType[];
+	rebalanceStations: GeneratedRebalanceStation[];
+	routeLimitation: string;
+};
+
+const data = generated as GeneratedReportData;
+const campuses = ["清大", "交大"] as const;
+
+const numberValue = (value: number | null | undefined) => (typeof value === "number" && Number.isFinite(value) ? value : 0);
+const round = (value: number, digits = 1) => {
+	const factor = 10 ** digits;
+	return Math.round(value * factor) / factor;
+};
+const percentText = (value: number, digits = 1) => `${round(value, digits).toFixed(digits)}%`;
+const numberText = (value: number, digits = 0) => value.toLocaleString("zh-TW", { maximumFractionDigits: digits, minimumFractionDigits: digits });
+const hourText = (hour: number) => `${String(hour).padStart(2, "0")}:00`;
+const minuteText = (value: number | null) => (value === null ? "NA" : `${numberText(value, 0)} 分鐘`);
+const errorMsgTranslations: Record<string, string> = {
+	illegalMovement: "異常移動",
+	illegalDisassembly: "異常拆卸",
+	throttleAbnormal: "油門異常",
+	communicationError: "通訊錯誤",
+	hallSensorAbnormal: "霍爾感測器異常",
+	controllerUv: "控制器欠壓",
+	motorHighTemperature: "馬達高溫",
+	eFuseError: "電子保險絲錯誤",
+	networkDisconnected: "網路斷線",
+	motorPhaseOc: "馬達相線過電流",
+	dcOcp: "直流過電流保護",
+	motorRotationBlocked: "馬達堵轉",
+	motorLossPhase: "馬達缺相",
+	"4gModuleNoResponse": "4G 模組無回應"
+};
+const errorMsgText = (value: string) => {
+	const translation = errorMsgTranslations[value];
+	return translation ? `${value}（${translation}）` : value;
+};
+
+const dateTimeText = (value: string) => value.replace("T", " ").slice(0, 16);
 
 export const reportMeta = {
-	title: "清交校園 oloo 共享滑板車可用性與妥善率分析",
-	subtitle: "統計學期末報告 第三組",
-	members: "114550020 毛宥鈞、614002201 蕭爾西、214952036 曾靖雯、214952056 吳承諺",
-	dateRange: "2026-05-09 至 2026-06-16",
+	title: "清交校園 oloo 共享滑板車可用性分析",
+	subtitle: "統計學期末報告",
+	members: ["114550020 毛宥鈞", "614002201 蕭爾西", "214952036 曾靖雯", "214952056 吳承諺"],
+	dateRange: `${dateTimeText(data.metadata.data_start_at)} 至 ${dateTimeText(data.metadata.data_end_at)}`,
 	campuses: "清大、交大",
-	window: "站點 15 分鐘觀測窗；疑似回補 1 分鐘觀測窗；車輛狀態每小時對齊"
+	window: "站點 15 分鐘觀測窗；缺車恢復 1 分鐘觀測窗；車況 API 以原始狀態觀測彙總",
+	generatedAt: data.generatedAt
 };
 
-export const keyMetrics: PercentMetric[] = [
-	{ label: "高風險時段可用率差", value: -6.1 },
-	{ label: "最高站點缺車率差", value: 15.94 },
-	{ label: "低電量不可借比例差", value: 90.42 },
-	{ label: "高風險時段回補事件率倍數", value: 2.46 }
-];
+const groupAverage = (rows: GeneratedCampusHour[], pick: (row: GeneratedCampusHour) => number) => rows.reduce((sum, row) => sum + pick(row), 0) / Math.max(rows.length, 1);
+
+export const campusMetrics: CampusMetric[] = campuses.map(campus => {
+	const rows = data.campusHour.filter(row => row.campus === campus);
+	return {
+		campus,
+		shortageRate: round(
+			groupAverage(rows, row => row.shortage_rate),
+			1
+		),
+		lowStockRate: round(
+			groupAverage(rows, row => row.low_stock_rate),
+			1
+		),
+		totalAverage: round(
+			groupAverage(rows, row => row.total_avg),
+			2
+		),
+		availableAverage: round(
+			groupAverage(rows, row => row.available_avg),
+			2
+		)
+	};
+});
+
+const rowFor = (scope: StrategyScope, campus: "清大" | "交大", hour: number) => data.dailyStrategy.find(row => row.scope === scope && row.campus === campus && row.hour === hour);
+
+const strategyForScope = (scope: StrategyScope): StrategyPoint[] =>
+	Array.from({ length: 24 }, (_, hour) => {
+		const nthu = rowFor(scope, "清大", hour);
+		const nctu = rowFor(scope, "交大", hour);
+		return {
+			hour: hourText(hour),
+			nthuTotal: round(numberValue(nthu?.total_avg), 2),
+			nthuAvailable: round(numberValue(nthu?.available_avg), 2),
+			nctuTotal: round(numberValue(nctu?.total_avg), 2),
+			nctuAvailable: round(numberValue(nctu?.available_avg), 2),
+			nthuShortageRate: round(numberValue(nthu?.shortage_rate), 1),
+			nctuShortageRate: round(numberValue(nctu?.shortage_rate), 1)
+		};
+	});
+
+export const strategySeries: Record<StrategyScope, StrategyPoint[]> = {
+	每日整體: strategyForScope("每日整體"),
+	星期一: strategyForScope("星期一"),
+	星期五: strategyForScope("星期五")
+};
+
+const bestHours = (scope: StrategyScope, campus: "清大" | "交大", count = 3) =>
+	data.dailyStrategy
+		.filter(row => row.scope === scope && row.campus === campus)
+		.slice()
+		.sort((a, b) => a.shortage_rate - b.shortage_rate || b.available_avg - a.available_avg)
+		.slice(0, count)
+		.map(row => hourText(row.hour));
+
+const worstHours = (scope: StrategyScope, campus: "清大" | "交大", count = 3) =>
+	data.dailyStrategy
+		.filter(row => row.scope === scope && row.campus === campus)
+		.slice()
+		.sort((a, b) => b.shortage_rate - a.shortage_rate || a.available_avg - b.available_avg)
+		.slice(0, count)
+		.map(row => hourText(row.hour));
+
+export const stationRisks: StationRisk[] = data.stationRisk.map(row => ({
+	station: row.station_name,
+	campus: row.campus,
+	windows: numberText(row.windows),
+	shortageRate: round(row.shortage_rate, 1),
+	emptyStationRate: round(row.empty_station_rate, 1),
+	unavailableWithVehicleRate: round(row.unavailable_with_vehicle_rate, 1),
+	lowStockRate: round(row.low_stock_rate, 1),
+	totalAverage: round(row.total_avg, 2),
+	availableAverage: round(row.available_avg, 2)
+}));
+
+const vehicleErrorMessages = data.errorMessages.filter(row => row.error_msg !== "Connection: close");
+
+export const reasonSignals: ReasonSignal[] = [
+	...data.reasonSignals
+		.filter(row => row.reason !== "Connection: close")
+		.map(row => ({
+			reason: row.reason,
+			observations: row.observations,
+			share: round(row.share_of_signal_observations, 2)
+		}))
+].slice(0, 10);
+
+export const errorMessages: ErrorMessageCount[] = vehicleErrorMessages.slice(0, 10).map(row => ({
+	message: row.error_msg,
+	observations: row.observations,
+	share: round(row.share_of_all, 2)
+}));
+
+export const batteryBands: BatteryBand[] = data.batteryBands
+	.slice()
+	.sort((a, b) => a.sort_order - b.sort_order)
+	.map(row => ({
+		band: row.band,
+		total: row.total_observations,
+		riskSignal: row.risk_signal_observations,
+		errorObservations: row.error_observations,
+		riskSignalRate: round(row.risk_signal_rate, 2)
+	}));
+
+const totalRebalanceEvents = data.rebalanceStations.reduce((sum, row) => sum + row.suspected_rebalance_events, 0);
+
+export const rebalanceEvents: RebalanceEvent[] = data.rebalanceStations.map(row => ({
+	station: row.station_name,
+	campus: row.campus,
+	events: row.suspected_rebalance_events,
+	share: round((row.suspected_rebalance_events / Math.max(totalRebalanceEvents, 1)) * 100, 1)
+}));
+
+export const recoveryTypes: RecoveryType[] = data.recoverySummary.map(row => ({
+	type: row.recovery_type,
+	episodes: row.episodes,
+	share: round(row.share, 1),
+	recovered: row.recovered_episodes,
+	medianMinutes: minuteText(row.median_minutes_to_recovery),
+	averageMinutes: minuteText(row.average_minutes_to_recovery)
+}));
 
 export const introParagraphs = [
-	"本報告旨在分析清大與交大校園內 oloo 共享滑板車的可用性問題。借不到車通常可分為兩種情況：一種是站點沒有可借車，另一種是現場有車但系統判定不能借。本研究將問題拆分為時間、站點、車況訊號、電量，以及站點或路線聚集現象進行分析。",
-	"結論上，資料偵測出的高風險時段確實比較難借，但站點差異更直接。最高缺車站點的缺車率比全站平均高 15.94 個百分點。車輛狀態方面，低於 30% 的車輛幾乎都被系統判定為不可借，和高電量組形成很大的比例差；errorMsg、故障、錯誤訊息與 GPS 訊號則用來補充判讀「有車但不能借」的可能狀態。"
+	`本報告分析 ${reportMeta.dateRange} 的 oloo 清大、交大站點資料。核心問題不是單純看現場車數，而是學生常遇到的「借不到」：站點完全沒有可借車，或現場有車但系統判定不可借。`,
+	`站點層級結果顯示，清大平均缺車率約 ${percentText(campusMetrics.find(row => row.campus === "清大")?.shortageRate ?? 0)}，交大約 ${percentText(campusMetrics.find(row => row.campus === "交大")?.shortageRate ?? 0)}。最高風險站點是 ${stationRisks[0]?.station ?? "NA"}，缺車率達 ${percentText(stationRisks[0]?.shortageRate ?? 0)}。`,
+	`車況 API 方面，低電量（<30%）與官方 errorMsg 是最重要的風險訊號。扣除 API 傳輸雜訊「Connection: close」後，最常見的 errorMsg 是 ${errorMsgText(errorMessages[0]?.message ?? "NA")}，占全部車況觀測 ${percentText(errorMessages[0]?.share ?? 0, 2)}。`
 ];
 
 export const motivationParagraphs = [
-	"oloo 對清大、交大學生來說，已經是校園移動的一部分。清交校園有不少坡道，從宿舍到教學區、從交大到清大，步行經常需要十幾到二十分鐘；短距離移動時若有可借車輛，可以明顯降低移動成本。實際使用時，使用者面對的問題不只是「站點停了幾台車」，而是「是否有車可以借，以及有車時為什麼不能借」。",
-	"因此，本研究將使用者經驗轉換為統計問題，避免只依靠主觀印象判斷哪些站點容易缺車。五個主要問題如下：資料顯示的高風險時段是否更難借車；哪些站點最容易缺車或低妥善率；有車但不能借時，狀態訊號如何分布；電量是否能解釋妥善率；不可用狀態是否集中在特定站點、時段或路線。"
+	"oloo 對清大、交大學生來說已經是校園移動的一部分。清交校園有明顯坡道，從宿舍、餐廳到教學區，步行經常需要十五到二十分鐘；如果剛好借不到車，通勤時間和體力成本會被放大。",
+	"因此，本研究把日常使用經驗轉成三個可量化問題：什麼時段與校區比較容易借不到；哪些站點或路線節點最需要注意；借不到時較可能是沒有車、低電量，還是官方 API 回報的故障或異常狀態。"
 ];
 
 export const dataParagraphs = [
-	"本研究以固定頻率記錄 oloo 站點與車輛狀態，將「借不到車」這種日常經驗轉成可以重複計算的觀測資料。分析資料涵蓋 2026-05-09 到 2026-06-16 的歷史紀錄，並且只保留交大與清大站點，讓後面的缺車率、可借率與電量比較都對應清大與交大的校園使用情境。資料蒐集中間有少數時間因網路或服務不穩而缺漏，因此後續比例都只以有效觀測窗為分母。",
-	"整理後的資料分成兩個層次。站點層級用來看每個站點在不同時間的總車數、可借車數、缺車與低庫存狀態，因此可以回答哪些時段更難借、哪些站點風險最高。車輛層級則用來看電量、可借狀態與車況訊號，因此可以回答低電量是否與妥善率下降有關。",
-	"對站點車數突然增加的處理採用代理指標：如果同一站點在 1 分鐘觀測窗內車數增加至少 5 台，就標記為一次候選事件；若 30 分鐘內連續出現多次增加，則合併成同一事件。這個定義仍可能混入多人同時還車，不能直接等同人工補車，因此後文只把它當成「疑似大量回補」訊號。"
+	"資料由本專案的 Node.js + TypeScript crawler 蒐集。會變動的 oloo API endpoint 每分鐘寫入 PostgreSQL + TimescaleDB；較不會變動的站點、方案、電子圍籬等靜態資料在啟動時抓一次並 upsert。資料蒐集中間有因網路或服務不穩造成的缺漏，因此所有比例都以有效觀測為分母。",
+	`本次重算涵蓋 ${numberText(data.metadata.station_windows)} 個清大/交大站點 15 分鐘觀測窗、${numberText(data.signalSummary.status_observations)} 筆車況 API 觀測。站點分析採 15 分鐘窗；低庫存定義為可借車數低於 3 台；缺車恢復分析採 1 分鐘窗。`,
+	"車況 API 的 errorMsg 保留官方字串，並在括號補中文說明，例如 illegalMovement（異常移動）、illegalDisassembly（異常拆卸）、throttleAbnormal（油門異常）、communicationError（通訊錯誤）等。Connection: close 在報告圖表中視為 API 傳輸雜訊，不列入車輛錯誤 Top 類型。"
 ];
 
 export const methodParagraphs = [
-	"本報告先用描述性統計整理站點與車輛狀態，再用兩樣本比例比較、95% 信賴區間與 p-value 檢定時間、站點、電量與事件集中度的差異。顯著水準設定為 0.05。因為同一份報告同時檢定多個研究問題，主要結果另外做多重比較修正，降低多次檢定造成的假陽性風險。",
-	"方法安排上，Q1 先由資料找出高風險時段，再比較高風險時段與其他時段的平均可借率，Q2 用缺車率與信賴區間找出站點差異，Q3 以描述統計整理車況訊號，Q4 比較低電量與高電量兩組不可借比例，Q5 只把站點車數突然增加當成疑似大量回補代理指標。每個結果同時看 p-value、95% CI 與效果大小，不只看顯著不顯著。"
+	"站點層級以缺車率、低庫存率、平均總車數與平均可借車數描述可用性。缺車率是可借車數等於 0 的觀測窗比例；低庫存率是可借車數低於 3 台的觀測窗比例。",
+	"補車/恢復分析先找出站點從非缺車進入缺車的 episode，再追蹤下一筆可借車數大於 0 的觀測。若恢復那筆可借車數達 5 台以上，或相對缺車開始時可借/總車數增加至少 5 台，歸類為疑似大量回補；其餘歸類為一般歸還或零散恢復。",
+	"車況 API 只能說明風險訊號，不能單獨證明最終借車失敗原因；因此本報告把站點可借車數當作主要結論來源，把電量與 errorMsg 當作解釋「有車但不能借」的輔助證據。"
 ];
 
 export const q1Paragraphs = [
-	"高風險時段不是先用直覺指定，而是先由資料決定。做法是把平日站點觀測依小時分組，計算每小時缺車率，再用 3 小時移動平均平滑短期波動，最後把平滑後缺車率位於前 25% 的時段定義為高風險時段。依目前資料，偵測出的高風險時段為平日 12:00-17:59。",
-	"依上述資料驅動定義回到站點 15 分鐘觀測窗後，高風險時段可用率比其他時段低 6.10 個百分點，95% CI 為 -6.40 到 -5.79 個百分點，p-value < 0.001。若改看缺車率，高風險時段為 22.39%，其他時段為 12.92%，差 9.46 個百分點。"
+	`清大與交大必須分開看。每日整體來看，清大最不利時段集中在 ${worstHours("每日整體", "清大").join("、")}；交大最不利時段集中在 ${worstHours("每日整體", "交大").join("、")}。圖中交大夜間總量看似較高，主要是 21:00-05:59 的可借車集中在十三舍、綜合一館與女二舍，三站約占夜間可借車三分之二。`,
+	`若以「怎麼比較借得到」為目標，清大每日較佳時段是 ${bestHours("每日整體", "清大").join("、")}；交大每日較佳時段是 ${bestHours("每日整體", "交大").join("、")}。這些建議只代表校區整體歷史平均；實際出發前仍要看附近站點，因為工程四館、二餐後門、體育館、科學一館等站仍常接近沒車。`
 ];
 
-export const fridayParagraph =
-	"星期五的借車策略以歷史資料中的平均可借車數、平均可用率、缺車率與低庫存率共同評估。排名 1 代表星期五相對較推薦的出發小時；此排名不是保證借得到車，而是從歷史資料中找出風險相對較低的時段。";
+export const mondayParagraphs = [
+	`星期一清大缺車高峰在 ${worstHours("星期一", "清大").join("、")}，較可嘗試 ${bestHours("星期一", "清大").join("、")}；交大缺車高峰在 ${worstHours("星期一", "交大").join("、")}，較可嘗試 ${bestHours("星期一", "交大").join("、")}。`,
+	"星期一的策略是避免清大清晨時段，若能選擇，清大傍晚較有機會；交大中午到下午的校區總量相對穩定，但仍可能集中在少數站點。"
+];
+
+export const fridayParagraphs = [
+	`星期五交大傍晚風險特別明顯，缺車高峰在 ${worstHours("星期五", "交大").join("、")}；清大則高峰在 ${worstHours("星期五", "清大").join("、")}。`,
+	`星期五較可嘗試的時間是：清大 ${bestHours("星期五", "清大").join("、")}；交大 ${bestHours("星期五", "交大").join("、")}。對跨校移動來說，星期五傍晚應保留備案，不要只依賴單一站點。`
+];
 
 export const q2Paragraphs = [
-	"Q2 是整份報告最有實務意義的部分。時間有差，但站點差異更大。以缺車率排序，清大-清華小吃部站的缺車率達 30.9%，是最需要被使用者避開、也最值得營運端優先處理的站點之一。",
-	"排名顯示，宿舍、餐廳、教學區邊界與跨校移動節點的缺車或低妥善率風險較高。這也符合共享運具常見的空間不平衡：車輛會被需求方向帶走，後續需要車的使用者不一定剛好位於車輛回流的站點。"
+	"站點差異比單純時間差異更直接。Top 10 高風險站點的共同特徵是平均可借車數低、低庫存率高；這代表使用者即使看到站點有車，也常只剩極少數可借車。",
+	"圖表把缺車拆成兩段：完全沒車，以及有車但不可借。這份資料中 Top 10 幾乎都是「有車但不可借」占主體，表示問題不只是車流被借走，也包含電量、故障或系統狀態造成的不可用。"
 ];
 
 export const q3Paragraphs = [
-	"資料中有可觀察的車況欄位，也有 errorMsg 這類官方錯誤訊息。本研究保留 errorMsg 原文，因此除了「有沒有錯誤訊息」之外，也把 illegalMovement、communicationError、hallSensorAbnormal、controllerUv、4gModuleNoResponse 等錯誤類型拆開。",
-	"本段所稱的車況訊號出現比例，也就是統計上常說的盛行率，計算方式是：某一訊號出現的觀測數除以同期間所有車輛狀態觀測數。它回答的是「這個訊號在資料裡多常出現」，不是「這個訊號有多大機率造成不能借」。",
-	"有些警告或鎖定訊號幾乎在所有車輛上都出現，意思是它們沒有足夠辨識力，不適合被寫成「不能借的主要原因」。比較能補充描述的是故障訊號、errorMsg 類型與 GPS 異常；其中 errorMsg 只代表系統回報的錯誤類型，不直接等同因果原因。"
+	`車況 API 的風險訊號中，低電量（<30%）有 ${numberText(data.signalSummary.low_battery_observations)} 筆；官方 errorMsg 有 ${numberText(data.signalSummary.error_observations)} 筆。扣除 Connection: close 後，前三個 errorMsg 是 ${errorMessages
+		.slice(0, 3)
+		.map(row => errorMsgText(row.message))
+		.join("、")}。`,
+	"因此，「有車但不能借」不能只寫成沒電。低電量是明確且大量的訊號；errorMsg 則指出還有 illegalMovement（異常移動）、illegalDisassembly（異常拆卸）、throttleAbnormal（油門異常）、communicationError（通訊錯誤）等故障或異常類型。"
 ];
 
 export const q4Paragraphs = [
-	"電量與不可借狀態的關聯最為明顯。每小時整理車輛電量與可借狀態後，低於 30% 的電量組共有 62,879 筆觀測，其中 62,783 筆被系統判定為不可借，不可借比例 99.85%；60% 以上電量組不可借比例只有 9.43%。兩者比例差為 90.42 個百分點，95% CI：90.14 到 90.71 個百分點，p-value < 0.001。",
-	"這支持「低電量與不可借狀態高度相關」。但因為資料沒有直接原因欄位，本報告不寫成「低電量造成不可借」，而是更保守地說：低電量是目前最有解釋力的車況訊號。電量表已改成每 10% 一組，讓臨界區間不會被過粗的分組蓋掉。"
+	"電量圖目前呈現的是車況風險訊號比例，不是「所有車輛中不能借的比例」。因此低電量區間接近 100% 只能說明本報告把低電量本身視為風險訊號，不能直接拿來判斷實際 app 從幾 % 以下開始不能借。",
+	"若要回答真正的電量門檻，應重新把 scooter_info_observations 的可借狀態與 scooter_status_observations 的 power 依同車、同時間對齊，再計算每個電量區間的不可借率。使用經驗上可能接近 35% 以下，但本版報告未重算前不把 35% 寫成結論。"
 ];
 
 export const q5Paragraphs = [
-	"Q5 的答案是有站點聚集，但不能把站點車數增加直接解讀成人工補車。第一種聚集是站點狀態聚集：有些站點不可借比例與低電量不可借比例明顯偏高。第二種是站點車數突然增加的代理訊號：當站點車數在 1 分鐘內增加至少 5 台，並把 30 分鐘內相近的增加合併後，總共得到 26 次疑似大量回補事件。",
-	"高風險時段的疑似大量回補事件率約為其他時段的 2.46 倍，95% CI：1.10 到 5.53，p-value 0.02877。站點分布方面，前五個站點合計占全部疑似大量回補事件的 92.3%，表示此類事件並非平均分散在所有站點，而是集中在少數需求或回流較明顯的位置。"
+	`缺車 episode 共 ${numberText(recoveryTypes.reduce((sum, row) => sum + row.episodes, 0))} 次；其中 ${recoveryTypes[0]?.type ?? "NA"} 占 ${percentText(recoveryTypes[0]?.share ?? 0)}，疑似大量回補只占 ${percentText(recoveryTypes.find(row => row.type === "疑似大量回補")?.share ?? 0)}。`,
+	"這表示站點從沒車恢復，絕大多數不是一次大量補回，而是一般歸還或零散恢復。營運端若要改善體感，應把重點放在長期高缺車站點的調度與充電，而不是只看少數大量回補事件。"
 ];
 
 export const limitationParagraphs = [
-	"敏感度分析用來檢查結論是否過度依賴單一門檻。缺車/低庫存門檻改成可用車數小於等於 0、1、2，站點車數增加門檻在 1 分鐘觀測窗內改成至少 3 或 5 台，主要結論仍是：高風險站點存在，且站點車數突然增加有時間聚集。",
-	"限制包含：系統快照不等於使用者實際借車成功紀錄；資料蒐集中間有少數網路或服務不穩造成的缺漏；errorMsg 是系統回報狀態而不是人工確認原因；疑似大量回補仍可能混入多人同時還車；路線由車輛站點轉換推估，不等於完整 GPS 路徑；站點重複觀測違反完全獨立假設，因此主文用效果大小與方向搭配檢定結果，不把 p-value 當成唯一答案。"
+	"限制一：本研究是期末報告，能重跑與人工檢查的時間有限，因此只能取得 2026-05-09 至 2026-06-17 左右的有限週期資訊。資料期間卡到學期末與一小段暑假，通勤型態可能已開始變化，不能直接代表整個學期。",
+	"限制二：車況 API 與 app 最終借車成功紀錄沒有可靠的一對一對齊，因此車況段落只能稱為風險訊號，不把它寫成完全因果。電量門檻也需要重新以「所有車輛為分母、不可借車為分子」計算，不能用目前的風險訊號圖判定實際門檻。",
+	"限制三：補車分析目前只能用站點總車數或可借車數突然增加作為代理指標，還不能分清楚大量回補、多人同時還車、或同一批車被換電池後重新可借。若要分開這三類，需要依候選事件窗口追同車 imei 的 power 與可借狀態；受硬體與資料量限制，全期間 join 可能要跑數小時，超出本次報告可接受成本。"
 ];
 
 export const conclusionParagraphs = [
-	"如果要把這份報告濃縮成一句話：oloo 借不到的問題不是單純「車少」，而是時間、站點、電量與車況共同造成的可用性問題。資料偵測出的高風險時段會讓借車變難，但真正需要優先處理的是高缺車率與高不可借比例的站點；低電量是目前最強的不可借訊號，errorMsg 類型則補充說明有車但不能借時常見的系統狀態。",
-	"對使用者來說，這份報告可以轉成借車策略：避開高缺車站點與資料顯示的高風險時段，星期一或星期五出門前優先看清大/交大分開後的平均可借車數。對營運端來說，這份報告指出了優先順序：先處理低電量與高不可借比例站點，再用 errorMsg 類型、缺車後恢復時間與疑似大量回補分布，判斷主要問題較可能來自低電量、故障或調度不足。"
+	`車為什麼借不到？站點層級看，Top 10 高風險站點多半不是完全沒車，而是有車但不可借。以目前風險訊號口徑，低電量（<30%）有 ${numberText(data.signalSummary.low_battery_observations)} 筆，占風險訊號 ${percentText((data.signalSummary.low_battery_observations / data.signalSummary.risk_signal_observations) * 100, 2)}、占全部車況觀測 ${percentText((data.signalSummary.low_battery_observations / data.signalSummary.status_observations) * 100, 2)}。`,
+	`官方 errorMsg 方面，最多的是 ${errorMsgText(errorMessages[0]?.message ?? "NA")}，占全部車況觀測 ${percentText(errorMessages[0]?.share ?? 0, 2)}；後面依序是 ${errorMsgText(errorMessages[1]?.message ?? "NA")}，占 ${percentText(errorMessages[1]?.share ?? 0, 2)}、${errorMsgText(errorMessages[2]?.message ?? "NA")}，占 ${percentText(errorMessages[2]?.share ?? 0, 2)}，以及 ${errorMsgText(errorMessages[3]?.message ?? "NA")}，占 ${percentText(errorMessages[3]?.share ?? 0, 2)}。`,
+	"低電量仍然重要，但本版資料只能確認 <30% 被視為風險訊號，不能直接證明實際 app 是 30% 或 35% 以下不能借。要回答「幾 % 以下不能借」，需要重算電量區間不可借率，而不是沿用目前這張風險訊號圖。",
+	`怎麼比較借得到？星期一清大清晨 ${worstHours("星期一", "清大").slice(0, 2).join("、")} 最不利，上學前容易遇到缺車；若行程可調，清大 ${bestHours("星期一", "清大").slice(0, 2).join("、")} 後相對穩定。交大星期一中午到下午整體車量較穩，但仍要看附近站點，不能只看校區總量。`,
+	`星期五對交大學生最需要提早出發。資料中星期五交大 ${worstHours("星期五", "交大").slice(0, 2).join("、")} 風險最高，其中 17:00 平均可借約 ${numberText(numberValue(rowFor("星期五", "交大", 17)?.available_avg), 2)} 台、缺車率約 ${percentText(numberValue(rowFor("星期五", "交大", 17)?.shortage_rate))}；若要跨校或下坡移動，最好在 15:00 前完成，至少不要把出發時間拖到 16:00-17:00。`
 ];
 
 export const indicatorTable: TableData = {
-	caption: "本報告使用的指標定義",
-	columns: ["指標", "計算方式", "統計意義", "閱讀方式"],
+	caption: "指標定義",
+	columns: ["指標", "定義", "用途"],
 	rows: [
-		[
-			"觀測窗",
-			"站點分析以每 15 分鐘為一個觀測窗；疑似大量回補分析以每 1 分鐘為一個觀測窗；車輛狀態分析以每小時對齊一次車輛狀態。",
-			"後續比例、平均與事件率的基本分析單位。",
-			"觀測窗越多，代表該估計值的分母越大，結果通常越穩定。"
-		],
-		["可借車數", "在某一站點觀測窗內，系統判定可借的車輛數。", "站點可用性的原始計數，後續的缺車率、低庫存率與平均可用率都由它推得。", "現場有車不一定等於可借。"],
-		["缺車率", "可借車數等於 0 的站點觀測窗數，除以全部有效站點觀測窗數。", "二元比例，分子是完全沒有可借車的次數。", "越高代表越常遇到站點沒有任何可借車。"],
-		["低庫存率", "可借車數低於 3 台的站點觀測窗數，除以全部有效站點觀測窗數。", "捕捉還沒有完全缺車，但已經接近沒車的狀態。", "越高代表使用者到站後可選擇的車很少。"],
-		["平均可用率", "每個站點觀測窗以可借車數除以有效車輛數，再取平均。", "避免只看車數而忽略不同站點規模差異。", "越高代表該時段或站點整體比較容易借到車。"],
-		["不可借比例", "同一組車輛觀測中被系統判定為不可借的筆數，除以全部車輛觀測筆數。", "車輛層級二元比例，用來比較電量組或站點車況。", "描述狀態關聯，不直接宣稱不可借原因。"],
-		["車況訊號出現比例", "某一車況訊號出現的車輛狀態觀測數，除以同期間所有車輛狀態觀測數。", "描述該訊號在資料中多常被觀察到。", "不等於該訊號造成不可借的機率。"],
-		["高風險時段", "先對平日每一小時計算缺車率，再用 3 小時移動平均平滑，最後取前 25% 小時。", "由資料排序借車困難時段。", "不是事先指定的早晚尖峰。"],
-		["疑似補車事件", "同一站點在 1 分鐘觀測窗內車數增加至少 5 台；30 分鐘內連續候選事件合併。", "站點事件率分析的代理事件定義。", "可能混入多人同時還車，不能直接視為人工補車。"]
+		["缺車率", "可借車數等於 0 的 15 分鐘站點觀測窗比例。", "衡量使用者到站後完全借不到的機率。"],
+		["低庫存率", "可借車數低於 3 台的 15 分鐘站點觀測窗比例。", "衡量接近沒車、選擇很少的狀態。"],
+		["有車但不可借", "總車數大於 0，但可借車數等於 0。", "區分車流不足與車況/系統不可用。"],
+		["車況風險訊號", "低電量、errorMsg、faultStatus 或 GPS 異常。", "輔助解釋有車但不能借。"],
+		["疑似大量回補", "缺車恢復時，可借車達 5 台以上，或可借/總車數增加至少 5 台。", "估計營運補車或大量回流。"]
 	]
 };
 
-export const hypothesisTable: TableData = {
-	caption: "研究假設與檢定設計",
-	columns: ["題目", "H0", "H1", "檢定方法", "判斷方式"],
-	rows: [
-		[
-			"Q1 高風險時段是否比較難借？",
-			"資料偵測高風險時段與其他時段的站點可用率相同。",
-			"高風險時段的站點可用率低於其他時段。",
-			"先以每小時缺車率偵測高風險時段，再比較兩組站點可用率。",
-			"多重比較修正後 p-value < 0.05 且 95% CI 不包含 0 時拒絕 H0。"
-		],
-		["Q2 哪些站點缺車風險較高？", "不同站點的缺車風險沒有差異。", "至少一個站點的缺車風險高於全站平均。", "描述統計與比例信賴區間。", "多重比較修正後 p-value < 0.05 且 95% CI 不包含 0 時拒絕 H0。"],
-		["Q3 車況訊號如何分布？", "各類車況訊號與不可借狀態沒有明顯關聯。", "至少一類車況訊號與不可借狀態有關聯。", "描述統計：整理各類車況訊號的出現比例。", "此題作描述性分析，不用 p-value 硬拒絕 H0。"],
-		["Q4 電量是否影響車輛妥善率？", "低電量與高電量車輛的不可借比例相同。", "低電量車輛的不可借比例較高。", "兩樣本比例比較。", "多重比較修正後 p-value < 0.05 且 95% CI 不包含 0 時拒絕 H0。"],
-		[
-			"Q5 疑似大量回補事件是否集中在高風險時段？",
-			"高風險時段與其他時段的疑似大量回補事件率相同。",
-			"疑似大量回補事件集中於特定時段。",
-			"比較高風險時段與其他時段的 1 分鐘事件率。",
-			"多重比較修正後 p-value < 0.05 且 95% CI 不包含 1 時拒絕 H0。"
-		]
-	]
+export const strategyTable = (scope: StrategyScope): TableData => ({
+	caption: `${scope}每小時策略摘要`,
+	columns: ["時間", "清大總數", "清大可借", "清大缺車率", "交大總數", "交大可借", "交大缺車率"],
+	rows: strategySeries[scope].map(row => [
+		row.hour,
+		numberText(row.nthuTotal, 2),
+		numberText(row.nthuAvailable, 2),
+		percentText(row.nthuShortageRate),
+		numberText(row.nctuTotal, 2),
+		numberText(row.nctuAvailable, 2),
+		percentText(row.nctuShortageRate)
+	])
+});
+
+export const campusTable: TableData = {
+	caption: "清大與交大整體比較",
+	columns: ["校區", "平均缺車率", "平均低庫存率", "平均總車數", "平均可借車數"],
+	rows: campusMetrics.map(row => [row.campus, percentText(row.shortageRate), percentText(row.lowStockRate), numberText(row.totalAverage, 2), numberText(row.availableAverage, 2)])
 };
 
-export const testResultTable: TableData = {
-	caption: "主要檢定結果",
-	columns: ["研究問題", "效果大小", "95% CI", "p-value", "多重比較後 p-value", "統計決策"],
-	rows: [
-		["Q1 高風險時段是否比較難借？", "高風險時段可用率比其他時段低 6.10 個百分點", "-6.40 到 -5.79 個百分點", "< 0.001", "< 0.001", "拒絕 H0；結果具有統計顯著性，且效果大小具實務意義。"],
-		["Q2 哪些站點缺車風險較高？", "最高風險站點缺車率比全站平均高 15.94 個百分點", "13.70 到 18.17 個百分點", "< 0.001", "< 0.001", "拒絕 H0；結果具有統計顯著性，且效果大小具實務意義。"],
-		["Q3 車況訊號如何分布？", "最高車況訊號出現比例為 47.5%", "47.28% 到 47.79%", "NA", "NA", "未進行正式拒絕檢定；此結果作為描述性或代理指標證據。"],
-		["Q4 電量是否影響車輛妥善率？", "低電量組不可借比例比高電量組高 90.42 個百分點", "90.14 到 90.71 個百分點", "< 0.001", "< 0.001", "拒絕 H0；結果具有統計顯著性，且效果大小具實務意義。"],
-		["Q5 疑似大量回補事件是否集中在高風險時段？", "高風險時段事件率為其他時段的 2.46 倍", "1.10 到 5.53 倍", "0.02877", "0.02877", "拒絕 H0；結果具有統計顯著性，且效果大小具實務意義。"]
-	]
+export const stationRiskTable: TableData = {
+	caption: "缺車率最高站點 Top 10",
+	columns: ["站點", "校區", "觀測窗", "缺車率", "完全沒車", "有車但不可借", "低庫存率", "平均可借"],
+	rows: stationRisks.map(row => [
+		row.station,
+		row.campus,
+		row.windows,
+		percentText(row.shortageRate),
+		percentText(row.emptyStationRate),
+		percentText(row.unavailableWithVehicleRate),
+		percentText(row.lowStockRate),
+		numberText(row.availableAverage, 2)
+	])
 };
 
-export const highRiskHours: HighRiskHour[] = [
-	{ hour: "12:00", shortageRate: 21.0, smoothedShortageRate: 21.5, lowStockRate: 68.8, availabilityRate: 76.3 },
-	{ hour: "13:00", shortageRate: 22.6, smoothedShortageRate: 21.8, lowStockRate: 70.9, availabilityRate: 75.4 },
-	{ hour: "14:00", shortageRate: 21.7, smoothedShortageRate: 22.8, lowStockRate: 66.9, availabilityRate: 76.0 },
-	{ hour: "15:00", shortageRate: 24.0, smoothedShortageRate: 22.5, lowStockRate: 69.8, availabilityRate: 73.2 },
-	{ hour: "16:00", shortageRate: 21.8, smoothedShortageRate: 23.0, lowStockRate: 65.9, availabilityRate: 75.8 },
-	{ hour: "17:00", shortageRate: 23.2, smoothedShortageRate: 21.9, lowStockRate: 66.3, availabilityRate: 72.5 }
-];
+export const reasonTable: TableData = {
+	caption: "車況風險訊號與官方 errorMsg",
+	columns: ["原因/訊號", "觀測數", "占風險訊號比例"],
+	rows: reasonSignals.map(row => [row.reason, numberText(row.observations), percentText(row.share, 2)])
+};
 
-export const fridayStrategy: FridayStrategy[] = [
-	{ hour: "00:00", rank: 8, availableAverage: 4.28, availabilityRate: 84.0, shortageRate: 14.9, lowStockRate: 64.7, score: 0.803 },
-	{ hour: "01:00", rank: 6, availableAverage: 4.52, availabilityRate: 86.9, shortageRate: 9.8, lowStockRate: 61.5, score: 0.935 },
-	{ hour: "02:00", rank: 5, availableAverage: 4.67, availabilityRate: 86.9, shortageRate: 12.1, lowStockRate: 64.6, score: 0.936 },
-	{ hour: "03:00", rank: 3, availableAverage: 5.29, availabilityRate: 88.3, shortageRate: 10.9, lowStockRate: 57.1, score: 1.066 },
-	{ hour: "04:00", rank: 2, availableAverage: 5.59, availabilityRate: 92.1, shortageRate: 6.6, lowStockRate: 51.8, score: 1.203 },
-	{ hour: "05:00", rank: 1, availableAverage: 5.58, availabilityRate: 93.7, shortageRate: 5.4, lowStockRate: 53.6, score: 1.216 },
-	{ hour: "06:00", rank: 4, availableAverage: 4.79, availabilityRate: 89.6, shortageRate: 15.3, lowStockRate: 62.1, score: 0.962 },
-	{ hour: "07:00", rank: 7, availableAverage: 4.42, availabilityRate: 87.0, shortageRate: 12.1, lowStockRate: 65.2, score: 0.875 },
-	{ hour: "08:00", rank: 10, availableAverage: 3.33, availabilityRate: 83.1, shortageRate: 22.4, lowStockRate: 73.2, score: 0.479 },
-	{ hour: "09:00", rank: 16, availableAverage: 2.98, availabilityRate: 78.0, shortageRate: 27.1, lowStockRate: 66.9, score: 0.341 },
-	{ hour: "10:00", rank: 14, availableAverage: 2.97, availabilityRate: 77.2, shortageRate: 23.6, lowStockRate: 68.3, score: 0.355 },
-	{ hour: "11:00", rank: 13, availableAverage: 3.14, availabilityRate: 75.2, shortageRate: 25.5, lowStockRate: 65.7, score: 0.37 },
-	{ hour: "12:00", rank: 17, availableAverage: 2.64, availabilityRate: 68.2, shortageRate: 20.8, lowStockRate: 80.3, score: 0.192 },
-	{ hour: "13:00", rank: 21, availableAverage: 2.28, availabilityRate: 67.7, shortageRate: 29.9, lowStockRate: 88.9, score: 0 },
-	{ hour: "14:00", rank: 24, availableAverage: 2.26, availabilityRate: 62.6, shortageRate: 40.7, lowStockRate: 85.6, score: -0.149 },
-	{ hour: "15:00", rank: 23, availableAverage: 2.57, availabilityRate: 62.7, shortageRate: 39.5, lowStockRate: 83.9, score: -0.086 },
-	{ hour: "16:00", rank: 22, availableAverage: 3.04, availabilityRate: 63.8, shortageRate: 43.4, lowStockRate: 84.7, score: -0.029 },
-	{ hour: "17:00", rank: 18, availableAverage: 3.38, availabilityRate: 67.1, shortageRate: 40.0, lowStockRate: 82.2, score: 0.127 },
-	{ hour: "18:00", rank: 20, availableAverage: 2.49, availabilityRate: 69.6, shortageRate: 31.7, lowStockRate: 86.7, score: 0.035 },
-	{ hour: "19:00", rank: 19, availableAverage: 2.09, availabilityRate: 71.7, shortageRate: 23.5, lowStockRate: 81.5, score: 0.116 },
-	{ hour: "20:00", rank: 15, availableAverage: 2.57, availabilityRate: 77.3, shortageRate: 17.3, lowStockRate: 73.0, score: 0.342 },
-	{ hour: "21:00", rank: 9, availableAverage: 3.04, availabilityRate: 83.2, shortageRate: 13.8, lowStockRate: 67.5, score: 0.541 },
-	{ hour: "22:00", rank: 12, availableAverage: 2.88, availabilityRate: 77.9, shortageRate: 15.2, lowStockRate: 68.0, score: 0.429 },
-	{ hour: "23:00", rank: 11, availableAverage: 2.91, availabilityRate: 80.6, shortageRate: 17.9, lowStockRate: 70.0, score: 0.432 }
-];
+export const errorMessageTable: TableData = {
+	caption: "官方 errorMsg Top 10（已排除 Connection: close）",
+	columns: ["errorMsg", "觀測數", "占全部車況觀測"],
+	rows: errorMessages.map(row => [row.message, numberText(row.observations), percentText(row.share, 2)])
+};
 
-export const campusComparison: CampusComparison[] = [
-	{ campus: "交大", stations: 17, windows: "31,955", shortageRate: 12.0, lowStockRate: 53.9, availableAverage: 6.44, availabilityRate: 86.7 },
-	{ campus: "清大", stations: 9, windows: "14,279", shortageRate: 21.6, lowStockRate: 74.7, availableAverage: 3.06, availabilityRate: 75.7 }
-];
+export const batteryTable: TableData = {
+	caption: "每 10% 電量區間的車況風險訊號（非不可借率）",
+	columns: ["電量", "車況觀測", "風險訊號", "風險訊號比例", "errorMsg 觀測"],
+	rows: batteryBands.map(row => [row.band, numberText(row.total), numberText(row.riskSignal), percentText(row.riskSignalRate, 2), numberText(row.errorObservations)])
+};
 
-export const stationRisks: StationRisk[] = [
-	{ station: "清大-清華小吃部站", windows: "1,676", shortageRate: 30.9, emptyStationRate: 0, unavailableWithVehicleRate: 30.9, lowStockRate: 85.5, availableAverage: 1.56, highRiskShortageRate: 29.9 },
-	{ station: "交大-二餐後門站", windows: "1,477", shortageRate: 28.2, emptyStationRate: 0, unavailableWithVehicleRate: 28.2, lowStockRate: 86.7, availableAverage: 1.31, highRiskShortageRate: 41.2 },
-	{ station: "清大-綜合三館站", windows: "1,006", shortageRate: 27.9, emptyStationRate: 0, unavailableWithVehicleRate: 27.9, lowStockRate: 82.3, availableAverage: 1.4, highRiskShortageRate: 32.7 },
-	{ station: "清大-化學館站", windows: "2,079", shortageRate: 26.8, emptyStationRate: 0, unavailableWithVehicleRate: 26.8, lowStockRate: 81.3, availableAverage: 2.11, highRiskShortageRate: 24.1 },
-	{ station: "交大-竹軒站", windows: "1,726", shortageRate: 23.1, emptyStationRate: 0, unavailableWithVehicleRate: 23.1, lowStockRate: 80.1, availableAverage: 1.7, highRiskShortageRate: 40.4 },
-	{ station: "清大-仁齋站", windows: "1,775", shortageRate: 23.0, emptyStationRate: 0, unavailableWithVehicleRate: 23.0, lowStockRate: 76.8, availableAverage: 2.04, highRiskShortageRate: 32.0 },
-	{ station: "交大-二餐前門站", windows: "1,725", shortageRate: 20.8, emptyStationRate: 0, unavailableWithVehicleRate: 20.8, lowStockRate: 75.1, availableAverage: 2.47, highRiskShortageRate: 42.1 },
-	{ station: "清大-駐警隊站", windows: "1,638", shortageRate: 19.8, emptyStationRate: 0, unavailableWithVehicleRate: 19.8, lowStockRate: 74.2, availableAverage: 2.94, highRiskShortageRate: 27.2 },
-	{ station: "清大-材料科技館站", windows: "938", shortageRate: 19.1, emptyStationRate: 0, unavailableWithVehicleRate: 19.1, lowStockRate: 86.0, availableAverage: 1.44, highRiskShortageRate: 24.9 },
-	{ station: "交大-科學一館站", windows: "750", shortageRate: 18.4, emptyStationRate: 0, unavailableWithVehicleRate: 18.4, lowStockRate: 90.5, availableAverage: 1.33, highRiskShortageRate: 24.0 }
-];
+export const recoveryTable: TableData = {
+	caption: "缺車後恢復類型",
+	columns: ["恢復類型", "episode", "占比", "已恢復", "中位數", "平均"],
+	rows: recoveryTypes.map(row => [row.type, numberText(row.episodes), percentText(row.share), numberText(row.recovered), row.medianMinutes, row.averageMinutes])
+};
 
-export const vehicleSignals: VehicleSignal[] = [
-	{ signal: "警告狀態", observations: "149,784", total: "149,784", prevalence: 100.0, diagnosis: "高度飽和，低辨識度" },
-	{ signal: "錯誤訊息", observations: "149,058", total: "149,784", prevalence: 99.52, diagnosis: "高度飽和，低辨識度" },
-	{ signal: "鎖定狀態", observations: "138,248", total: "149,784", prevalence: 92.3, diagnosis: "高度飽和，低辨識度" },
-	{ signal: "故障狀態", observations: "71,196", total: "149,784", prevalence: 47.53, diagnosis: "可比較的狀態訊號" },
-	{ signal: "GPS 異常", observations: "5,055", total: "149,784", prevalence: 3.37, diagnosis: "可比較的狀態訊號" },
-	{ signal: "充電狀態", observations: "0", total: "149,784", prevalence: 0, diagnosis: "幾乎未出現，低辨識度" }
-];
-
-export const errorMessages: ErrorMessageCount[] = [
-	{ message: "illegalMovement", observations: "114,499", rate: 76.44 },
-	{ message: "Connection: close", observations: "14,816", rate: 9.89 },
-	{ message: "throttleAbnormal", observations: "11,658", rate: 7.78 },
-	{ message: "illegalDisassembly", observations: "5,365", rate: 3.58 },
-	{ message: "hallSensorAbnormal", observations: "1,546", rate: 1.03 },
-	{ message: "motorHighTemperature", observations: "845", rate: 0.56 },
-	{ message: "communicationError", observations: "222", rate: 0.15 },
-	{ message: "dcOcp", observations: "29", rate: 0.02 },
-	{ message: "motorLossPhase", observations: "28", rate: 0.02 },
-	{ message: "motorPhaseOc", observations: "26", rate: 0.02 }
-];
-
-export const batteryBands: BatteryBand[] = [
-	{ band: "0-9%", total: "12,146", unavailable: "12,138", unavailableRate: 99.93, rented: "7" },
-	{ band: "10-19%", total: "15,383", unavailable: "15,372", unavailableRate: 99.93, rented: "7" },
-	{ band: "20-29%", total: "35,350", unavailable: "35,273", unavailableRate: 99.78, rented: "60" },
-	{ band: "30-39%", total: "23,771", unavailable: "13,462", unavailableRate: 56.63, rented: "704" },
-	{ band: "40-49%", total: "14,055", unavailable: "2,367", unavailableRate: 16.84, rented: "716" },
-	{ band: "50-59%", total: "7,934", unavailable: "1,136", unavailableRate: 14.32, rented: "481" },
-	{ band: "60-69%", total: "7,503", unavailable: "494", unavailableRate: 6.58, rented: "532" },
-	{ band: "70-79%", total: "13,648", unavailable: "805", unavailableRate: 5.9, rented: "714" },
-	{ band: "80-89%", total: "11,556", unavailable: "1,796", unavailableRate: 15.54, rented: "522" },
-	{ band: "90-100%", total: "8,438", unavailable: "783", unavailableRate: 9.28, rented: "451" }
-];
-
-export const rebalanceEvents: RebalanceEvent[] = [
-	{ station: "清大-清華小吃部站", events: 9, share: 34.6 },
-	{ station: "清大-化學館站", events: 7, share: 26.9 },
-	{ station: "清大-工程一館站", events: 5, share: 19.2 },
-	{ station: "交大-工程三館站", events: 2, share: 7.7 },
-	{ station: "交大-十三舍站", events: 1, share: 3.8 },
-	{ station: "交大-活動中心站", events: 1, share: 3.8 },
-	{ station: "交大-科學三館站", events: 1, share: 3.8 }
-];
-
-export const recoveryTypes: RecoveryType[] = [
-	{ type: "一般歸還或零散恢復", episodes: 3549, share: 99.4, recovered: 3549, medianMinutes: "45 分鐘", averageMinutes: "169.9 分鐘" },
-	{ type: "觀測窗內未恢復", episodes: 13, share: 0.4, recovered: 0, medianMinutes: "NA", averageMinutes: "NA" },
-	{ type: "疑似大量回補", episodes: 8, share: 0.2, recovered: 8, medianMinutes: "38 分鐘", averageMinutes: "330.0 分鐘" }
-];
-
-export const unavailableStations: UnavailableStation[] = [
-	{ station: "交大-二餐後門站", observations: "2,989", unavailableRate: 80.6, lowBatteryUnavailableRate: 58.5, gpsAbnormalRate: 3.7, averageBattery: 34.4 },
-	{ station: "交大-竹軒站", observations: "3,877", unavailableRate: 78.7, lowBatteryUnavailableRate: 64.2, gpsAbnormalRate: 0.1, averageBattery: 29.7 },
-	{ station: "清大-化學館站", observations: "7,023", unavailableRate: 78.6, lowBatteryUnavailableRate: 53.5, gpsAbnormalRate: 3.6, averageBattery: 36.0 },
-	{ station: "清大-清華小吃部站", observations: "3,863", unavailableRate: 77.8, lowBatteryUnavailableRate: 47.7, gpsAbnormalRate: 16.9, averageBattery: 40.7 },
-	{ station: "交大-科學一館站", observations: "1,119", unavailableRate: 76.4, lowBatteryUnavailableRate: 69.0, gpsAbnormalRate: 0.1, averageBattery: 27.8 },
-	{ station: "清大-綜合三館站", observations: "1,770", unavailableRate: 76.3, lowBatteryUnavailableRate: 32.7, gpsAbnormalRate: 0.4, averageBattery: 40.6 },
-	{ station: "交大-體育館站", observations: "1,720", unavailableRate: 76.2, lowBatteryUnavailableRate: 60.1, gpsAbnormalRate: 3.2, averageBattery: 31.0 },
-	{ station: "清大-仁齋站", observations: "3,401", unavailableRate: 70.7, lowBatteryUnavailableRate: 37.3, gpsAbnormalRate: 0.6, averageBattery: 38.7 },
-	{ station: "交大-工程四館站", observations: "2,938", unavailableRate: 70.4, lowBatteryUnavailableRate: 61.6, gpsAbnormalRate: 2.7, averageBattery: 31.8 },
-	{ station: "清大-材料科技館站", observations: "1,252", unavailableRate: 70.3, lowBatteryUnavailableRate: 60.2, gpsAbnormalRate: 1.3, averageBattery: 33.3 }
-];
-
-export const sensitivityTable: TableData = {
-	caption: "敏感度分析",
-	columns: ["研究問題", "設定", "改變的假設", "估計值"],
-	rows: [
-		["Q2", "低妥善率門檻_可用車數小於等於_0", "可用車數 <= 0", "0.0439"],
-		["Q2", "低妥善率門檻_可用車數小於等於_1", "可用車數 <= 1", "0.3946"],
-		["Q2", "低妥善率門檻_可用車數小於等於_2", "可用車數 <= 2", "0.5516"],
-		["Q5", "可能補車門檻_車數增加大於等於_3", "站點車數增加 >= 3", "0.0003"],
-		["Q5", "可能補車門檻_車數增加大於等於_5", "站點車數增加 >= 5", "0.0000"]
-	]
+export const rebalanceTable: TableData = {
+	caption: "疑似大量回補站點",
+	columns: ["站點", "校區", "事件數", "占比"],
+	rows: rebalanceEvents.map(row => [row.station, row.campus, numberText(row.events), percentText(row.share)])
 };

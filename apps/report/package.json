@@ -7,6 +7,7 @@
 	"scripts": {
 		"build": "vite build",
 		"dev": "vite --host 127.0.0.1",
+		"export:data": "node scripts/export-report-data.mjs",
 		"preview": "vite preview --host 127.0.0.1",
 		"typecheck": "tsc -p tsconfig.json --noEmit"
 	},

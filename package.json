@@ -16,6 +16,7 @@
 		"dev": "pnpm --filter @where-is-oloo/crawler dev",
 		"dump:local": "pnpm --filter @where-is-oloo/crawler dump:local",
 		"export:analysis": "pnpm --filter @where-is-oloo/crawler export:analysis",
+		"export:report-data": "pnpm --filter @where-is-oloo/report export:data",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"lint": "eslint . --max-warnings=0",

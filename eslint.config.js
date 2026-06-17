@@ -20,7 +20,7 @@ export default [
 	js.configs.recommended,
 	...tseslint.configs.recommended,
 	{
-		files: ["apps/crawler/scripts/**/*.mjs"],
+		files: ["apps/crawler/scripts/**/*.mjs", "apps/report/scripts/**/*.mjs"],
 		languageOptions: {
 			ecmaVersion: 2022,
 			globals: nodeGlobals,

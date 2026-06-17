@@ -1,0 +1,5559 @@
+{
+	"generatedAt": "2026-06-17T16:44:13.714Z",
+	"source": {
+		"sshHost": "emfox",
+		"remoteDir": "~/where-is-oloo",
+		"dbContainer": "where-is-oloo-db-1",
+		"database": "where-is-oloo docker compose db / oloo"
+	},
+	"metadata": {
+		"data_end_at": "2026-06-18T01:15:00",
+		"data_end_utc": "2026-06-17T17:15:00+00:00",
+		"data_start_at": "2026-05-09T15:00:00",
+		"station_count": 26,
+		"data_start_utc": "2026-05-09T07:00:00+00:00",
+		"station_windows": 72337
+	},
+	"campusHour": [
+		{
+			"hour": 0,
+			"campus": "交大",
+			"total_avg": 158.13567588325648,
+			"available_avg": 78.81390168970815,
+			"shortage_rate": 36.19400089158154,
+			"low_stock_rate": 66.03163282005785
+		},
+		{
+			"hour": 1,
+			"campus": "交大",
+			"total_avg": 159.73737142857144,
+			"available_avg": 80.29602770562774,
+			"shortage_rate": 37.324064171122984,
+			"low_stock_rate": 65.9388803353509
+		},
+		{
+			"hour": 2,
+			"campus": "交大",
+			"total_avg": 160.07741935483867,
+			"available_avg": 80.35282258064517,
+			"shortage_rate": 41.16409878862438,
+			"low_stock_rate": 65.93855444839788
+		},
+		{
+			"hour": 3,
+			"campus": "交大",
+			"total_avg": 160.1236559139785,
+			"available_avg": 80.05483870967741,
+			"shortage_rate": 42.48472669013465,
+			"low_stock_rate": 66.70421213827285
+		},
+		{
+			"hour": 4,
+			"campus": "交大",
+			"total_avg": 160.11612903225807,
+			"available_avg": 79.66075268817202,
+			"shortage_rate": 44.99904783704592,
+			"low_stock_rate": 66.47162037045813
+		},
+		{
+			"hour": 5,
+			"campus": "交大",
+			"total_avg": 160.22419354838712,
+			"available_avg": 79.43543499511243,
+			"shortage_rate": 45.08131554561819,
+			"low_stock_rate": 66.74435384349998
+		},
+		{
+			"hour": 6,
+			"campus": "交大",
+			"total_avg": 160.05099846390166,
+			"available_avg": 78.87400153609833,
+			"shortage_rate": 43.69090033938229,
+			"low_stock_rate": 67.77379660977857
+		},
+		{
+			"hour": 7,
+			"campus": "交大",
+			"total_avg": 158.72682411674342,
+			"available_avg": 76.65939087793923,
+			"shortage_rate": 41.83615542427213,
+			"low_stock_rate": 69.13159322492812
+		},
+		{
+			"hour": 8,
+			"campus": "交大",
+			"total_avg": 157.31053972908802,
+			"available_avg": 73.55828998510448,
+			"shortage_rate": 37.23744491593164,
+			"low_stock_rate": 70.47306050211647
+		},
+		{
+			"hour": 9,
+			"campus": "交大",
+			"total_avg": 156.9545818070818,
+			"available_avg": 69.9844178044178,
+			"shortage_rate": 29.839267758385407,
+			"low_stock_rate": 67.71177188824247
+		},
+		{
+			"hour": 10,
+			"campus": "交大",
+			"total_avg": 154.55084274521772,
+			"available_avg": 67.54742368742372,
+			"shortage_rate": 31.45071329813976,
+			"low_stock_rate": 67.73290373841844
+		},
+		{
+			"hour": 11,
+			"campus": "交大",
+			"total_avg": 150.3075793650793,
+			"available_avg": 65.76847666222666,
+			"shortage_rate": 29.450423759247304,
+			"low_stock_rate": 68.17454257343964
+		},
+		{
+			"hour": 12,
+			"campus": "交大",
+			"total_avg": 146.54217476072316,
+			"available_avg": 59.571645625879476,
+			"shortage_rate": 27.512924891364168,
+			"low_stock_rate": 71.54906940782178
+		},
+		{
+			"hour": 13,
+			"campus": "交大",
+			"total_avg": 147.37879868787127,
+			"available_avg": 57.88434822346114,
+			"shortage_rate": 25.276328273244793,
+			"low_stock_rate": 71.58424256799492
+		},
+		{
+			"hour": 14,
+			"campus": "交大",
+			"total_avg": 147.05988863287254,
+			"available_avg": 60.01668295861845,
+			"shortage_rate": 26.93979644643783,
+			"low_stock_rate": 66.75307989764819
+		},
+		{
+			"hour": 15,
+			"campus": "交大",
+			"total_avg": 143.5151985580557,
+			"available_avg": 62.43042301613728,
+			"shortage_rate": 24.62084406412139,
+			"low_stock_rate": 66.78152457564221
+		},
+		{
+			"hour": 16,
+			"campus": "交大",
+			"total_avg": 141.8725084377428,
+			"available_avg": 66.78120672730051,
+			"shortage_rate": 22.84570859593838,
+			"low_stock_rate": 64.48024822909929
+		},
+		{
+			"hour": 17,
+			"campus": "交大",
+			"total_avg": 133.43675413128537,
+			"available_avg": 59.22632898785241,
+			"shortage_rate": 24.76890125040401,
+			"low_stock_rate": 69.11401940583926
+		},
+		{
+			"hour": 18,
+			"campus": "交大",
+			"total_avg": 127.2268093885282,
+			"available_avg": 53.92423745958903,
+			"shortage_rate": 23.77328515540831,
+			"low_stock_rate": 73.73738107021656
+		},
+		{
+			"hour": 19,
+			"campus": "交大",
+			"total_avg": 135.4991021998835,
+			"available_avg": 61.753651600135974,
+			"shortage_rate": 21.237854516806728,
+			"low_stock_rate": 66.11719297093835
+		},
+		{
+			"hour": 20,
+			"campus": "交大",
+			"total_avg": 144.86030054601488,
+			"available_avg": 71.77231888481889,
+			"shortage_rate": 23.595327019696782,
+			"low_stock_rate": 61.99243586323418
+		},
+		{
+			"hour": 21,
+			"campus": "交大",
+			"total_avg": 150.8750205717148,
+			"available_avg": 76.5544913305244,
+			"shortage_rate": 23.39624279463852,
+			"low_stock_rate": 62.38734304910775
+		},
+		{
+			"hour": 22,
+			"campus": "交大",
+			"total_avg": 155.04103745716645,
+			"available_avg": 77.9819338591516,
+			"shortage_rate": 27.997105479909088,
+			"low_stock_rate": 64.5106097649978
+		},
+		{
+			"hour": 23,
+			"campus": "交大",
+			"total_avg": 156.6337685611879,
+			"available_avg": 78.1605330377508,
+			"shortage_rate": 33.344352319091406,
+			"low_stock_rate": 66.0682290906437
+		},
+		{
+			"hour": 0,
+			"campus": "清大",
+			"total_avg": 48.30806451612902,
+			"available_avg": 8.298310291858686,
+			"shortage_rate": 60.479070660522254,
+			"low_stock_rate": 90.30177931387607
+		},
+		{
+			"hour": 1,
+			"campus": "清大",
+			"total_avg": 46.7097142857143,
+			"available_avg": 6.824514285714286,
+			"shortage_rate": 67.77619047619045,
+			"low_stock_rate": 92.9111111111111
+		},
+		{
+			"hour": 2,
+			"campus": "清大",
+			"total_avg": 46.361827956989245,
+			"available_avg": 6.241061827956989,
+			"shortage_rate": 70.49251152073728,
+			"low_stock_rate": 93.97241423451098
+		},
+		{
+			"hour": 3,
+			"campus": "清大",
+			"total_avg": 46.308602150537624,
+			"available_avg": 6.169892473118279,
+			"shortage_rate": 71.99660778289801,
+			"low_stock_rate": 93.41397849462363
+		},
+		{
+			"hour": 4,
+			"campus": "清大",
+			"total_avg": 46.31559139784946,
+			"available_avg": 6.074193548387096,
+			"shortage_rate": 71.69738863287245,
+			"low_stock_rate": 93.86200716845875
+		},
+		{
+			"hour": 5,
+			"campus": "清大",
+			"total_avg": 46.22204301075269,
+			"available_avg": 5.833333333333335,
+			"shortage_rate": 73.21428571428567,
+			"low_stock_rate": 94.3996415770609
+		},
+		{
+			"hour": 6,
+			"campus": "清大",
+			"total_avg": 46.401689708141326,
+			"available_avg": 5.848463901689708,
+			"shortage_rate": 72.30702764976958,
+			"low_stock_rate": 95.00128008192522
+		},
+		{
+			"hour": 7,
+			"campus": "清大",
+			"total_avg": 47.764976958525345,
+			"available_avg": 6.599654377880184,
+			"shortage_rate": 67.40111367127494,
+			"low_stock_rate": 94.16922683051716
+		},
+		{
+			"hour": 8,
+			"campus": "清大",
+			"total_avg": 48.815399385560696,
+			"available_avg": 7.326420890937021,
+			"shortage_rate": 61.39112903225806,
+			"low_stock_rate": 93.66039426523294
+		},
+		{
+			"hour": 9,
+			"campus": "清大",
+			"total_avg": 50.20046296296299,
+			"available_avg": 9.583333333333337,
+			"shortage_rate": 56.663359788359784,
+			"low_stock_rate": 91.16732804232801
+		},
+		{
+			"hour": 10,
+			"campus": "清大",
+			"total_avg": 52.494962352462316,
+			"available_avg": 13.056539594664594,
+			"shortage_rate": 44.829695767195766,
+			"low_stock_rate": 86.98412698412695
+		},
+		{
+			"hour": 11,
+			"campus": "清大",
+			"total_avg": 56.33880952380948,
+			"available_avg": 18.29417138417138,
+			"shortage_rate": 32.99272486772487,
+			"low_stock_rate": 80.48941798941794
+		},
+		{
+			"hour": 12,
+			"campus": "清大",
+			"total_avg": 60.23583540115798,
+			"available_avg": 21.486938934721188,
+			"shortage_rate": 28.736239119303633,
+			"low_stock_rate": 79.6290962621607
+		},
+		{
+			"hour": 13,
+			"campus": "清大",
+			"total_avg": 59.38440860215051,
+			"available_avg": 20.262615945882064,
+			"shortage_rate": 27.601766513056855,
+			"low_stock_rate": 81.3524065540194
+		},
+		{
+			"hour": 14,
+			"campus": "清大",
+			"total_avg": 59.24650537634407,
+			"available_avg": 20.397446236559148,
+			"shortage_rate": 29.355478750640053,
+			"low_stock_rate": 81.27720174091135
+		},
+		{
+			"hour": 15,
+			"campus": "清大",
+			"total_avg": 63.11277399848829,
+			"available_avg": 22.49024714262809,
+			"shortage_rate": 25.135424540186452,
+			"low_stock_rate": 80.96340388007046
+		},
+		{
+			"hour": 16,
+			"campus": "清大",
+			"total_avg": 64.69779942279942,
+			"available_avg": 24.010476350906043,
+			"shortage_rate": 24.781436011904763,
+			"low_stock_rate": 77.76382688492055
+		},
+		{
+			"hour": 17,
+			"campus": "清大",
+			"total_avg": 73.0526715255231,
+			"available_avg": 31.496160393426017,
+			"shortage_rate": 19.335937499999996,
+			"low_stock_rate": 70.28304811507932
+		},
+		{
+			"hour": 18,
+			"campus": "清大",
+			"total_avg": 79.17843191964288,
+			"available_avg": 35.972321060016384,
+			"shortage_rate": 17.864893353174594,
+			"low_stock_rate": 65.44673859126983
+		},
+		{
+			"hour": 19,
+			"campus": "清大",
+			"total_avg": 70.82928503787878,
+			"available_avg": 28.455605722402606,
+			"shortage_rate": 20.28459821428572,
+			"low_stock_rate": 71.48747519841268
+		},
+		{
+			"hour": 20,
+			"campus": "清大",
+			"total_avg": 61.48282458282458,
+			"available_avg": 21.620430693644984,
+			"shortage_rate": 27.040816326530614,
+			"low_stock_rate": 77.97776518014605
+		},
+		{
+			"hour": 21,
+			"campus": "清大",
+			"total_avg": 55.380721551176094,
+			"available_avg": 15.14445554445554,
+			"shortage_rate": 40.09904237176963,
+			"low_stock_rate": 83.5087891906073
+		},
+		{
+			"hour": 22,
+			"campus": "清大",
+			"total_avg": 51.335673197769964,
+			"available_avg": 11.640107204623334,
+			"shortage_rate": 48.65431387608806,
+			"low_stock_rate": 88.41205837173574
+		},
+		{
+			"hour": 23,
+			"campus": "清大",
+			"total_avg": 49.7805683563748,
+			"available_avg": 9.82205261136713,
+			"shortage_rate": 52.93618791602662,
+			"low_stock_rate": 89.30811571940602
+		}
+	],
+	"stationRisk": [
+		{
+			"campus": "清大",
+			"windows": 2821,
+			"total_avg": 2.546432759016948,
+			"station_id": 19,
+			"station_name": "清大-綜合三館站",
+			"available_avg": 0.5132972811189759,
+			"shortage_rate": 66.60758596242468,
+			"low_stock_rate": 93.54838709677419,
+			"empty_station_rate": 0,
+			"unavailable_with_vehicle_rate": 66.60758596242468
+		},
+		{
+			"campus": "交大",
+			"windows": 2546,
+			"total_avg": 2.854491688594202,
+			"station_id": 41,
+			"station_name": "交大-體育館站",
+			"available_avg": 0.6664616990323982,
+			"shortage_rate": 64.25765907305578,
+			"low_stock_rate": 92.34092694422624,
+			"empty_station_rate": 0,
+			"unavailable_with_vehicle_rate": 64.25765907305578
+		},
+		{
+			"campus": "交大",
+			"windows": 2044,
+			"total_avg": 2.264207699237055,
+			"station_id": 42,
+			"station_name": "交大-科學一館站",
+			"available_avg": 0.49973580860322575,
+			"shortage_rate": 63.94324853228963,
+			"low_stock_rate": 96.52641878669276,
+			"empty_station_rate": 0,
+			"unavailable_with_vehicle_rate": 63.94324853228963
+		},
+		{
+			"campus": "清大",
+			"windows": 2238,
+			"total_avg": 2.2954162459524374,
+			"station_id": 75,
+			"station_name": "清大-材料科技館站",
+			"available_avg": 0.6379387170271881,
+			"shortage_rate": 59.15996425379804,
+			"low_stock_rate": 94.05719392314566,
+			"empty_station_rate": 0,
+			"unavailable_with_vehicle_rate": 59.15996425379804
+		},
+		{
+			"campus": "清大",
+			"windows": 2982,
+			"total_avg": 4.5354084826418815,
+			"station_id": 76,
+			"station_name": "清大-蒙民偉樓站",
+			"available_avg": 1.552107455477674,
+			"shortage_rate": 54.32595573440644,
+			"low_stock_rate": 82.86384976525821,
+			"empty_station_rate": 0,
+			"unavailable_with_vehicle_rate": 54.32595573440644
+		},
+		{
+			"campus": "交大",
+			"windows": 2901,
+			"total_avg": 4.254275112263737,
+			"station_id": 6,
+			"station_name": "交大-二餐後門站",
+			"available_avg": 0.6834538637279084,
+			"shortage_rate": 52.430196483971045,
+			"low_stock_rate": 93.24370906583937,
+			"empty_station_rate": 0,
+			"unavailable_with_vehicle_rate": 52.430196483971045
+		},
+		{
+			"campus": "交大",
+			"windows": 2735,
+			"total_avg": 5.243963933689713,
+			"station_id": 45,
+			"station_name": "交大-大禮堂站",
+			"available_avg": 1.654575540242816,
+			"shortage_rate": 50.09140767824497,
+			"low_stock_rate": 83.03473491773309,
+			"empty_station_rate": 0,
+			"unavailable_with_vehicle_rate": 50.09140767824497
+		},
+		{
+			"campus": "清大",
+			"windows": 2942,
+			"total_avg": 5.387182670603812,
+			"station_id": 74,
+			"station_name": "清大-清華小吃部站",
+			"available_avg": 0.9212691002629827,
+			"shortage_rate": 47.17878993881713,
+			"low_stock_rate": 91.23045547246771,
+			"empty_station_rate": 0,
+			"unavailable_with_vehicle_rate": 47.17878993881713
+		},
+		{
+			"campus": "清大",
+			"windows": 2982,
+			"total_avg": 4.223628953206421,
+			"station_id": 22,
+			"station_name": "清大-駐警隊站",
+			"available_avg": 1.6490780458084275,
+			"shortage_rate": 46.948356807511736,
+			"low_stock_rate": 85.47954393024816,
+			"empty_station_rate": 0,
+			"unavailable_with_vehicle_rate": 46.948356807511736
+		},
+		{
+			"campus": "交大",
+			"windows": 2662,
+			"total_avg": 4.46595738346302,
+			"station_id": 43,
+			"station_name": "交大-工程四館站",
+			"available_avg": 1.2377165659284364,
+			"shortage_rate": 44.51540195341848,
+			"low_stock_rate": 86.06311044327573,
+			"empty_station_rate": 0,
+			"unavailable_with_vehicle_rate": 44.51540195341848
+		}
+	],
+	"weekdayHour": [
+		{
+			"hour": 0,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 11.94048460373548,
+			"available_avg": 9.564294127545013,
+			"shortage_rate": 18.021201413427562,
+			"low_stock_rate": 52.65017667844523
+		},
+		{
+			"hour": 1,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 12.391983122362868,
+			"available_avg": 9.443862677406983,
+			"shortage_rate": 23.417721518987342,
+			"low_stock_rate": 55.379746835443036
+		},
+		{
+			"hour": 2,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 12.506300813008133,
+			"available_avg": 9.364227642276422,
+			"shortage_rate": 29.878048780487802,
+			"low_stock_rate": 54.57317073170732
+		},
+		{
+			"hour": 3,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 12.49410569105691,
+			"available_avg": 9.348170731707317,
+			"shortage_rate": 29.573170731707314,
+			"low_stock_rate": 55.79268292682927
+		},
+		{
+			"hour": 4,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 12.566462167689165,
+			"available_avg": 9.365439672801637,
+			"shortage_rate": 31.595092024539877,
+			"low_stock_rate": 55.21472392638037
+		},
+		{
+			"hour": 5,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 12.67530864197531,
+			"available_avg": 9.42119341563786,
+			"shortage_rate": 31.17283950617284,
+			"low_stock_rate": 55.8641975308642
+		},
+		{
+			"hour": 6,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 12.504268292682928,
+			"available_avg": 9.258943089430897,
+			"shortage_rate": 27.439024390243905,
+			"low_stock_rate": 57.3170731707317
+		},
+		{
+			"hour": 7,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 11.915717078620302,
+			"available_avg": 8.729779897521835,
+			"shortage_rate": 26.97947214076246,
+			"low_stock_rate": 59.82404692082112
+		},
+		{
+			"hour": 8,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 11.323978490645155,
+			"available_avg": 8.099853541520208,
+			"shortage_rate": 23.076923076923077,
+			"low_stock_rate": 59.54415954415955
+		},
+		{
+			"hour": 9,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 11.116533466533468,
+			"available_avg": 7.834083773369488,
+			"shortage_rate": 13.96103896103896,
+			"low_stock_rate": 52.27272727272727
+		},
+		{
+			"hour": 10,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 10.995034168111095,
+			"available_avg": 7.959970229200997,
+			"shortage_rate": 15.384615384615385,
+			"low_stock_rate": 47.756410256410255
+		},
+		{
+			"hour": 11,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 11.126198231735687,
+			"available_avg": 8.59905382348379,
+			"shortage_rate": 10.423452768729643,
+			"low_stock_rate": 42.671009771986974
+		},
+		{
+			"hour": 12,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 10.745969005353619,
+			"available_avg": 8.310491969568888,
+			"shortage_rate": 7.076923076923077,
+			"low_stock_rate": 39.38461538461539
+		},
+		{
+			"hour": 13,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 10.71888776888777,
+			"available_avg": 8.123098623098622,
+			"shortage_rate": 5.7057057057057055,
+			"low_stock_rate": 37.53753753753754
+		},
+		{
+			"hour": 14,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 11.00792673992674,
+			"available_avg": 8.472191039729504,
+			"shortage_rate": 10.76923076923077,
+			"low_stock_rate": 35.07692307692308
+		},
+		{
+			"hour": 15,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 11.184106955084872,
+			"available_avg": 8.636713234189575,
+			"shortage_rate": 10.094637223974763,
+			"low_stock_rate": 37.85488958990536
+		},
+		{
+			"hour": 16,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 10.881021090021092,
+			"available_avg": 8.44530009306932,
+			"shortage_rate": 10.153846153846153,
+			"low_stock_rate": 39.38461538461539
+		},
+		{
+			"hour": 17,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 10.360603986003351,
+			"available_avg": 7.605781226228511,
+			"shortage_rate": 9.584664536741213,
+			"low_stock_rate": 47.284345047923324
+		},
+		{
+			"hour": 18,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 8.951523890188485,
+			"available_avg": 6.194231131187655,
+			"shortage_rate": 13.664596273291925,
+			"low_stock_rate": 55.27950310559007
+		},
+		{
+			"hour": 19,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 9.851112689393938,
+			"available_avg": 7.014176812770565,
+			"shortage_rate": 12.1875,
+			"low_stock_rate": 45.3125
+		},
+		{
+			"hour": 20,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 10.53253722541648,
+			"available_avg": 7.677546808196957,
+			"shortage_rate": 12.693498452012383,
+			"low_stock_rate": 46.43962848297213
+		},
+		{
+			"hour": 21,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 10.81675177247932,
+			"available_avg": 7.8644458740434,
+			"shortage_rate": 14.551083591331269,
+			"low_stock_rate": 46.749226006191954
+		},
+		{
+			"hour": 22,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 11.194409282700423,
+			"available_avg": 8.002523531321003,
+			"shortage_rate": 19.62025316455696,
+			"low_stock_rate": 52.21518987341772
+		},
+		{
+			"hour": 23,
+			"campus": "交大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 11.61879781420765,
+			"available_avg": 8.12488160291439,
+			"shortage_rate": 27.86885245901639,
+			"low_stock_rate": 56.0655737704918
+		},
+		{
+			"hour": 0,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.544017094017094,
+			"available_avg": 0.37777777777777777,
+			"shortage_rate": 64.74358974358975,
+			"low_stock_rate": 97.43589743589743
+		},
+		{
+			"hour": 1,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.519774011299435,
+			"available_avg": 0.29529190207156314,
+			"shortage_rate": 77.96610169491525,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 2,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.471376811594203,
+			"available_avg": 0.2467391304347826,
+			"shortage_rate": 81.52173913043478,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 3,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.473153153153153,
+			"available_avg": 0.26882882882882886,
+			"shortage_rate": 79.45945945945945,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 4,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.4324420677361855,
+			"available_avg": 0.2502673796791444,
+			"shortage_rate": 80.21390374331551,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 5,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.441304347826087,
+			"available_avg": 0.1963768115942029,
+			"shortage_rate": 83.69565217391305,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 6,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.47608695652174,
+			"available_avg": 0.22608695652173913,
+			"shortage_rate": 85.32608695652173,
+			"low_stock_rate": 99.45652173913044
+		},
+		{
+			"hour": 7,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.693426501035196,
+			"available_avg": 0.3869047619047619,
+			"shortage_rate": 75,
+			"low_stock_rate": 97.82608695652173
+		},
+		{
+			"hour": 8,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.83584229390681,
+			"available_avg": 0.43046594982078856,
+			"shortage_rate": 67.74193548387096,
+			"low_stock_rate": 96.23655913978494
+		},
+		{
+			"hour": 9,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.989333333333334,
+			"available_avg": 0.8524444444444444,
+			"shortage_rate": 55.333333333333336,
+			"low_stock_rate": 91.33333333333333
+		},
+		{
+			"hour": 10,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.8546338193397,
+			"available_avg": 1.302423937718055,
+			"shortage_rate": 29.411764705882355,
+			"low_stock_rate": 87.58169934640523
+		},
+		{
+			"hour": 11,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.6154166666666665,
+			"available_avg": 1.594310897435898,
+			"shortage_rate": 20,
+			"low_stock_rate": 80.625
+		},
+		{
+			"hour": 12,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.251572327044025,
+			"available_avg": 1.286443954368483,
+			"shortage_rate": 27.044025157232703,
+			"low_stock_rate": 88.0503144654088
+		},
+		{
+			"hour": 13,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 3.766871165644172,
+			"available_avg": 1.0353198948290976,
+			"shortage_rate": 34.355828220858896,
+			"low_stock_rate": 86.50306748466258
+		},
+		{
+			"hour": 14,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 3.8081720430107526,
+			"available_avg": 0.980322580645161,
+			"shortage_rate": 38.064516129032256,
+			"low_stock_rate": 91.61290322580645
+		},
+		{
+			"hour": 15,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 3.7947474747474734,
+			"available_avg": 0.9028787878787882,
+			"shortage_rate": 25.454545454545453,
+			"low_stock_rate": 95.75757575757575
+		},
+		{
+			"hour": 16,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 3.7494411571334663,
+			"available_avg": 1.03632628055705,
+			"shortage_rate": 28.994082840236686,
+			"low_stock_rate": 93.49112426035504
+		},
+		{
+			"hour": 17,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 5.317452810516396,
+			"available_avg": 2.3203352203352208,
+			"shortage_rate": 20.23121387283237,
+			"low_stock_rate": 70.52023121387283
+		},
+		{
+			"hour": 18,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 7.6879098944967215,
+			"available_avg": 3.96187624750499,
+			"shortage_rate": 12.574850299401197,
+			"low_stock_rate": 59.2814371257485
+		},
+		{
+			"hour": 19,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 5.9890873015873005,
+			"available_avg": 2.527182539682541,
+			"shortage_rate": 14.880952380952381,
+			"low_stock_rate": 77.97619047619048
+		},
+		{
+			"hour": 20,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.651851851851852,
+			"available_avg": 1.178843327454438,
+			"shortage_rate": 22.839506172839506,
+			"low_stock_rate": 89.50617283950618
+		},
+		{
+			"hour": 21,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 4.04758230452675,
+			"available_avg": 0.6121399176954734,
+			"shortage_rate": 38.2716049382716,
+			"low_stock_rate": 97.53086419753086
+		},
+		{
+			"hour": 22,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 3.8968553459119497,
+			"available_avg": 0.5400903080148362,
+			"shortage_rate": 50.943396226415096,
+			"low_stock_rate": 98.74213836477988
+		},
+		{
+			"hour": 23,
+			"campus": "清大",
+			"isodow": 1,
+			"weekday": "星期一",
+			"total_avg": 3.921367521367522,
+			"available_avg": 0.4482905982905984,
+			"shortage_rate": 54.48717948717948,
+			"low_stock_rate": 97.43589743589743
+		},
+		{
+			"hour": 0,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 11.823999999999998,
+			"available_avg": 8.225555555555559,
+			"shortage_rate": 30,
+			"low_stock_rate": 55.666666666666664
+		},
+		{
+			"hour": 1,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 11.783790602333653,
+			"available_avg": 8.20223904131189,
+			"shortage_rate": 29.47019867549669,
+			"low_stock_rate": 54.966887417218544
+		},
+		{
+			"hour": 2,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 11.82325581395349,
+			"available_avg": 8.155537098560353,
+			"shortage_rate": 30.89700996677741,
+			"low_stock_rate": 54.81727574750831
+		},
+		{
+			"hour": 3,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 11.876444444444445,
+			"available_avg": 8.195333333333334,
+			"shortage_rate": 31,
+			"low_stock_rate": 55.333333333333336
+		},
+		{
+			"hour": 4,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 11.840444444444444,
+			"available_avg": 8.130444444444445,
+			"shortage_rate": 36,
+			"low_stock_rate": 55.666666666666664
+		},
+		{
+			"hour": 5,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 11.748565121412803,
+			"available_avg": 8.016114790286974,
+			"shortage_rate": 37.086092715231786,
+			"low_stock_rate": 54.63576158940398
+		},
+		{
+			"hour": 6,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 11.504823547541994,
+			"available_avg": 7.823008167668362,
+			"shortage_rate": 35.275080906148865,
+			"low_stock_rate": 56.310679611650485
+		},
+		{
+			"hour": 7,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 11.32709677419355,
+			"available_avg": 7.560568356374808,
+			"shortage_rate": 30.32258064516129,
+			"low_stock_rate": 58.70967741935483
+		},
+		{
+			"hour": 8,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 11.316289104638615,
+			"available_avg": 7.304279036317872,
+			"shortage_rate": 30.42071197411003,
+			"low_stock_rate": 63.75404530744336
+		},
+		{
+			"hour": 9,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 10.987954309449638,
+			"available_avg": 6.868449100224802,
+			"shortage_rate": 19.626168224299064,
+			"low_stock_rate": 57.009345794392516
+		},
+		{
+			"hour": 10,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 10.624834472776543,
+			"available_avg": 6.4184384297951365,
+			"shortage_rate": 25.914634146341463,
+			"low_stock_rate": 63.41463414634146
+		},
+		{
+			"hour": 11,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 10.461393514460998,
+			"available_avg": 6.076407232848951,
+			"shortage_rate": 21.779141104294478,
+			"low_stock_rate": 65.6441717791411
+		},
+		{
+			"hour": 12,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 10.1172217353199,
+			"available_avg": 5.365913559855275,
+			"shortage_rate": 16.56441717791411,
+			"low_stock_rate": 65.03067484662577
+		},
+		{
+			"hour": 13,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 10.341463414634143,
+			"available_avg": 5.2513289555972475,
+			"shortage_rate": 16.158536585365855,
+			"low_stock_rate": 63.41463414634146
+		},
+		{
+			"hour": 14,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 10.175683890577501,
+			"available_avg": 4.770715269195511,
+			"shortage_rate": 24.012158054711247,
+			"low_stock_rate": 62.00607902735562
+		},
+		{
+			"hour": 15,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 10.054471544715451,
+			"available_avg": 4.976277584204415,
+			"shortage_rate": 16.463414634146343,
+			"low_stock_rate": 64.9390243902439
+		},
+		{
+			"hour": 16,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 9.8086500655308,
+			"available_avg": 4.930008345375319,
+			"shortage_rate": 20.18348623853211,
+			"low_stock_rate": 63.91437308868502
+		},
+		{
+			"hour": 17,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 8.979498977505116,
+			"available_avg": 3.801517475367171,
+			"shortage_rate": 22.392638036809817,
+			"low_stock_rate": 71.77914110429448
+		},
+		{
+			"hour": 18,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 8.563730645632486,
+			"available_avg": 3.219164475606193,
+			"shortage_rate": 26.380368098159508,
+			"low_stock_rate": 76.07361963190185
+		},
+		{
+			"hour": 19,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 8.984086345381527,
+			"available_avg": 3.3841532797858096,
+			"shortage_rate": 24.096385542168676,
+			"low_stock_rate": 70.18072289156626
+		},
+		{
+			"hour": 20,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 9.394042994042996,
+			"available_avg": 3.475928084261417,
+			"shortage_rate": 31.313131313131315,
+			"low_stock_rate": 69.02356902356902
+		},
+		{
+			"hour": 21,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 9.577693282636247,
+			"available_avg": 3.1348542458808613,
+			"shortage_rate": 32.69961977186312,
+			"low_stock_rate": 75.2851711026616
+		},
+		{
+			"hour": 22,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 9.727969348659004,
+			"available_avg": 2.997838687493859,
+			"shortage_rate": 42.1455938697318,
+			"low_stock_rate": 76.62835249042146
+		},
+		{
+			"hour": 23,
+			"campus": "交大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 9.927604166666665,
+			"available_avg": 2.8781250000000007,
+			"shortage_rate": 53.90625,
+			"low_stock_rate": 78.515625
+		},
+		{
+			"hour": 0,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 3.902991452991453,
+			"available_avg": 0.3333333333333333,
+			"shortage_rate": 69.87179487179486,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 1,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 3.705885832593907,
+			"available_avg": 0.3000887311446318,
+			"shortage_rate": 72.04968944099379,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 2,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 3.669135802469136,
+			"available_avg": 0.29521604938271606,
+			"shortage_rate": 75.30864197530865,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 3,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 3.681666666666667,
+			"available_avg": 0.2533333333333333,
+			"shortage_rate": 78.75,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 4,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 3.7491666666666665,
+			"available_avg": 0.29583333333333334,
+			"shortage_rate": 75,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 5,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 3.78,
+			"available_avg": 0.31916666666666665,
+			"shortage_rate": 73.125,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 6,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 3.745476190476191,
+			"available_avg": 0.2817261904761905,
+			"shortage_rate": 73.75,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 7,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 4.014166666666667,
+			"available_avg": 0.4924999999999999,
+			"shortage_rate": 61.875,
+			"low_stock_rate": 96.875
+		},
+		{
+			"hour": 8,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 4.126708074534162,
+			"available_avg": 0.47474120082815735,
+			"shortage_rate": 57.14285714285714,
+			"low_stock_rate": 98.13664596273291
+		},
+		{
+			"hour": 9,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 4.000849256900212,
+			"available_avg": 0.23312101910828031,
+			"shortage_rate": 70.70063694267516,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 10,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 4.069512195121951,
+			"available_avg": 0.36722560975609764,
+			"shortage_rate": 59.14634146341463,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 11,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 4.389024390243904,
+			"available_avg": 1.2252032520325198,
+			"shortage_rate": 43.90243902439025,
+			"low_stock_rate": 89.02439024390245
+		},
+		{
+			"hour": 12,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 5.048039215686273,
+			"available_avg": 1.727326203208557,
+			"shortage_rate": 29.411764705882355,
+			"low_stock_rate": 81.76470588235294
+		},
+		{
+			"hour": 13,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 4.5158730158730185,
+			"available_avg": 0.9077876984126989,
+			"shortage_rate": 27.380952380952383,
+			"low_stock_rate": 94.04761904761905
+		},
+		{
+			"hour": 14,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 4.653801169590643,
+			"available_avg": 0.9561403508771932,
+			"shortage_rate": 33.91812865497076,
+			"low_stock_rate": 92.39766081871345
+		},
+		{
+			"hour": 15,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 4.844761904761903,
+			"available_avg": 1.1667243867243866,
+			"shortage_rate": 22.857142857142858,
+			"low_stock_rate": 90.28571428571428
+		},
+		{
+			"hour": 16,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 5.387958401751505,
+			"available_avg": 1.565015252946288,
+			"shortage_rate": 27.586206896551722,
+			"low_stock_rate": 80.45977011494253
+		},
+		{
+			"hour": 17,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 7.106725146198833,
+			"available_avg": 2.727436647173488,
+			"shortage_rate": 17.543859649122805,
+			"low_stock_rate": 72.51461988304094
+		},
+		{
+			"hour": 18,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 7.938571428571429,
+			"available_avg": 3.007507002801121,
+			"shortage_rate": 21.176470588235293,
+			"low_stock_rate": 68.82352941176471
+		},
+		{
+			"hour": 19,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 6.825775401069519,
+			"available_avg": 2.032049910873441,
+			"shortage_rate": 19.411764705882355,
+			"low_stock_rate": 80.58823529411765
+		},
+		{
+			"hour": 20,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 6.008192227060153,
+			"available_avg": 1.2053862280277372,
+			"shortage_rate": 23.270440251572328,
+			"low_stock_rate": 89.937106918239
+		},
+		{
+			"hour": 21,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 5.67638888888889,
+			"available_avg": 0.7773148148148148,
+			"shortage_rate": 46.52777777777778,
+			"low_stock_rate": 92.36111111111111
+		},
+		{
+			"hour": 22,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 5.630092592592593,
+			"available_avg": 0.5990740740740742,
+			"shortage_rate": 58.333333333333336,
+			"low_stock_rate": 96.52777777777779
+		},
+		{
+			"hour": 23,
+			"campus": "清大",
+			"isodow": 2,
+			"weekday": "星期二",
+			"total_avg": 5.643356643356642,
+			"available_avg": 0.48525641025641025,
+			"shortage_rate": 60.83916083916085,
+			"low_stock_rate": 96.5034965034965
+		},
+		{
+			"hour": 0,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.842820512820515,
+			"available_avg": 2.7819047619047614,
+			"shortage_rate": 49.61538461538461,
+			"low_stock_rate": 78.07692307692308
+		},
+		{
+			"hour": 1,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.85025641025641,
+			"available_avg": 2.7282051282051283,
+			"shortage_rate": 53.84615384615385,
+			"low_stock_rate": 79.23076923076923
+		},
+		{
+			"hour": 2,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.840256410256407,
+			"available_avg": 2.667179487179488,
+			"shortage_rate": 58.46153846153847,
+			"low_stock_rate": 78.46153846153847
+		},
+		{
+			"hour": 3,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.83051282051282,
+			"available_avg": 2.61,
+			"shortage_rate": 59.23076923076923,
+			"low_stock_rate": 77.3076923076923
+		},
+		{
+			"hour": 4,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.832051282051282,
+			"available_avg": 2.572820512820513,
+			"shortage_rate": 59.61538461538461,
+			"low_stock_rate": 78.07692307692308
+		},
+		{
+			"hour": 5,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.815070242656448,
+			"available_avg": 2.573180076628353,
+			"shortage_rate": 59.38697318007663,
+			"low_stock_rate": 78.16091954022988
+		},
+		{
+			"hour": 6,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.694949494949494,
+			"available_avg": 2.5136363636363637,
+			"shortage_rate": 58.333333333333336,
+			"low_stock_rate": 77.65151515151516
+		},
+		{
+			"hour": 7,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.639141414141411,
+			"available_avg": 2.4073232323232316,
+			"shortage_rate": 54.54545454545454,
+			"low_stock_rate": 79.16666666666666
+		},
+		{
+			"hour": 8,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.722646310432573,
+			"available_avg": 2.3447837150127233,
+			"shortage_rate": 49.23664122137404,
+			"low_stock_rate": 83.58778625954199
+		},
+		{
+			"hour": 9,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.946928104575168,
+			"available_avg": 2.2649792038027328,
+			"shortage_rate": 43.529411764705884,
+			"low_stock_rate": 83.13725490196079
+		},
+		{
+			"hour": 10,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.552617230098146,
+			"available_avg": 2.3095601599418396,
+			"shortage_rate": 45.41984732824427,
+			"low_stock_rate": 83.58778625954199
+		},
+		{
+			"hour": 11,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.147222222222224,
+			"available_avg": 2.054608585858585,
+			"shortage_rate": 38.25757575757576,
+			"low_stock_rate": 86.74242424242425
+		},
+		{
+			"hour": 12,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.162452107279691,
+			"available_avg": 1.8353128991060024,
+			"shortage_rate": 33.33333333333333,
+			"low_stock_rate": 91.18773946360153
+		},
+		{
+			"hour": 13,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.168227215980018,
+			"available_avg": 1.9142946317103617,
+			"shortage_rate": 26.591760299625467,
+			"low_stock_rate": 88.76404494382022
+		},
+		{
+			"hour": 14,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.573205128205132,
+			"available_avg": 2.293205128205129,
+			"shortage_rate": 26.53846153846154,
+			"low_stock_rate": 80.76923076923077
+		},
+		{
+			"hour": 15,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.378165938864626,
+			"available_avg": 1.9647743813682672,
+			"shortage_rate": 34.06113537117904,
+			"low_stock_rate": 85.1528384279476
+		},
+		{
+			"hour": 16,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.393453620171174,
+			"available_avg": 2.778753180661577,
+			"shortage_rate": 28.24427480916031,
+			"low_stock_rate": 77.86259541984732
+		},
+		{
+			"hour": 17,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 8.690253254859995,
+			"available_avg": 2.3372659176029966,
+			"shortage_rate": 25.0936329588015,
+			"low_stock_rate": 82.02247191011236
+		},
+		{
+			"hour": 18,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 8.261202335340265,
+			"available_avg": 1.8808885239919717,
+			"shortage_rate": 23.371647509578544,
+			"low_stock_rate": 85.0574712643678
+		},
+		{
+			"hour": 19,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 8.9462890625,
+			"available_avg": 2.393424479166666,
+			"shortage_rate": 22.265625,
+			"low_stock_rate": 74.21875
+		},
+		{
+			"hour": 20,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 9.469444444444447,
+			"available_avg": 3.064807162534437,
+			"shortage_rate": 24.62121212121212,
+			"low_stock_rate": 66.66666666666666
+		},
+		{
+			"hour": 21,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 10.49874213836478,
+			"available_avg": 3.5616352201257864,
+			"shortage_rate": 28.30188679245283,
+			"low_stock_rate": 74.52830188679245
+		},
+		{
+			"hour": 22,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 10.794968417409358,
+			"available_avg": 3.7685097055175807,
+			"shortage_rate": 33.85826771653544,
+			"low_stock_rate": 74.01574803149606
+		},
+		{
+			"hour": 23,
+			"campus": "交大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 11.132048374905517,
+			"available_avg": 3.968707482993197,
+			"shortage_rate": 36.507936507936506,
+			"low_stock_rate": 69.44444444444444
+		},
+		{
+			"hour": 0,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.634761904761904,
+			"available_avg": 0.4451700680272109,
+			"shortage_rate": 68.57142857142857,
+			"low_stock_rate": 96.42857142857143
+		},
+		{
+			"hour": 1,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.62095238095238,
+			"available_avg": 0.3985714285714285,
+			"shortage_rate": 70.71428571428572,
+			"low_stock_rate": 97.14285714285714
+		},
+		{
+			"hour": 2,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.639523809523809,
+			"available_avg": 0.4128571428571428,
+			"shortage_rate": 67.14285714285714,
+			"low_stock_rate": 97.14285714285714
+		},
+		{
+			"hour": 3,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.657619047619048,
+			"available_avg": 0.45095238095238094,
+			"shortage_rate": 69.28571428571428,
+			"low_stock_rate": 94.28571428571428
+		},
+		{
+			"hour": 4,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.654761904761904,
+			"available_avg": 0.4261904761904762,
+			"shortage_rate": 70.71428571428572,
+			"low_stock_rate": 94.28571428571428
+		},
+		{
+			"hour": 5,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.62,
+			"available_avg": 0.3514285714285714,
+			"shortage_rate": 75.71428571428571,
+			"low_stock_rate": 96.42857142857143
+		},
+		{
+			"hour": 6,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.632380952380952,
+			"available_avg": 0.3676190476190476,
+			"shortage_rate": 73.57142857142858,
+			"low_stock_rate": 97.14285714285714
+		},
+		{
+			"hour": 7,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.737619047619047,
+			"available_avg": 0.3985714285714286,
+			"shortage_rate": 71.42857142857143,
+			"low_stock_rate": 97.14285714285714
+		},
+		{
+			"hour": 8,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.726666666666666,
+			"available_avg": 0.3304761904761906,
+			"shortage_rate": 71.42857142857143,
+			"low_stock_rate": 97.85714285714285
+		},
+		{
+			"hour": 9,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.776989755713161,
+			"available_avg": 0.27328605200945627,
+			"shortage_rate": 66.66666666666666,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 10,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 6.139613526570048,
+			"available_avg": 0.39178743961352663,
+			"shortage_rate": 67.3913043478261,
+			"low_stock_rate": 97.10144927536231
+		},
+		{
+			"hour": 11,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 6.510295103957077,
+			"available_avg": 1.4600359734162551,
+			"shortage_rate": 35.2112676056338,
+			"low_stock_rate": 85.2112676056338
+		},
+		{
+			"hour": 12,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 6.753521126760564,
+			"available_avg": 2.786854460093896,
+			"shortage_rate": 17.6056338028169,
+			"low_stock_rate": 72.53521126760563
+		},
+		{
+			"hour": 13,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 6.4075650118203304,
+			"available_avg": 2.6235315511911255,
+			"shortage_rate": 15.602836879432624,
+			"low_stock_rate": 73.75886524822694
+		},
+		{
+			"hour": 14,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 5.893055555555558,
+			"available_avg": 2.5645833333333323,
+			"shortage_rate": 12.5,
+			"low_stock_rate": 68.75
+		},
+		{
+			"hour": 15,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 6.40327868852459,
+			"available_avg": 3.150627173373075,
+			"shortage_rate": 15.573770491803279,
+			"low_stock_rate": 68.0327868852459
+		},
+		{
+			"hour": 16,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 6.465178373937499,
+			"available_avg": 3.273574114450028,
+			"shortage_rate": 12.408759124087592,
+			"low_stock_rate": 68.61313868613139
+		},
+		{
+			"hour": 17,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 7.306281661600807,
+			"available_avg": 4.633170533170532,
+			"shortage_rate": 9.219858156028367,
+			"low_stock_rate": 63.829787234042556
+		},
+		{
+			"hour": 18,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 8.438483620398513,
+			"available_avg": 5.726871552403469,
+			"shortage_rate": 13.47517730496454,
+			"low_stock_rate": 58.86524822695035
+		},
+		{
+			"hour": 19,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 7.43755868544601,
+			"available_avg": 4.4515425888665305,
+			"shortage_rate": 16.19718309859155,
+			"low_stock_rate": 66.19718309859155
+		},
+		{
+			"hour": 20,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 6.051904761904762,
+			"available_avg": 3.048809523809523,
+			"shortage_rate": 22.857142857142858,
+			"low_stock_rate": 75.71428571428571
+		},
+		{
+			"hour": 21,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 4.389698605488078,
+			"available_avg": 1.4091060985797825,
+			"shortage_rate": 37.719298245614034,
+			"low_stock_rate": 86.8421052631579
+		},
+		{
+			"hour": 22,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 4.4402795733678095,
+			"available_avg": 1.4675500969618616,
+			"shortage_rate": 38.23529411764706,
+			"low_stock_rate": 86.02941176470588
+		},
+		{
+			"hour": 23,
+			"campus": "清大",
+			"isodow": 3,
+			"weekday": "星期三",
+			"total_avg": 3.961204481792718,
+			"available_avg": 0.9826680672268903,
+			"shortage_rate": 50.73529411764706,
+			"low_stock_rate": 86.02941176470588
+		},
+		{
+			"hour": 0,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 11.096031746031745,
+			"available_avg": 3.8756613756613763,
+			"shortage_rate": 43.25396825396825,
+			"low_stock_rate": 74.20634920634922
+		},
+		{
+			"hour": 1,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 11.317345399698345,
+			"available_avg": 3.8907993966817496,
+			"shortage_rate": 50.2262443438914,
+			"low_stock_rate": 73.30316742081448
+		},
+		{
+			"hour": 2,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 11.683963963963967,
+			"available_avg": 3.868468468468469,
+			"shortage_rate": 60.54054054054055,
+			"low_stock_rate": 76.75675675675676
+		},
+		{
+			"hour": 3,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 11.791666666666666,
+			"available_avg": 3.842028985507247,
+			"shortage_rate": 59.78260869565217,
+			"low_stock_rate": 77.71739130434783
+		},
+		{
+			"hour": 4,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 11.779347826086957,
+			"available_avg": 3.826449275362318,
+			"shortage_rate": 64.13043478260869,
+			"low_stock_rate": 75.54347826086956
+		},
+		{
+			"hour": 5,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 11.733695652173912,
+			"available_avg": 3.745289855072465,
+			"shortage_rate": 65.21739130434783,
+			"low_stock_rate": 76.63043478260869
+		},
+		{
+			"hour": 6,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 11.736956521739133,
+			"available_avg": 3.704710144927536,
+			"shortage_rate": 64.13043478260869,
+			"low_stock_rate": 78.26086956521739
+		},
+		{
+			"hour": 7,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 11.50837789661319,
+			"available_avg": 3.585026737967915,
+			"shortage_rate": 55.080213903743314,
+			"low_stock_rate": 77.54010695187165
+		},
+		{
+			"hour": 8,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 11.194444444444445,
+			"available_avg": 3.3291666666666657,
+			"shortage_rate": 42.1875,
+			"low_stock_rate": 76.5625
+		},
+		{
+			"hour": 9,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 10.910884353741494,
+			"available_avg": 3.0758503401360544,
+			"shortage_rate": 28.061224489795915,
+			"low_stock_rate": 69.89795918367348
+		},
+		{
+			"hour": 10,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 10.701666666666663,
+			"available_avg": 2.8433333333333324,
+			"shortage_rate": 19,
+			"low_stock_rate": 64
+		},
+		{
+			"hour": 11,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 10.48241206030151,
+			"available_avg": 2.613735343383584,
+			"shortage_rate": 20.100502512562816,
+			"low_stock_rate": 69.34673366834171
+		},
+		{
+			"hour": 12,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 9.796398512429045,
+			"available_avg": 2.5729692699158333,
+			"shortage_rate": 14.50381679389313,
+			"low_stock_rate": 77.86259541984732
+		},
+		{
+			"hour": 13,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 9.780674533799537,
+			"available_avg": 2.393376068376068,
+			"shortage_rate": 18.181818181818183,
+			"low_stock_rate": 75.37878787878788
+		},
+		{
+			"hour": 14,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 9.614048531289914,
+			"available_avg": 2.5902572523262184,
+			"shortage_rate": 23.754789272030653,
+			"low_stock_rate": 67.43295019157088
+		},
+		{
+			"hour": 15,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 9.204472794127968,
+			"available_avg": 2.3780998694791795,
+			"shortage_rate": 18.773946360153257,
+			"low_stock_rate": 76.24521072796935
+		},
+		{
+			"hour": 16,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 8.785691566703015,
+			"available_avg": 2.7080607051981094,
+			"shortage_rate": 21.374045801526716,
+			"low_stock_rate": 74.04580152671755
+		},
+		{
+			"hour": 17,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 8.31664407943478,
+			"available_avg": 2.102565909542654,
+			"shortage_rate": 32.945736434108525,
+			"low_stock_rate": 77.51937984496125
+		},
+		{
+			"hour": 18,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 7.639639639639638,
+			"available_avg": 1.3820785070785075,
+			"shortage_rate": 30.115830115830118,
+			"low_stock_rate": 89.57528957528957
+		},
+		{
+			"hour": 19,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 8.081568627450977,
+			"available_avg": 1.7187641117052872,
+			"shortage_rate": 32.15686274509804,
+			"low_stock_rate": 80.7843137254902
+		},
+		{
+			"hour": 20,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 8.580025940337226,
+			"available_avg": 2.4121923796048317,
+			"shortage_rate": 37.7431906614786,
+			"low_stock_rate": 80.54474708171206
+		},
+		{
+			"hour": 21,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 9.069270833333336,
+			"available_avg": 2.8792157061688313,
+			"shortage_rate": 30.859375,
+			"low_stock_rate": 79.296875
+		},
+		{
+			"hour": 22,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 9.751417004048589,
+			"available_avg": 3.284075573549256,
+			"shortage_rate": 31.983805668016196,
+			"low_stock_rate": 78.13765182186235
+		},
+		{
+			"hour": 23,
+			"campus": "交大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 9.521428571428572,
+			"available_avg": 3.1625541125541137,
+			"shortage_rate": 42.46031746031746,
+			"low_stock_rate": 76.98412698412699
+		},
+		{
+			"hour": 0,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 4.027941176470588,
+			"available_avg": 0.997549019607843,
+			"shortage_rate": 52.94117647058824,
+			"low_stock_rate": 82.35294117647058
+		},
+		{
+			"hour": 1,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 3.579444444444445,
+			"available_avg": 0.5823611111111112,
+			"shortage_rate": 69.16666666666667,
+			"low_stock_rate": 91.66666666666666
+		},
+		{
+			"hour": 2,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 3.4096153846153836,
+			"available_avg": 0.4333333333333333,
+			"shortage_rate": 71.15384615384616,
+			"low_stock_rate": 96.15384615384616
+		},
+		{
+			"hour": 3,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 3.330128205128205,
+			"available_avg": 0.35256410256410253,
+			"shortage_rate": 75,
+			"low_stock_rate": 96.15384615384616
+		},
+		{
+			"hour": 4,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 3.351923076923077,
+			"available_avg": 0.37179487179487186,
+			"shortage_rate": 75.96153846153845,
+			"low_stock_rate": 96.15384615384616
+		},
+		{
+			"hour": 5,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 3.4326923076923075,
+			"available_avg": 0.4294871794871795,
+			"shortage_rate": 75,
+			"low_stock_rate": 96.15384615384616
+		},
+		{
+			"hour": 6,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 3.4269230769230767,
+			"available_avg": 0.42051282051282046,
+			"shortage_rate": 73.07692307692307,
+			"low_stock_rate": 96.15384615384616
+		},
+		{
+			"hour": 7,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 3.512820512820513,
+			"available_avg": 0.4371794871794872,
+			"shortage_rate": 69.23076923076923,
+			"low_stock_rate": 98.07692307692307
+		},
+		{
+			"hour": 8,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 3.4280373831775695,
+			"available_avg": 0.3772585669781932,
+			"shortage_rate": 65.42056074766354,
+			"low_stock_rate": 97.19626168224299
+		},
+		{
+			"hour": 9,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 3.6346153846153846,
+			"available_avg": 0.41217948717948727,
+			"shortage_rate": 60.57692307692307,
+			"low_stock_rate": 98.07692307692307
+		},
+		{
+			"hour": 10,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 3.6173076923076914,
+			"available_avg": 0.3455128205128204,
+			"shortage_rate": 57.692307692307686,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 11,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 4.141666666666667,
+			"available_avg": 0.7249999999999999,
+			"shortage_rate": 42.30769230769231,
+			"low_stock_rate": 95.1923076923077
+		},
+		{
+			"hour": 12,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 5.120351443428368,
+			"available_avg": 0.9452124798278643,
+			"shortage_rate": 37.06293706293706,
+			"low_stock_rate": 90.9090909090909
+		},
+		{
+			"hour": 13,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 4.9766899766899755,
+			"available_avg": 0.718881118881119,
+			"shortage_rate": 35.66433566433567,
+			"low_stock_rate": 97.2027972027972
+		},
+		{
+			"hour": 14,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 5.349999999999998,
+			"available_avg": 0.8356481481481479,
+			"shortage_rate": 33.33333333333333,
+			"low_stock_rate": 95.13888888888889
+		},
+		{
+			"hour": 15,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 6.282517482517484,
+			"available_avg": 1.2503496503496503,
+			"shortage_rate": 36.36363636363637,
+			"low_stock_rate": 90.9090909090909
+		},
+		{
+			"hour": 16,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 6.884325396825395,
+			"available_avg": 1.726984126984127,
+			"shortage_rate": 22.22222222222222,
+			"low_stock_rate": 75.69444444444444
+		},
+		{
+			"hour": 17,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 7.925462962962963,
+			"available_avg": 2.4814814814814814,
+			"shortage_rate": 20.13888888888889,
+			"low_stock_rate": 73.61111111111111
+		},
+		{
+			"hour": 18,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 9.045370370370371,
+			"available_avg": 3.3611111111111125,
+			"shortage_rate": 23.61111111111111,
+			"low_stock_rate": 64.58333333333334
+		},
+		{
+			"hour": 19,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 8.46759259259259,
+			"available_avg": 3.1231481481481476,
+			"shortage_rate": 24.305555555555554,
+			"low_stock_rate": 61.111111111111114
+		},
+		{
+			"hour": 20,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 7.452314814814814,
+			"available_avg": 2.34212962962963,
+			"shortage_rate": 27.083333333333332,
+			"low_stock_rate": 73.61111111111111
+		},
+		{
+			"hour": 21,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 6.646296296296297,
+			"available_avg": 1.5543981481481484,
+			"shortage_rate": 32.63888888888889,
+			"low_stock_rate": 81.94444444444444
+		},
+		{
+			"hour": 22,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 5.9291666666666645,
+			"available_avg": 0.8694444444444445,
+			"shortage_rate": 43.75,
+			"low_stock_rate": 93.75
+		},
+		{
+			"hour": 23,
+			"campus": "清大",
+			"isodow": 4,
+			"weekday": "星期四",
+			"total_avg": 6.090740740740738,
+			"available_avg": 0.939351851851852,
+			"shortage_rate": 48.61111111111111,
+			"low_stock_rate": 90.27777777777779
+		},
+		{
+			"hour": 0,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.642519685039368,
+			"available_avg": 3.2540682414698163,
+			"shortage_rate": 42.125984251968504,
+			"low_stock_rate": 73.22834645669292
+		},
+		{
+			"hour": 1,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.838978494623657,
+			"available_avg": 3.3314516129032268,
+			"shortage_rate": 42.74193548387097,
+			"low_stock_rate": 72.17741935483872
+		},
+		{
+			"hour": 2,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.899193548387094,
+			"available_avg": 3.4000000000000004,
+			"shortage_rate": 45.16129032258064,
+			"low_stock_rate": 75
+		},
+		{
+			"hour": 3,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.861021505376343,
+			"available_avg": 3.3680107526881717,
+			"shortage_rate": 52.016129032258064,
+			"low_stock_rate": 75
+		},
+		{
+			"hour": 4,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.880645161290321,
+			"available_avg": 3.384677419354839,
+			"shortage_rate": 54.43548387096774,
+			"low_stock_rate": 72.58064516129032
+		},
+		{
+			"hour": 5,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.9247311827957,
+			"available_avg": 3.4228494623655914,
+			"shortage_rate": 52.41935483870967,
+			"low_stock_rate": 72.98387096774194
+		},
+		{
+			"hour": 6,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.91747311827957,
+			"available_avg": 3.374193548387096,
+			"shortage_rate": 49.193548387096776,
+			"low_stock_rate": 74.19354838709677
+		},
+		{
+			"hour": 7,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.760690571049137,
+			"available_avg": 3.213545816733067,
+			"shortage_rate": 47.01195219123506,
+			"low_stock_rate": 74.10358565737052
+		},
+		{
+			"hour": 8,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.478682170542632,
+			"available_avg": 2.963695090439276,
+			"shortage_rate": 36.434108527131784,
+			"low_stock_rate": 75.1937984496124
+		},
+		{
+			"hour": 9,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.946039035591276,
+			"available_avg": 2.5143567874911157,
+			"shortage_rate": 28.73134328358209,
+			"low_stock_rate": 71.26865671641791
+		},
+		{
+			"hour": 10,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.821374045801528,
+			"available_avg": 2.036491974946174,
+			"shortage_rate": 37.02290076335878,
+			"low_stock_rate": 76.7175572519084
+		},
+		{
+			"hour": 11,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.565714285714284,
+			"available_avg": 1.8725091575091575,
+			"shortage_rate": 38.46153846153847,
+			"low_stock_rate": 77.6923076923077
+		},
+		{
+			"hour": 12,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.1988416988417,
+			"available_avg": 1.1707733707733705,
+			"shortage_rate": 41.6988416988417,
+			"low_stock_rate": 88.8030888030888
+		},
+		{
+			"hour": 13,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 7.73814955640051,
+			"available_avg": 0.7370269780916169,
+			"shortage_rate": 38.40304182509506,
+			"low_stock_rate": 96.95817490494296
+		},
+		{
+			"hour": 14,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 7.474679487179487,
+			"available_avg": 0.4700183150183151,
+			"shortage_rate": 47.30769230769231,
+			"low_stock_rate": 97.6923076923077
+		},
+		{
+			"hour": 15,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 7.292648922686946,
+			"available_avg": 0.5818988362714594,
+			"shortage_rate": 52.09125475285171,
+			"low_stock_rate": 96.1977186311787
+		},
+		{
+			"hour": 16,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 7.009266409266409,
+			"available_avg": 0.4558558558558558,
+			"shortage_rate": 55.5984555984556,
+			"low_stock_rate": 96.91119691119691
+		},
+		{
+			"hour": 17,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 6.62655677655678,
+			"available_avg": 0.3301098901098903,
+			"shortage_rate": 64.61538461538461,
+			"low_stock_rate": 98.46153846153847
+		},
+		{
+			"hour": 18,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 6.84740177439797,
+			"available_avg": 0.5460076045627379,
+			"shortage_rate": 48.669201520912544,
+			"low_stock_rate": 98.09885931558935
+		},
+		{
+			"hour": 19,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 7.39545454545455,
+			"available_avg": 0.8724747474747475,
+			"shortage_rate": 40.53030303030303,
+			"low_stock_rate": 93.93939393939394
+		},
+		{
+			"hour": 20,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 7.6633461047254166,
+			"available_avg": 1.1736712840161114,
+			"shortage_rate": 44.44444444444444,
+			"low_stock_rate": 86.59003831417624
+		},
+		{
+			"hour": 21,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 7.877179487179489,
+			"available_avg": 1.394871794871795,
+			"shortage_rate": 49.61538461538461,
+			"low_stock_rate": 85
+		},
+		{
+			"hour": 22,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.069455006337133,
+			"available_avg": 1.4575411913814955,
+			"shortage_rate": 53.99239543726235,
+			"low_stock_rate": 82.88973384030417
+		},
+		{
+			"hour": 23,
+			"campus": "交大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.043181818181816,
+			"available_avg": 1.43030303030303,
+			"shortage_rate": 56.060606060606055,
+			"low_stock_rate": 84.84848484848484
+		},
+		{
+			"hour": 0,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 5.75787037037037,
+			"available_avg": 0.6532407407407408,
+			"shortage_rate": 62.5,
+			"low_stock_rate": 94.44444444444444
+		},
+		{
+			"hour": 1,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 5.805092592592593,
+			"available_avg": 0.7032407407407409,
+			"shortage_rate": 62.5,
+			"low_stock_rate": 93.05555555555556
+		},
+		{
+			"hour": 2,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 5.701388888888889,
+			"available_avg": 0.5685185185185186,
+			"shortage_rate": 63.19444444444444,
+			"low_stock_rate": 94.44444444444444
+		},
+		{
+			"hour": 3,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 5.76712962962963,
+			"available_avg": 0.6328703703703704,
+			"shortage_rate": 70.83333333333334,
+			"low_stock_rate": 90.97222222222221
+		},
+		{
+			"hour": 4,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 5.7333333333333325,
+			"available_avg": 0.6125000000000002,
+			"shortage_rate": 68.05555555555556,
+			"low_stock_rate": 91.66666666666666
+		},
+		{
+			"hour": 5,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 5.657407407407407,
+			"available_avg": 0.537037037037037,
+			"shortage_rate": 70.83333333333334,
+			"low_stock_rate": 93.05555555555556
+		},
+		{
+			"hour": 6,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 5.669907407407407,
+			"available_avg": 0.5037037037037035,
+			"shortage_rate": 63.19444444444444,
+			"low_stock_rate": 94.44444444444444
+		},
+		{
+			"hour": 7,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 5.742129629629631,
+			"available_avg": 0.4708333333333333,
+			"shortage_rate": 60.416666666666664,
+			"low_stock_rate": 97.22222222222221
+		},
+		{
+			"hour": 8,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 5.783796296296297,
+			"available_avg": 0.4643518518518518,
+			"shortage_rate": 50,
+			"low_stock_rate": 97.91666666666666
+		},
+		{
+			"hour": 9,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 6.115740740740739,
+			"available_avg": 1.2050925925925922,
+			"shortage_rate": 50,
+			"low_stock_rate": 88.19444444444444
+		},
+		{
+			"hour": 10,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 6.663425925925925,
+			"available_avg": 2.148611111111111,
+			"shortage_rate": 29.86111111111111,
+			"low_stock_rate": 79.86111111111111
+		},
+		{
+			"hour": 11,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 7.262830687830689,
+			"available_avg": 2.5998015873015876,
+			"shortage_rate": 33.33333333333333,
+			"low_stock_rate": 75
+		},
+		{
+			"hour": 12,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.014814814814816,
+			"available_avg": 3.016203703703704,
+			"shortage_rate": 22.22222222222222,
+			"low_stock_rate": 81.94444444444444
+		},
+		{
+			"hour": 13,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.570370370370371,
+			"available_avg": 3.3680555555555554,
+			"shortage_rate": 15.972222222222221,
+			"low_stock_rate": 82.63888888888889
+		},
+		{
+			"hour": 14,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.210648148148147,
+			"available_avg": 3.6240740740740742,
+			"shortage_rate": 20.13888888888889,
+			"low_stock_rate": 75.69444444444444
+		},
+		{
+			"hour": 15,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.422222222222222,
+			"available_avg": 3.589814814814816,
+			"shortage_rate": 25.694444444444443,
+			"low_stock_rate": 77.77777777777779
+		},
+		{
+			"hour": 16,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 10.12453703703704,
+			"available_avg": 4.287037037037036,
+			"shortage_rate": 28.47222222222222,
+			"low_stock_rate": 79.86111111111111
+		},
+		{
+			"hour": 17,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 10.757605820105823,
+			"available_avg": 4.681349206349205,
+			"shortage_rate": 21.52777777777778,
+			"low_stock_rate": 75
+		},
+		{
+			"hour": 18,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 10.219907407407403,
+			"available_avg": 3.6837962962962956,
+			"shortage_rate": 18.75,
+			"low_stock_rate": 78.47222222222221
+		},
+		{
+			"hour": 19,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 9.168518518518521,
+			"available_avg": 2.4731481481481463,
+			"shortage_rate": 25,
+			"low_stock_rate": 75
+		},
+		{
+			"hour": 20,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.847685185185187,
+			"available_avg": 2.302050264550264,
+			"shortage_rate": 35.41666666666667,
+			"low_stock_rate": 77.77777777777779
+		},
+		{
+			"hour": 21,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.74238095238095,
+			"available_avg": 1.8142857142857138,
+			"shortage_rate": 52.142857142857146,
+			"low_stock_rate": 80.71428571428572
+		},
+		{
+			"hour": 22,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 8.056028819665187,
+			"available_avg": 1.2840008476372113,
+			"shortage_rate": 53.14685314685315,
+			"low_stock_rate": 87.41258741258741
+		},
+		{
+			"hour": 23,
+			"campus": "清大",
+			"isodow": 5,
+			"weekday": "星期五",
+			"total_avg": 7.97638888888889,
+			"available_avg": 1.2212962962962963,
+			"shortage_rate": 54.861111111111114,
+			"low_stock_rate": 88.19444444444444
+		},
+		{
+			"hour": 0,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.122474747474746,
+			"available_avg": 1.4386363636363635,
+			"shortage_rate": 59.09090909090909,
+			"low_stock_rate": 85.22727272727273
+		},
+		{
+			"hour": 1,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.277777777777777,
+			"available_avg": 1.5601010101010104,
+			"shortage_rate": 59.84848484848485,
+			"low_stock_rate": 82.95454545454545
+		},
+		{
+			"hour": 2,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.320707070707073,
+			"available_avg": 1.553030303030303,
+			"shortage_rate": 64.01515151515152,
+			"low_stock_rate": 81.81818181818183
+		},
+		{
+			"hour": 3,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.423076923076923,
+			"available_avg": 1.5494871794871796,
+			"shortage_rate": 65.38461538461539,
+			"low_stock_rate": 83.07692307692308
+		},
+		{
+			"hour": 4,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.440256410256408,
+			"available_avg": 1.533076923076923,
+			"shortage_rate": 67.6923076923077,
+			"low_stock_rate": 83.07692307692308
+		},
+		{
+			"hour": 5,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.40974358974359,
+			"available_avg": 1.4820512820512817,
+			"shortage_rate": 68.07692307692308,
+			"low_stock_rate": 81.53846153846153
+		},
+		{
+			"hour": 6,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.368205128205128,
+			"available_avg": 1.4446153846153844,
+			"shortage_rate": 68.07692307692308,
+			"low_stock_rate": 82.6923076923077
+		},
+		{
+			"hour": 7,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.260769230769231,
+			"available_avg": 1.316666666666667,
+			"shortage_rate": 69.61538461538461,
+			"low_stock_rate": 85
+		},
+		{
+			"hour": 8,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.170769230769231,
+			"available_avg": 1.2461538461538462,
+			"shortage_rate": 63.46153846153846,
+			"low_stock_rate": 84.61538461538461
+		},
+		{
+			"hour": 9,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.07474358974359,
+			"available_avg": 1.2804578754578757,
+			"shortage_rate": 55.769230769230774,
+			"low_stock_rate": 85.76923076923076
+		},
+		{
+			"hour": 10,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.851794871794872,
+			"available_avg": 1.1753846153846153,
+			"shortage_rate": 63.07692307692307,
+			"low_stock_rate": 83.46153846153847
+		},
+		{
+			"hour": 11,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.523333333333333,
+			"available_avg": 1.0392307692307692,
+			"shortage_rate": 63.84615384615384,
+			"low_stock_rate": 84.61538461538461
+		},
+		{
+			"hour": 12,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.234860050890585,
+			"available_avg": 0.7455470737913487,
+			"shortage_rate": 65.64885496183206,
+			"low_stock_rate": 89.69465648854961
+		},
+		{
+			"hour": 13,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.110392902408113,
+			"available_avg": 0.7311696541734563,
+			"shortage_rate": 60.45627376425855,
+			"low_stock_rate": 91.63498098859316
+		},
+		{
+			"hour": 14,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.2972010178117035,
+			"available_avg": 1.431698962614993,
+			"shortage_rate": 51.14503816793893,
+			"low_stock_rate": 84.7328244274809
+		},
+		{
+			"hour": 15,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 6.762198706643151,
+			"available_avg": 1.9696822724600502,
+			"shortage_rate": 39.19753086419753,
+			"low_stock_rate": 79.62962962962963
+		},
+		{
+			"hour": 16,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 6.7138110072689505,
+			"available_avg": 2.434544825199031,
+			"shortage_rate": 28.037383177570092,
+			"low_stock_rate": 71.65109034267913
+		},
+		{
+			"hour": 17,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 6.220898641588296,
+			"available_avg": 2.245237521099591,
+			"shortage_rate": 23.197492163009404,
+			"low_stock_rate": 77.11598746081505
+		},
+		{
+			"hour": 18,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 5.890092002830858,
+			"available_avg": 2.014230497033045,
+			"shortage_rate": 26.43312101910828,
+			"low_stock_rate": 83.12101910828027
+		},
+		{
+			"hour": 19,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 6.320615548980937,
+			"available_avg": 2.758596318211703,
+			"shortage_rate": 20.192307692307693,
+			"low_stock_rate": 70.1923076923077
+		},
+		{
+			"hour": 20,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.100932400932401,
+			"available_avg": 3.8927933177933163,
+			"shortage_rate": 16.346153846153847,
+			"low_stock_rate": 55.769230769230774
+		},
+		{
+			"hour": 21,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.585350318471334,
+			"available_avg": 4.373722031683815,
+			"shortage_rate": 12.420382165605096,
+			"low_stock_rate": 53.503184713375795
+		},
+		{
+			"hour": 22,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.293114754098362,
+			"available_avg": 4.971584699453553,
+			"shortage_rate": 16.065573770491802,
+			"low_stock_rate": 52.78688524590164
+		},
+		{
+			"hour": 23,
+			"campus": "交大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.804651162790691,
+			"available_avg": 5.362240942888782,
+			"shortage_rate": 18.93687707641196,
+			"low_stock_rate": 53.820598006644516
+		},
+		{
+			"hour": 0,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.831018518518519,
+			"available_avg": 1.033796296296296,
+			"shortage_rate": 61.80555555555556,
+			"low_stock_rate": 84.72222222222221
+		},
+		{
+			"hour": 1,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.546296296296295,
+			"available_avg": 0.7402777777777778,
+			"shortage_rate": 69.44444444444444,
+			"low_stock_rate": 87.5
+		},
+		{
+			"hour": 2,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.4675925925925934,
+			"available_avg": 0.6523148148148148,
+			"shortage_rate": 75,
+			"low_stock_rate": 88.88888888888889
+		},
+		{
+			"hour": 3,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.513888888888889,
+			"available_avg": 0.6777777777777777,
+			"shortage_rate": 74.30555555555556,
+			"low_stock_rate": 88.88888888888889
+		},
+		{
+			"hour": 4,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.48287037037037,
+			"available_avg": 0.6407407407407408,
+			"shortage_rate": 74.30555555555556,
+			"low_stock_rate": 91.66666666666666
+		},
+		{
+			"hour": 5,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.537962962962961,
+			"available_avg": 0.6527777777777778,
+			"shortage_rate": 72.91666666666666,
+			"low_stock_rate": 91.66666666666666
+		},
+		{
+			"hour": 6,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.612962962962961,
+			"available_avg": 0.6662037037037037,
+			"shortage_rate": 70.83333333333334,
+			"low_stock_rate": 94.44444444444444
+		},
+		{
+			"hour": 7,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.806944444444444,
+			"available_avg": 0.7532407407407409,
+			"shortage_rate": 75,
+			"low_stock_rate": 93.05555555555556
+		},
+		{
+			"hour": 8,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 7.969444444444442,
+			"available_avg": 1.2296296296296299,
+			"shortage_rate": 72.22222222222221,
+			"low_stock_rate": 88.88888888888889
+		},
+		{
+			"hour": 9,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.142824074074076,
+			"available_avg": 1.6581018518518522,
+			"shortage_rate": 60.416666666666664,
+			"low_stock_rate": 88.88888888888889
+		},
+		{
+			"hour": 10,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.545370370370371,
+			"available_avg": 2.0912037037037035,
+			"shortage_rate": 51.388888888888886,
+			"low_stock_rate": 85.41666666666666
+		},
+		{
+			"hour": 11,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 9.138425925925928,
+			"available_avg": 2.603703703703703,
+			"shortage_rate": 43.75,
+			"low_stock_rate": 86.11111111111111
+		},
+		{
+			"hour": 12,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 9.569907407407408,
+			"available_avg": 2.88425925925926,
+			"shortage_rate": 45.83333333333333,
+			"low_stock_rate": 85.41666666666666
+		},
+		{
+			"hour": 13,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 9.75601851851852,
+			"available_avg": 3.0425925925925927,
+			"shortage_rate": 45.83333333333333,
+			"low_stock_rate": 78.47222222222221
+		},
+		{
+			"hour": 14,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 9.493706293706289,
+			"available_avg": 2.898368298368298,
+			"shortage_rate": 45.45454545454545,
+			"low_stock_rate": 81.11888111888112
+		},
+		{
+			"hour": 15,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 11.103908615469308,
+			"available_avg": 4.538976052848886,
+			"shortage_rate": 29.47976878612717,
+			"low_stock_rate": 72.83236994219652
+		},
+		{
+			"hour": 16,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 10.918888888888892,
+			"available_avg": 4.465185185185185,
+			"shortage_rate": 23.333333333333332,
+			"low_stock_rate": 73.33333333333333
+		},
+		{
+			"hour": 17,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 11.8875462962963,
+			"available_avg": 5.90483024691358,
+			"shortage_rate": 16.666666666666664,
+			"low_stock_rate": 62.77777777777778
+		},
+		{
+			"hour": 18,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 12.896212121212123,
+			"available_avg": 7.320454545454546,
+			"shortage_rate": 13.636363636363635,
+			"low_stock_rate": 50.56818181818182
+		},
+		{
+			"hour": 19,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 12.413872832369941,
+			"available_avg": 6.828131021194605,
+			"shortage_rate": 13.872832369942195,
+			"low_stock_rate": 52.601156069364166
+		},
+		{
+			"hour": 20,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 10.891187739463597,
+			"available_avg": 5.677394636015326,
+			"shortage_rate": 17.24137931034483,
+			"low_stock_rate": 58.04597701149425
+		},
+		{
+			"hour": 21,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 9.813636363636364,
+			"available_avg": 4.644318181818179,
+			"shortage_rate": 23.295454545454543,
+			"low_stock_rate": 59.09090909090909
+		},
+		{
+			"hour": 22,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 9.141425818882464,
+			"available_avg": 3.9277456647398865,
+			"shortage_rate": 36.99421965317919,
+			"low_stock_rate": 64.73988439306359
+		},
+		{
+			"hour": 23,
+			"campus": "清大",
+			"isodow": 6,
+			"weekday": "星期六",
+			"total_avg": 8.685714285714287,
+			"available_avg": 3.331349206349206,
+			"shortage_rate": 42.26190476190476,
+			"low_stock_rate": 72.61904761904762
+		},
+		{
+			"hour": 0,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.142474916387956,
+			"available_avg": 5.659754738015606,
+			"shortage_rate": 21.73913043478261,
+			"low_stock_rate": 54.18060200668896
+		},
+		{
+			"hour": 1,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.350000000000003,
+			"available_avg": 5.894666666666666,
+			"shortage_rate": 18.333333333333332,
+			"low_stock_rate": 57.666666666666664
+		},
+		{
+			"hour": 2,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.390222222222222,
+			"available_avg": 5.917111111111111,
+			"shortage_rate": 20.333333333333332,
+			"low_stock_rate": 56.99999999999999
+		},
+		{
+			"hour": 3,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.444,
+			"available_avg": 5.927777777777777,
+			"shortage_rate": 22,
+			"low_stock_rate": 59
+		},
+		{
+			"hour": 4,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.456666666666667,
+			"available_avg": 5.9155555555555575,
+			"shortage_rate": 24,
+			"low_stock_rate": 60.66666666666667
+		},
+		{
+			"hour": 5,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.418322295805742,
+			"available_avg": 5.899759181216135,
+			"shortage_rate": 24.503311258278146,
+			"low_stock_rate": 62.58278145695364
+		},
+		{
+			"hour": 6,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.452000000000002,
+			"available_avg": 5.894888888888888,
+			"shortage_rate": 26.333333333333332,
+			"low_stock_rate": 62.66666666666667
+		},
+		{
+			"hour": 7,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.376444444444447,
+			"available_avg": 5.767555555555555,
+			"shortage_rate": 28.999999999999996,
+			"low_stock_rate": 62.66666666666667
+		},
+		{
+			"hour": 8,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.353008365508366,
+			"available_avg": 5.672265122265123,
+			"shortage_rate": 28.37837837837838,
+			"low_stock_rate": 61.48648648648649
+		},
+		{
+			"hour": 9,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.008479670938145,
+			"available_avg": 5.293213099193166,
+			"shortage_rate": 26.578073089701,
+			"low_stock_rate": 63.45514950166113
+		},
+		{
+			"hour": 10,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.696102467389597,
+			"available_avg": 4.963696369636963,
+			"shortage_rate": 19.801980198019802,
+			"low_stock_rate": 62.37623762376238
+		},
+		{
+			"hour": 11,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.366666666666667,
+			"available_avg": 4.8072733006507855,
+			"shortage_rate": 20.52980132450331,
+			"low_stock_rate": 60.59602649006622
+		},
+		{
+			"hour": 12,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.065388302972197,
+			"available_avg": 4.312040588047299,
+			"shortage_rate": 24.161073825503358,
+			"low_stock_rate": 62.08053691275168
+		},
+		{
+			"hour": 13,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 7.875496688741719,
+			"available_avg": 4.043469462840322,
+			"shortage_rate": 20.52980132450331,
+			"low_stock_rate": 60.9271523178808
+		},
+		{
+			"hour": 14,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.243176733780755,
+			"available_avg": 4.528325198291644,
+			"shortage_rate": 13.758389261744966,
+			"low_stock_rate": 52.348993288590606
+		},
+		{
+			"hour": 15,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.406514657980457,
+			"available_avg": 5.323590578802305,
+			"shortage_rate": 9.446254071661238,
+			"low_stock_rate": 40.390879478827365
+		},
+		{
+			"hour": 16,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.737626325899939,
+			"available_avg": 6.03927820279612,
+			"shortage_rate": 4.5602605863192185,
+			"low_stock_rate": 38.762214983713356
+		},
+		{
+			"hour": 17,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.913210405229952,
+			"available_avg": 6.490210242164641,
+			"shortage_rate": 6.188925081433225,
+			"low_stock_rate": 41.042345276872965
+		},
+		{
+			"hour": 18,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.056630406630408,
+			"available_avg": 7.1582491582491565,
+			"shortage_rate": 4.487179487179487,
+			"low_stock_rate": 40.38461538461539
+		},
+		{
+			"hour": 19,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.37166231000097,
+			"available_avg": 7.649760498642291,
+			"shortage_rate": 5.431309904153355,
+			"low_stock_rate": 39.29712460063898
+		},
+		{
+			"hour": 20,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 10.095605573419078,
+			"available_avg": 8.29965166130761,
+			"shortage_rate": 6.109324758842444,
+			"low_stock_rate": 39.228295819935695
+		},
+		{
+			"hour": 21,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 10.81390728476822,
+			"available_avg": 8.841885744865877,
+			"shortage_rate": 5.960264900662252,
+			"low_stock_rate": 37.086092715231786
+		},
+		{
+			"hour": 22,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 11.343954802259889,
+			"available_avg": 9.120310734463278,
+			"shortage_rate": 8.813559322033898,
+			"low_stock_rate": 46.779661016949156
+		},
+		{
+			"hour": 23,
+			"campus": "交大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 11.386817325800381,
+			"available_avg": 9.112897497982242,
+			"shortage_rate": 9.491525423728813,
+			"low_stock_rate": 52.88135593220339
+		},
+		{
+			"hour": 0,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.257485029940119,
+			"available_avg": 2.8570858283433136,
+			"shortage_rate": 46.706586826347305,
+			"low_stock_rate": 77.84431137724552
+		},
+		{
+			"hour": 1,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.14375,
+			"available_avg": 2.618333333333333,
+			"shortage_rate": 54.37499999999999,
+			"low_stock_rate": 81.25
+		},
+		{
+			"hour": 2,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 7.9218813905930485,
+			"available_avg": 2.4662576687116564,
+			"shortage_rate": 59.50920245398773,
+			"low_stock_rate": 81.59509202453987
+		},
+		{
+			"hour": 3,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 7.773170731707318,
+			"available_avg": 2.355284552845528,
+			"shortage_rate": 57.92682926829268,
+			"low_stock_rate": 82.92682926829268
+		},
+		{
+			"hour": 4,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 7.75,
+			"available_avg": 2.3186991869918696,
+			"shortage_rate": 58.536585365853654,
+			"low_stock_rate": 82.92682926829268
+		},
+		{
+			"hour": 5,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 7.6240963855421695,
+			"available_avg": 2.2345381526104418,
+			"shortage_rate": 61.44578313253012,
+			"low_stock_rate": 83.13253012048193
+		},
+		{
+			"hour": 6,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 7.578968253968254,
+			"available_avg": 2.231349206349206,
+			"shortage_rate": 64.28571428571429,
+			"low_stock_rate": 83.33333333333334
+		},
+		{
+			"hour": 7,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 7.815261044176708,
+			"available_avg": 2.3544176706827313,
+			"shortage_rate": 62.048192771084345,
+			"low_stock_rate": 81.92771084337349
+		},
+		{
+			"hour": 8,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.122683982683983,
+			"available_avg": 2.5539971139971143,
+			"shortage_rate": 51.515151515151516,
+			"low_stock_rate": 81.81818181818183
+		},
+		{
+			"hour": 9,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.343650793650793,
+			"available_avg": 2.9275793650793642,
+			"shortage_rate": 40.476190476190474,
+			"low_stock_rate": 75
+		},
+		{
+			"hour": 10,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.889778160260091,
+			"available_avg": 3.655153949129853,
+			"shortage_rate": 28.313253012048197,
+			"low_stock_rate": 64.45783132530121
+		},
+		{
+			"hour": 11,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.726468010517086,
+			"available_avg": 4.338942448144902,
+			"shortage_rate": 20.245398773006134,
+			"low_stock_rate": 60.122699386503065
+		},
+		{
+			"hour": 12,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 10.24950099800399,
+			"available_avg": 4.7043413173652695,
+			"shortage_rate": 24.550898203592812,
+			"low_stock_rate": 58.68263473053892
+		},
+		{
+			"hour": 13,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 10.7879917184265,
+			"available_avg": 4.940668441289559,
+			"shortage_rate": 19.25465838509317,
+			"low_stock_rate": 57.7639751552795
+		},
+		{
+			"hour": 14,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 10.045858585858584,
+			"available_avg": 4.774949494949495,
+			"shortage_rate": 21.21212121212121,
+			"low_stock_rate": 64.24242424242425
+		},
+		{
+			"hour": 15,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 9.052777777777777,
+			"available_avg": 3.662301587301588,
+			"shortage_rate": 22.023809523809522,
+			"low_stock_rate": 70.83333333333334
+		},
+		{
+			"hour": 16,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.648787613204787,
+			"available_avg": 3.114460999123576,
+			"shortage_rate": 28.834355828220858,
+			"low_stock_rate": 71.77914110429448
+		},
+		{
+			"hour": 17,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 8.115369261477044,
+			"available_avg": 2.491645280866837,
+			"shortage_rate": 29.34131736526946,
+			"low_stock_rate": 74.8502994011976
+		},
+		{
+			"hour": 18,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 7.456715686274508,
+			"available_avg": 1.889364801864801,
+			"shortage_rate": 22.941176470588236,
+			"low_stock_rate": 79.41176470588235
+		},
+		{
+			"hour": 19,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 6.882539682539685,
+			"available_avg": 1.5062499999999994,
+			"shortage_rate": 31.547619047619047,
+			"low_stock_rate": 86.90476190476191
+		},
+		{
+			"hour": 20,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 5.818404907975462,
+			"available_avg": 1.5833333333333328,
+			"shortage_rate": 43.558282208588956,
+			"low_stock_rate": 83.43558282208589
+		},
+		{
+			"hour": 21,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 4.965656565656566,
+			"available_avg": 1.003076923076923,
+			"shortage_rate": 53.939393939393945,
+			"low_stock_rate": 89.0909090909091
+		},
+		{
+			"hour": 22,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 4.509898989898991,
+			"available_avg": 0.505050505050505,
+			"shortage_rate": 60,
+			"low_stock_rate": 95.75757575757575
+		},
+		{
+			"hour": 23,
+			"campus": "清大",
+			"isodow": 7,
+			"weekday": "星期日",
+			"total_avg": 4.481390593047033,
+			"available_avg": 0.4550102249488753,
+			"shortage_rate": 60.73619631901841,
+			"low_stock_rate": 96.31901840490798
+		}
+	],
+	"dailyStrategy": [
+		{
+			"hour": 0,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 168.95785714285714,
+			"available_avg": 135.33476190476193,
+			"shortage_rate": 17.62589861119273,
+			"low_stock_rate": 51.86030636030637
+		},
+		{
+			"hour": 1,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 170.25507246376813,
+			"available_avg": 129.75046113306985,
+			"shortage_rate": 22.557230706207687,
+			"low_stock_rate": 53.67339501930294
+		},
+		{
+			"hour": 2,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 170.91944444444445,
+			"available_avg": 127.9777777777778,
+			"shortage_rate": 28.889923393599858,
+			"low_stock_rate": 53.31768313385961
+		},
+		{
+			"hour": 3,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 170.75277777777782,
+			"available_avg": 127.75833333333334,
+			"shortage_rate": 28.250055704099818,
+			"low_stock_rate": 54.57395647652999
+		},
+		{
+			"hour": 4,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 170.69444444444443,
+			"available_avg": 127.21388888888889,
+			"shortage_rate": 29.8925971903913,
+			"low_stock_rate": 54.2091344113403
+		},
+		{
+			"hour": 5,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 171.11666666666667,
+			"available_avg": 127.18611111111113,
+			"shortage_rate": 29.63962099991511,
+			"low_stock_rate": 54.73697054579409
+		},
+		{
+			"hour": 6,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 170.89166666666665,
+			"available_avg": 126.53888888888889,
+			"shortage_rate": 26.138317360743827,
+			"low_stock_rate": 56.32210926328574
+		},
+		{
+			"hour": 7,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 169.30248015873016,
+			"available_avg": 124.0356227106227,
+			"shortage_rate": 25.72458179075826,
+			"low_stock_rate": 59.20752348142054
+		},
+		{
+			"hour": 8,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 165.6131854256854,
+			"available_avg": 118.46035804473304,
+			"shortage_rate": 22.53205128205128,
+			"low_stock_rate": 59.248321123321126
+		},
+		{
+			"hour": 9,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 171.1946153846154,
+			"available_avg": 120.6448901098901,
+			"shortage_rate": 13.806520685197153,
+			"low_stock_rate": 51.71143072613661
+		},
+		{
+			"hour": 10,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 171.52253302253303,
+			"available_avg": 124.17553557553556,
+			"shortage_rate": 14.92486802413273,
+			"low_stock_rate": 46.95572074983839
+		},
+		{
+			"hour": 11,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 170.78714285714287,
+			"available_avg": 131.99547619047618,
+			"shortage_rate": 10.363795518207283,
+			"low_stock_rate": 42.49748168498168
+		},
+		{
+			"hour": 12,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 174.62199633699635,
+			"available_avg": 135.0454945054945,
+			"shortage_rate": 7.188725490196077,
+			"low_stock_rate": 39.31127450980392
+		},
+		{
+			"hour": 13,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 178.46948135198133,
+			"available_avg": 135.2495920745921,
+			"shortage_rate": 5.6617647058823515,
+			"low_stock_rate": 37.55514705882352
+		},
+		{
+			"hour": 14,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 178.87880952380948,
+			"available_avg": 137.67310439560438,
+			"shortage_rate": 10.685049019607842,
+			"low_stock_rate": 34.87132352941177
+		},
+		{
+			"hour": 15,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 177.2680952380953,
+			"available_avg": 136.89190476190478,
+			"shortage_rate": 9.896883753501399,
+			"low_stock_rate": 37.87611775479422
+		},
+		{
+			"hour": 16,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 176.8165927128427,
+			"available_avg": 137.23612651237653,
+			"shortage_rate": 10.08140756302521,
+			"low_stock_rate": 39.465861344537814
+		},
+		{
+			"hour": 17,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 162.14345238095234,
+			"available_avg": 119.03047619047618,
+			"shortage_rate": 9.308446455505276,
+			"low_stock_rate": 46.90015621633268
+		},
+		{
+			"hour": 18,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 144.11953463203463,
+			"available_avg": 99.7271212121212,
+			"shortage_rate": 13.494720965309199,
+			"low_stock_rate": 54.83920491273432
+		},
+		{
+			"hour": 19,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 157.61780303030304,
+			"available_avg": 112.226829004329,
+			"shortage_rate": 11.80374649859944,
+			"low_stock_rate": 45.106617647058826
+		},
+		{
+			"hour": 20,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 170.10047619047617,
+			"available_avg": 123.99238095238096,
+			"shortage_rate": 12.450980392156861,
+			"low_stock_rate": 46.2438725490196
+		},
+		{
+			"hour": 21,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 174.69054112554113,
+			"available_avg": 127.01080086580086,
+			"shortage_rate": 14.38848039215686,
+			"low_stock_rate": 46.85171568627451
+		},
+		{
+			"hour": 22,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 176.87166666666664,
+			"available_avg": 126.43987179487176,
+			"shortage_rate": 19.503676470588236,
+			"low_stock_rate": 52.51698179271709
+		},
+		{
+			"hour": 23,
+			"scope": "星期一",
+			"campus": "交大",
+			"total_avg": 177.1866666666667,
+			"available_avg": 123.90444444444445,
+			"shortage_rate": 27.962615815556994,
+			"low_stock_rate": 56.38967894850248
+		},
+		{
+			"hour": 0,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 35.44333333333333,
+			"available_avg": 2.946666666666667,
+			"shortage_rate": 63.88888888888888,
+			"low_stock_rate": 97.77777777777779
+		},
+		{
+			"hour": 1,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 34.78260869565217,
+			"available_avg": 2.2724637681159425,
+			"shortage_rate": 78.2608695652174,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 2,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 34.28055555555556,
+			"available_avg": 1.8916666666666664,
+			"shortage_rate": 81.74603174603176,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 3,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 34.480555555555554,
+			"available_avg": 2.0722222222222215,
+			"shortage_rate": 79.92724867724868,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 4,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 34.53611111111111,
+			"available_avg": 1.9500000000000002,
+			"shortage_rate": 80.83664021164023,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 5,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 34.050000000000004,
+			"available_avg": 1.5055555555555558,
+			"shortage_rate": 83.46560846560847,
+			"low_stock_rate": 100
+		},
+		{
+			"hour": 6,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 34.31666666666667,
+			"available_avg": 1.7333333333333334,
+			"shortage_rate": 85.1190476190476,
+			"low_stock_rate": 99.40476190476191
+		},
+		{
+			"hour": 7,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 35.98293650793651,
+			"available_avg": 2.9662698412698414,
+			"shortage_rate": 74.47089947089948,
+			"low_stock_rate": 97.61904761904763
+		},
+		{
+			"hour": 8,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 37.47777777777778,
+			"available_avg": 3.3361111111111104,
+			"shortage_rate": 66.93948412698413,
+			"low_stock_rate": 95.98214285714285
+		},
+		{
+			"hour": 9,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 37.42,
+			"available_avg": 6.393333333333334,
+			"shortage_rate": 53.74007936507936,
+			"low_stock_rate": 90.89285714285714
+		},
+		{
+			"hour": 10,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 37.13794871794871,
+			"available_avg": 9.963543123543126,
+			"shortage_rate": 28.829365079365072,
+			"low_stock_rate": 87.03373015873015
+		},
+		{
+			"hour": 11,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 36.92333333333333,
+			"available_avg": 12.75448717948718,
+			"shortage_rate": 20.36706349206349,
+			"low_stock_rate": 81.14087301587301
+		},
+		{
+			"hour": 12,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 33.8,
+			"available_avg": 10.227229437229436,
+			"shortage_rate": 27.132936507936506,
+			"low_stock_rate": 88.40277777777779
+		},
+		{
+			"hour": 13,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 30.700000000000006,
+			"available_avg": 8.437857142857144,
+			"shortage_rate": 35.228174603174594,
+			"low_stock_rate": 87.7777777777778
+		},
+		{
+			"hour": 14,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 29.51333333333333,
+			"available_avg": 7.597500000000001,
+			"shortage_rate": 38.660714285714285,
+			"low_stock_rate": 91.875
+		},
+		{
+			"hour": 15,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 31.306666666666665,
+			"available_avg": 7.4487499999999995,
+			"shortage_rate": 25.297619047619044,
+			"low_stock_rate": 95.625
+		},
+		{
+			"hour": 16,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 31.682777777777773,
+			"available_avg": 8.756957070707072,
+			"shortage_rate": 29.136904761904752,
+			"low_stock_rate": 93.40277777777779
+		},
+		{
+			"hour": 17,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 45.995966810966806,
+			"available_avg": 20.07089965589966,
+			"shortage_rate": 19.51388888888889,
+			"low_stock_rate": 69.0873015873016
+		},
+		{
+			"hour": 18,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 64.19404761904761,
+			"available_avg": 33.08166666666666,
+			"shortage_rate": 12.172619047619047,
+			"low_stock_rate": 58.66071428571428
+		},
+		{
+			"hour": 19,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 50.30833333333334,
+			"available_avg": 21.22833333333333,
+			"shortage_rate": 14.51388888888889,
+			"low_stock_rate": 77.04365079365081
+		},
+		{
+			"hour": 20,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 37.67999999999999,
+			"available_avg": 9.54863095238095,
+			"shortage_rate": 22.003968253968253,
+			"low_stock_rate": 89.23611111111111
+		},
+		{
+			"hour": 21,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 32.78541666666666,
+			"available_avg": 4.958333333333333,
+			"shortage_rate": 37.232142857142854,
+			"low_stock_rate": 97.46031746031746
+		},
+		{
+			"hour": 22,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 30.979999999999997,
+			"available_avg": 4.293717948717949,
+			"shortage_rate": 50.60515873015872,
+			"low_stock_rate": 98.73015873015873
+		},
+		{
+			"hour": 23,
+			"scope": "星期一",
+			"campus": "清大",
+			"total_avg": 30.586666666666666,
+			"available_avg": 3.496666666666667,
+			"shortage_rate": 54.335317460317455,
+			"low_stock_rate": 97.46031746031747
+		},
+		{
+			"hour": 0,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 153.07499999999996,
+			"available_avg": 51.65833333333333,
+			"shortage_rate": 41.94736788946347,
+			"low_stock_rate": 72.38960488041371
+		},
+		{
+			"hour": 1,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 152.50416666666666,
+			"available_avg": 51.637499999999996,
+			"shortage_rate": 42.383696266968315,
+			"low_stock_rate": 71.15914875565612
+		},
+		{
+			"hour": 2,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 153.4375,
+			"available_avg": 52.69999999999999,
+			"shortage_rate": 44.409290158371036,
+			"low_stock_rate": 74.25410067873302
+		},
+		{
+			"hour": 3,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 152.84583333333333,
+			"available_avg": 52.20416666666666,
+			"shortage_rate": 51.115313914027155,
+			"low_stock_rate": 74.1639564479638
+		},
+		{
+			"hour": 4,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 153.14999999999998,
+			"available_avg": 52.462500000000006,
+			"shortage_rate": 53.4572963800905,
+			"low_stock_rate": 71.5497737556561
+		},
+		{
+			"hour": 5,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 153.83333333333334,
+			"available_avg": 53.05416666666666,
+			"shortage_rate": 51.48119343891403,
+			"low_stock_rate": 71.9403987556561
+		},
+		{
+			"hour": 6,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 153.72083333333333,
+			"available_avg": 52.300000000000004,
+			"shortage_rate": 48.10873868778281,
+			"low_stock_rate": 73.1122737556561
+		},
+		{
+			"hour": 7,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 153.12083333333334,
+			"available_avg": 50.41250000000001,
+			"shortage_rate": 45.991485536522305,
+			"low_stock_rate": 73.45138776664513
+		},
+		{
+			"hour": 8,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 152.84375,
+			"available_avg": 47.78958333333334,
+			"shortage_rate": 35.89482668067227,
+			"low_stock_rate": 74.83258928571428
+		},
+		{
+			"hour": 9,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 149.84615384615384,
+			"available_avg": 42.115476190476194,
+			"shortage_rate": 28.446691176470587,
+			"low_stock_rate": 71.00183823529412
+		},
+		{
+			"hour": 10,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 144.44999999999996,
+			"available_avg": 33.34755608974359,
+			"shortage_rate": 37.109375,
+			"low_stock_rate": 76.51654411764706
+		},
+		{
+			"hour": 11,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 139.19285714285715,
+			"available_avg": 30.428273809523812,
+			"shortage_rate": 38.353247549019606,
+			"low_stock_rate": 77.04197303921568
+		},
+		{
+			"hour": 12,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 132.71874999999997,
+			"available_avg": 18.951893939393944,
+			"shortage_rate": 41.275822829131656,
+			"low_stock_rate": 88.73949579831931
+		},
+		{
+			"hour": 13,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 127.19583333333333,
+			"available_avg": 12.114880952380952,
+			"shortage_rate": 38.02849264705882,
+			"low_stock_rate": 96.81372549019606
+		},
+		{
+			"hour": 14,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 121.46354166666667,
+			"available_avg": 7.637797619047619,
+			"shortage_rate": 47.014399509803916,
+			"low_stock_rate": 97.74509803921569
+		},
+		{
+			"hour": 15,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 119.87291666666667,
+			"available_avg": 9.56496212121212,
+			"shortage_rate": 51.93014705882354,
+			"low_stock_rate": 96.27757352941177
+		},
+		{
+			"hour": 16,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 113.4625,
+			"available_avg": 7.379166666666666,
+			"shortage_rate": 55.7061887254902,
+			"low_stock_rate": 96.98988970588233
+		},
+		{
+			"hour": 17,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 107.68154761904762,
+			"available_avg": 5.364285714285714,
+			"shortage_rate": 64.85753676470588,
+			"low_stock_rate": 98.52941176470587
+		},
+		{
+			"hour": 18,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 112.55416666666665,
+			"available_avg": 8.974999999999998,
+			"shortage_rate": 48.90318627450979,
+			"low_stock_rate": 98.16176470588235
+		},
+		{
+			"hour": 19,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 122.02499999999999,
+			"available_avg": 14.395833333333336,
+			"shortage_rate": 40.612745098039206,
+			"low_stock_rate": 94.11764705882351
+		},
+		{
+			"hour": 20,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 125.00833333333334,
+			"available_avg": 19.14551282051282,
+			"shortage_rate": 45.28952205882353,
+			"low_stock_rate": 87.08639705882355
+		},
+		{
+			"hour": 21,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 128.00416666666666,
+			"available_avg": 22.666666666666664,
+			"shortage_rate": 50.67095588235293,
+			"low_stock_rate": 85.54687499999999
+		},
+		{
+			"hour": 22,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 132.64166666666668,
+			"available_avg": 23.95833333333333,
+			"shortage_rate": 55.25888480392155,
+			"low_stock_rate": 83.40992647058825
+		},
+		{
+			"hour": 23,
+			"scope": "星期五",
+			"campus": "交大",
+			"total_avg": 132.71249999999998,
+			"available_avg": 23.599999999999998,
+			"shortage_rate": 57.35294117647058,
+			"low_stock_rate": 85.29411764705883
+		},
+		{
+			"hour": 0,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 51.82083333333333,
+			"available_avg": 5.879166666666666,
+			"shortage_rate": 62.50000000000001,
+			"low_stock_rate": 94.44444444444444
+		},
+		{
+			"hour": 1,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 52.24583333333333,
+			"available_avg": 6.329166666666667,
+			"shortage_rate": 62.50000000000001,
+			"low_stock_rate": 93.05555555555556
+		},
+		{
+			"hour": 2,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 51.3125,
+			"available_avg": 5.116666666666667,
+			"shortage_rate": 63.19444444444445,
+			"low_stock_rate": 94.44444444444444
+		},
+		{
+			"hour": 3,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 51.90416666666667,
+			"available_avg": 5.695833333333333,
+			"shortage_rate": 70.83333333333333,
+			"low_stock_rate": 90.97222222222223
+		},
+		{
+			"hour": 4,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 51.6,
+			"available_avg": 5.512499999999999,
+			"shortage_rate": 68.05555555555556,
+			"low_stock_rate": 91.66666666666667
+		},
+		{
+			"hour": 5,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 50.91666666666667,
+			"available_avg": 4.833333333333333,
+			"shortage_rate": 70.83333333333333,
+			"low_stock_rate": 93.05555555555557
+		},
+		{
+			"hour": 6,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 51.02916666666667,
+			"available_avg": 4.533333333333333,
+			"shortage_rate": 63.194444444444436,
+			"low_stock_rate": 94.44444444444446
+		},
+		{
+			"hour": 7,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 51.679166666666674,
+			"available_avg": 4.2375,
+			"shortage_rate": 60.41666666666666,
+			"low_stock_rate": 97.22222222222223
+		},
+		{
+			"hour": 8,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 52.05416666666666,
+			"available_avg": 4.179166666666667,
+			"shortage_rate": 50,
+			"low_stock_rate": 97.91666666666667
+		},
+		{
+			"hour": 9,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 55.04166666666666,
+			"available_avg": 10.845833333333333,
+			"shortage_rate": 50,
+			"low_stock_rate": 88.19444444444446
+		},
+		{
+			"hour": 10,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 59.97083333333334,
+			"available_avg": 19.337500000000002,
+			"shortage_rate": 29.861111111111107,
+			"low_stock_rate": 79.86111111111111
+		},
+		{
+			"hour": 11,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 65.3654761904762,
+			"available_avg": 23.398214285714285,
+			"shortage_rate": 33.33333333333333,
+			"low_stock_rate": 75.00000000000001
+		},
+		{
+			"hour": 12,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 72.13333333333334,
+			"available_avg": 27.145833333333332,
+			"shortage_rate": 22.22222222222222,
+			"low_stock_rate": 81.94444444444446
+		},
+		{
+			"hour": 13,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 77.13333333333333,
+			"available_avg": 30.312499999999993,
+			"shortage_rate": 15.972222222222225,
+			"low_stock_rate": 82.63888888888891
+		},
+		{
+			"hour": 14,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 82.89583333333333,
+			"available_avg": 32.616666666666674,
+			"shortage_rate": 20.13888888888889,
+			"low_stock_rate": 75.69444444444447
+		},
+		{
+			"hour": 15,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 84.79999999999998,
+			"available_avg": 32.30833333333333,
+			"shortage_rate": 25.69444444444444,
+			"low_stock_rate": 77.77777777777779
+		},
+		{
+			"hour": 16,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 91.12083333333334,
+			"available_avg": 38.58333333333333,
+			"shortage_rate": 28.47222222222222,
+			"low_stock_rate": 79.86111111111113
+		},
+		{
+			"hour": 17,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 96.81845238095238,
+			"available_avg": 42.13214285714286,
+			"shortage_rate": 21.52777777777777,
+			"low_stock_rate": 75.00000000000001
+		},
+		{
+			"hour": 18,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 91.97916666666666,
+			"available_avg": 33.15416666666667,
+			"shortage_rate": 18.75,
+			"low_stock_rate": 78.47222222222223
+		},
+		{
+			"hour": 19,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 82.51666666666665,
+			"available_avg": 22.25833333333333,
+			"shortage_rate": 25,
+			"low_stock_rate": 75
+		},
+		{
+			"hour": 20,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 79.62916666666668,
+			"available_avg": 20.71845238095238,
+			"shortage_rate": 35.41666666666666,
+			"low_stock_rate": 77.77777777777779
+		},
+		{
+			"hour": 21,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 76.49583333333334,
+			"available_avg": 15.875,
+			"shortage_rate": 51.736111111111114,
+			"low_stock_rate": 80.72916666666667
+		},
+		{
+			"hour": 22,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 72.00075757575758,
+			"available_avg": 11.475757575757575,
+			"shortage_rate": 53.03819444444444,
+			"low_stock_rate": 87.41319444444444
+		},
+		{
+			"hour": 23,
+			"scope": "星期五",
+			"campus": "清大",
+			"total_avg": 71.7875,
+			"available_avg": 10.991666666666665,
+			"shortage_rate": 54.86111111111111,
+			"low_stock_rate": 88.19444444444446
+		},
+		{
+			"hour": 0,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 158.13567588325648,
+			"available_avg": 78.81390168970815,
+			"shortage_rate": 36.19400089158154,
+			"low_stock_rate": 66.03163282005785
+		},
+		{
+			"hour": 1,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 159.73737142857144,
+			"available_avg": 80.29602770562774,
+			"shortage_rate": 37.324064171122984,
+			"low_stock_rate": 65.9388803353509
+		},
+		{
+			"hour": 2,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 160.07741935483867,
+			"available_avg": 80.35282258064517,
+			"shortage_rate": 41.16409878862438,
+			"low_stock_rate": 65.93855444839788
+		},
+		{
+			"hour": 3,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 160.1236559139785,
+			"available_avg": 80.05483870967741,
+			"shortage_rate": 42.48472669013465,
+			"low_stock_rate": 66.70421213827285
+		},
+		{
+			"hour": 4,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 160.11612903225807,
+			"available_avg": 79.66075268817202,
+			"shortage_rate": 44.99904783704592,
+			"low_stock_rate": 66.47162037045813
+		},
+		{
+			"hour": 5,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 160.22419354838712,
+			"available_avg": 79.43543499511243,
+			"shortage_rate": 45.08131554561819,
+			"low_stock_rate": 66.74435384349998
+		},
+		{
+			"hour": 6,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 160.05099846390166,
+			"available_avg": 78.87400153609833,
+			"shortage_rate": 43.69090033938229,
+			"low_stock_rate": 67.77379660977857
+		},
+		{
+			"hour": 7,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 158.72682411674342,
+			"available_avg": 76.65939087793923,
+			"shortage_rate": 41.83615542427213,
+			"low_stock_rate": 69.13159322492812
+		},
+		{
+			"hour": 8,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 157.31053972908802,
+			"available_avg": 73.55828998510448,
+			"shortage_rate": 37.23744491593164,
+			"low_stock_rate": 70.47306050211647
+		},
+		{
+			"hour": 9,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 156.9545818070818,
+			"available_avg": 69.9844178044178,
+			"shortage_rate": 29.839267758385407,
+			"low_stock_rate": 67.71177188824247
+		},
+		{
+			"hour": 10,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 154.55084274521772,
+			"available_avg": 67.54742368742372,
+			"shortage_rate": 31.45071329813976,
+			"low_stock_rate": 67.73290373841844
+		},
+		{
+			"hour": 11,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 150.3075793650793,
+			"available_avg": 65.76847666222666,
+			"shortage_rate": 29.450423759247304,
+			"low_stock_rate": 68.17454257343964
+		},
+		{
+			"hour": 12,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 146.54217476072316,
+			"available_avg": 59.571645625879476,
+			"shortage_rate": 27.512924891364168,
+			"low_stock_rate": 71.54906940782178
+		},
+		{
+			"hour": 13,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 147.37879868787127,
+			"available_avg": 57.88434822346114,
+			"shortage_rate": 25.276328273244793,
+			"low_stock_rate": 71.58424256799492
+		},
+		{
+			"hour": 14,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 147.05988863287254,
+			"available_avg": 60.01668295861845,
+			"shortage_rate": 26.93979644643783,
+			"low_stock_rate": 66.75307989764819
+		},
+		{
+			"hour": 15,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 143.5151985580557,
+			"available_avg": 62.43042301613728,
+			"shortage_rate": 24.62084406412139,
+			"low_stock_rate": 66.78152457564221
+		},
+		{
+			"hour": 16,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 141.8725084377428,
+			"available_avg": 66.78120672730051,
+			"shortage_rate": 22.84570859593838,
+			"low_stock_rate": 64.48024822909929
+		},
+		{
+			"hour": 17,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 133.43675413128537,
+			"available_avg": 59.22632898785241,
+			"shortage_rate": 24.76890125040401,
+			"low_stock_rate": 69.11401940583926
+		},
+		{
+			"hour": 18,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 127.2268093885282,
+			"available_avg": 53.92423745958903,
+			"shortage_rate": 23.77328515540831,
+			"low_stock_rate": 73.73738107021656
+		},
+		{
+			"hour": 19,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 135.4991021998835,
+			"available_avg": 61.753651600135974,
+			"shortage_rate": 21.237854516806728,
+			"low_stock_rate": 66.11719297093835
+		},
+		{
+			"hour": 20,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 144.86030054601488,
+			"available_avg": 71.77231888481889,
+			"shortage_rate": 23.595327019696782,
+			"low_stock_rate": 61.99243586323418
+		},
+		{
+			"hour": 21,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 150.8750205717148,
+			"available_avg": 76.5544913305244,
+			"shortage_rate": 23.39624279463852,
+			"low_stock_rate": 62.38734304910775
+		},
+		{
+			"hour": 22,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 155.04103745716645,
+			"available_avg": 77.9819338591516,
+			"shortage_rate": 27.997105479909088,
+			"low_stock_rate": 64.5106097649978
+		},
+		{
+			"hour": 23,
+			"scope": "每日整體",
+			"campus": "交大",
+			"total_avg": 156.6337685611879,
+			"available_avg": 78.1605330377508,
+			"shortage_rate": 33.344352319091406,
+			"low_stock_rate": 66.0682290906437
+		},
+		{
+			"hour": 0,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 48.30806451612902,
+			"available_avg": 8.298310291858686,
+			"shortage_rate": 60.479070660522254,
+			"low_stock_rate": 90.30177931387607
+		},
+		{
+			"hour": 1,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 46.7097142857143,
+			"available_avg": 6.824514285714286,
+			"shortage_rate": 67.77619047619045,
+			"low_stock_rate": 92.9111111111111
+		},
+		{
+			"hour": 2,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 46.361827956989245,
+			"available_avg": 6.241061827956989,
+			"shortage_rate": 70.49251152073728,
+			"low_stock_rate": 93.97241423451098
+		},
+		{
+			"hour": 3,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 46.308602150537624,
+			"available_avg": 6.169892473118279,
+			"shortage_rate": 71.99660778289801,
+			"low_stock_rate": 93.41397849462363
+		},
+		{
+			"hour": 4,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 46.31559139784946,
+			"available_avg": 6.074193548387096,
+			"shortage_rate": 71.69738863287245,
+			"low_stock_rate": 93.86200716845875
+		},
+		{
+			"hour": 5,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 46.22204301075269,
+			"available_avg": 5.833333333333335,
+			"shortage_rate": 73.21428571428567,
+			"low_stock_rate": 94.3996415770609
+		},
+		{
+			"hour": 6,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 46.401689708141326,
+			"available_avg": 5.848463901689708,
+			"shortage_rate": 72.30702764976958,
+			"low_stock_rate": 95.00128008192522
+		},
+		{
+			"hour": 7,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 47.764976958525345,
+			"available_avg": 6.599654377880184,
+			"shortage_rate": 67.40111367127494,
+			"low_stock_rate": 94.16922683051716
+		},
+		{
+			"hour": 8,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 48.815399385560696,
+			"available_avg": 7.326420890937021,
+			"shortage_rate": 61.39112903225806,
+			"low_stock_rate": 93.66039426523294
+		},
+		{
+			"hour": 9,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 50.20046296296299,
+			"available_avg": 9.583333333333337,
+			"shortage_rate": 56.663359788359784,
+			"low_stock_rate": 91.16732804232801
+		},
+		{
+			"hour": 10,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 52.494962352462316,
+			"available_avg": 13.056539594664594,
+			"shortage_rate": 44.829695767195766,
+			"low_stock_rate": 86.98412698412695
+		},
+		{
+			"hour": 11,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 56.33880952380948,
+			"available_avg": 18.29417138417138,
+			"shortage_rate": 32.99272486772487,
+			"low_stock_rate": 80.48941798941794
+		},
+		{
+			"hour": 12,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 60.23583540115798,
+			"available_avg": 21.486938934721188,
+			"shortage_rate": 28.736239119303633,
+			"low_stock_rate": 79.6290962621607
+		},
+		{
+			"hour": 13,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 59.38440860215051,
+			"available_avg": 20.262615945882064,
+			"shortage_rate": 27.601766513056855,
+			"low_stock_rate": 81.3524065540194
+		},
+		{
+			"hour": 14,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 59.24650537634407,
+			"available_avg": 20.397446236559148,
+			"shortage_rate": 29.355478750640053,
+			"low_stock_rate": 81.27720174091135
+		},
+		{
+			"hour": 15,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 63.11277399848829,
+			"available_avg": 22.49024714262809,
+			"shortage_rate": 25.135424540186452,
+			"low_stock_rate": 80.96340388007046
+		},
+		{
+			"hour": 16,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 64.69779942279942,
+			"available_avg": 24.010476350906043,
+			"shortage_rate": 24.781436011904763,
+			"low_stock_rate": 77.76382688492055
+		},
+		{
+			"hour": 17,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 73.0526715255231,
+			"available_avg": 31.496160393426017,
+			"shortage_rate": 19.335937499999996,
+			"low_stock_rate": 70.28304811507932
+		},
+		{
+			"hour": 18,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 79.17843191964288,
+			"available_avg": 35.972321060016384,
+			"shortage_rate": 17.864893353174594,
+			"low_stock_rate": 65.44673859126983
+		},
+		{
+			"hour": 19,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 70.82928503787878,
+			"available_avg": 28.455605722402606,
+			"shortage_rate": 20.28459821428572,
+			"low_stock_rate": 71.48747519841268
+		},
+		{
+			"hour": 20,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 61.48282458282458,
+			"available_avg": 21.620430693644984,
+			"shortage_rate": 27.040816326530614,
+			"low_stock_rate": 77.97776518014605
+		},
+		{
+			"hour": 21,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 55.380721551176094,
+			"available_avg": 15.14445554445554,
+			"shortage_rate": 40.09904237176963,
+			"low_stock_rate": 83.5087891906073
+		},
+		{
+			"hour": 22,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 51.335673197769964,
+			"available_avg": 11.640107204623334,
+			"shortage_rate": 48.65431387608806,
+			"low_stock_rate": 88.41205837173574
+		},
+		{
+			"hour": 23,
+			"scope": "每日整體",
+			"campus": "清大",
+			"total_avg": 49.7805683563748,
+			"available_avg": 9.82205261136713,
+			"shortage_rate": 52.93618791602662,
+			"low_stock_rate": 89.30811571940602
+		}
+	],
+	"signalSummary": {
+		"status_observations": 55379148,
+		"joined_observations": 55379148,
+		"risk_signal_observations": 54974179,
+		"unavailable_observations": 54974179,
+		"low_battery_observations": 14492412,
+		"low_battery_unavailable_observations": 14492412,
+		"error_observations": 40822089,
+		"fault_observations": 37550589,
+		"gps_abnormal_observations": 19221723,
+		"risk_signal_rate": 99.27,
+		"unavailable_rate": 99.27
+	},
+	"batteryBands": [
+		{
+			"band": "0-9%",
+			"sort_order": 0,
+			"total_observations": 8821090,
+			"risk_signal_observations": 8821090,
+			"error_observations": 5791506,
+			"unavailable_observations": 8821090,
+			"risk_signal_rate": 100,
+			"unavailable_rate": 100
+		},
+		{
+			"band": "10-19%",
+			"sort_order": 1,
+			"total_observations": 1796912,
+			"risk_signal_observations": 1796912,
+			"error_observations": 1641797,
+			"unavailable_observations": 1796912,
+			"risk_signal_rate": 100,
+			"unavailable_rate": 100
+		},
+		{
+			"band": "20-29%",
+			"sort_order": 2,
+			"total_observations": 3874410,
+			"risk_signal_observations": 3874410,
+			"error_observations": 3678558,
+			"unavailable_observations": 3874410,
+			"risk_signal_rate": 100,
+			"unavailable_rate": 100
+		},
+		{
+			"band": "30-39%",
+			"sort_order": 3,
+			"total_observations": 4297702,
+			"risk_signal_observations": 4164151,
+			"error_observations": 4045609,
+			"unavailable_observations": 4164151,
+			"risk_signal_rate": 96.89,
+			"unavailable_rate": 96.89
+		},
+		{
+			"band": "40-49%",
+			"sort_order": 4,
+			"total_observations": 4195334,
+			"risk_signal_observations": 4150817,
+			"error_observations": 3816563,
+			"unavailable_observations": 4150817,
+			"risk_signal_rate": 98.94,
+			"unavailable_rate": 98.94
+		},
+		{
+			"band": "50-59%",
+			"sort_order": 5,
+			"total_observations": 2944763,
+			"risk_signal_observations": 2900246,
+			"error_observations": 2443206,
+			"unavailable_observations": 2900246,
+			"risk_signal_rate": 98.49,
+			"unavailable_rate": 98.49
+		},
+		{
+			"band": "60-69%",
+			"sort_order": 6,
+			"total_observations": 2924209,
+			"risk_signal_observations": 2924209,
+			"error_observations": 2111652,
+			"unavailable_observations": 2924209,
+			"risk_signal_rate": 100,
+			"unavailable_rate": 100
+		},
+		{
+			"band": "70-79%",
+			"sort_order": 7,
+			"total_observations": 6776367,
+			"risk_signal_observations": 6731850,
+			"error_observations": 4882996,
+			"unavailable_observations": 6731850,
+			"risk_signal_rate": 99.34,
+			"unavailable_rate": 99.34
+		},
+		{
+			"band": "80-89%",
+			"sort_order": 8,
+			"total_observations": 6080043,
+			"risk_signal_observations": 6035356,
+			"error_observations": 4237437,
+			"unavailable_observations": 6035356,
+			"risk_signal_rate": 99.27,
+			"unavailable_rate": 99.27
+		},
+		{
+			"band": "90-100%",
+			"sort_order": 9,
+			"total_observations": 13668318,
+			"risk_signal_observations": 13575138,
+			"error_observations": 8172765,
+			"unavailable_observations": 13575138,
+			"risk_signal_rate": 99.32,
+			"unavailable_rate": 99.32
+		}
+	],
+	"errorMessages": [
+		{
+			"error_msg": "illegalMovement",
+			"observations": 14821092,
+			"share_of_all": 26.76,
+			"share_of_signal_observations": 26.96,
+			"share_of_unavailable": 26.96
+		},
+		{
+			"error_msg": "Connection: close",
+			"observations": 14690610,
+			"share_of_all": 26.53,
+			"share_of_signal_observations": 26.72,
+			"share_of_unavailable": 26.72
+		},
+		{
+			"error_msg": "illegalDisassembly",
+			"observations": 8612509,
+			"share_of_all": 15.55,
+			"share_of_signal_observations": 15.67,
+			"share_of_unavailable": 15.67
+		},
+		{
+			"error_msg": "throttleAbnormal",
+			"observations": 1367295,
+			"share_of_all": 2.47,
+			"share_of_signal_observations": 2.49,
+			"share_of_unavailable": 2.49
+		},
+		{
+			"error_msg": "communicationError",
+			"observations": 706037,
+			"share_of_all": 1.27,
+			"share_of_signal_observations": 1.28,
+			"share_of_unavailable": 1.28
+		},
+		{
+			"error_msg": "hallSensorAbnormal",
+			"observations": 216020,
+			"share_of_all": 0.39,
+			"share_of_signal_observations": 0.39,
+			"share_of_unavailable": 0.39
+		},
+		{
+			"error_msg": "motorHighTemperature",
+			"observations": 141280,
+			"share_of_all": 0.26,
+			"share_of_signal_observations": 0.26,
+			"share_of_unavailable": 0.26
+		},
+		{
+			"error_msg": "controllerUv",
+			"observations": 133750,
+			"share_of_all": 0.24,
+			"share_of_signal_observations": 0.24,
+			"share_of_unavailable": 0.24
+		},
+		{
+			"error_msg": "eFuseError",
+			"observations": 73432,
+			"share_of_all": 0.13,
+			"share_of_signal_observations": 0.13,
+			"share_of_unavailable": 0.13
+		},
+		{
+			"error_msg": "networkDisconnected",
+			"observations": 44517,
+			"share_of_all": 0.08,
+			"share_of_signal_observations": 0.08,
+			"share_of_unavailable": 0.08
+		},
+		{
+			"error_msg": "motorPhaseOc",
+			"observations": 7939,
+			"share_of_all": 0.01,
+			"share_of_signal_observations": 0.01,
+			"share_of_unavailable": 0.01
+		},
+		{
+			"error_msg": "dcOcp",
+			"observations": 3357,
+			"share_of_all": 0.01,
+			"share_of_signal_observations": 0.01,
+			"share_of_unavailable": 0.01
+		},
+		{
+			"error_msg": "motorRotationBlocked",
+			"observations": 2576,
+			"share_of_all": 0,
+			"share_of_signal_observations": 0,
+			"share_of_unavailable": 0
+		},
+		{
+			"error_msg": "motorLossPhase",
+			"observations": 1675,
+			"share_of_all": 0,
+			"share_of_signal_observations": 0,
+			"share_of_unavailable": 0
+		}
+	],
+	"reasonSignals": [
+		{
+			"reason": "illegalMovement",
+			"observations": 14821092,
+			"share_of_signal_observations": 26.96,
+			"share_of_unavailable": 26.96
+		},
+		{
+			"reason": "Connection: close",
+			"observations": 14690610,
+			"share_of_signal_observations": 26.72,
+			"share_of_unavailable": 26.72
+		},
+		{
+			"reason": "低電量（<30%）",
+			"observations": 14492412,
+			"share_of_signal_observations": 26.36,
+			"share_of_unavailable": 26.36
+		},
+		{
+			"reason": "illegalDisassembly",
+			"observations": 8612509,
+			"share_of_signal_observations": 15.67,
+			"share_of_unavailable": 15.67
+		},
+		{
+			"reason": "throttleAbnormal",
+			"observations": 1367295,
+			"share_of_signal_observations": 2.49,
+			"share_of_unavailable": 2.49
+		},
+		{
+			"reason": "communicationError",
+			"observations": 706037,
+			"share_of_signal_observations": 1.28,
+			"share_of_unavailable": 1.28
+		},
+		{
+			"reason": "hallSensorAbnormal",
+			"observations": 216020,
+			"share_of_signal_observations": 0.39,
+			"share_of_unavailable": 0.39
+		},
+		{
+			"reason": "motorHighTemperature",
+			"observations": 141280,
+			"share_of_signal_observations": 0.26,
+			"share_of_unavailable": 0.26
+		},
+		{
+			"reason": "controllerUv",
+			"observations": 133750,
+			"share_of_signal_observations": 0.24,
+			"share_of_unavailable": 0.24
+		},
+		{
+			"reason": "eFuseError",
+			"observations": 73432,
+			"share_of_signal_observations": 0.13,
+			"share_of_unavailable": 0.13
+		},
+		{
+			"reason": "networkDisconnected",
+			"observations": 44517,
+			"share_of_signal_observations": 0.08,
+			"share_of_unavailable": 0.08
+		},
+		{
+			"reason": "motorPhaseOc",
+			"observations": 7111,
+			"share_of_signal_observations": 0.01,
+			"share_of_unavailable": 0.01
+		}
+	],
+	"recoverySummary": [
+		{
+			"share": 99.11786326880666,
+			"episodes": 8090,
+			"recovery_type": "一般歸還或零散恢復",
+			"recovered_episodes": 8090,
+			"median_minutes_to_recovery": 17,
+			"average_minutes_to_recovery": 87.50593325092707
+		},
+		{
+			"share": 0.7351139426611124,
+			"episodes": 60,
+			"recovery_type": "疑似大量回補",
+			"recovered_episodes": 60,
+			"median_minutes_to_recovery": 24,
+			"average_minutes_to_recovery": 193.81666666666666
+		},
+		{
+			"share": 0.1470227885322225,
+			"episodes": 12,
+			"recovery_type": "觀測窗內未恢復",
+			"recovered_episodes": 0,
+			"median_minutes_to_recovery": null,
+			"average_minutes_to_recovery": null
+		}
+	],
+	"rebalanceStations": [
+		{
+			"campus": "清大",
+			"station_name": "清大-清華小吃部站",
+			"suspected_rebalance_events": 15
+		},
+		{
+			"campus": "清大",
+			"station_name": "清大-工程一館站",
+			"suspected_rebalance_events": 7
+		},
+		{
+			"campus": "交大",
+			"station_name": "交大-工程四館站",
+			"suspected_rebalance_events": 4
+		},
+		{
+			"campus": "交大",
+			"station_name": "交大-活動中心站",
+			"suspected_rebalance_events": 4
+		},
+		{
+			"campus": "清大",
+			"station_name": "清大-化學館站",
+			"suspected_rebalance_events": 4
+		},
+		{
+			"campus": "交大",
+			"station_name": "交大-女二舍站",
+			"suspected_rebalance_events": 2
+		},
+		{
+			"campus": "交大",
+			"station_name": "交大-工程三館站",
+			"suspected_rebalance_events": 2
+		},
+		{
+			"campus": "交大",
+			"station_name": "交大-竹湖站",
+			"suspected_rebalance_events": 2
+		},
+		{
+			"campus": "交大",
+			"station_name": "交大-竹軒站",
+			"suspected_rebalance_events": 2
+		},
+		{
+			"campus": "交大",
+			"station_name": "交大-綜合一館站",
+			"suspected_rebalance_events": 2
+		}
+	],
+	"routeMeta": {
+		"total_transitions": 0,
+		"transitions_excluding_low_battery": 0,
+		"usable": false
+	},
+	"routeRisks": [],
+	"routeLimitation": "車輛層級路線故障需要把 scooter_info_observations 與 scooter_status_observations 以同車、同時間可靠對齊；遠端原始 hypertable 在本次重算時無法於可接受時間內完成全期間 join，因此本報告不把路線故障率當作主要結論。"
+}
