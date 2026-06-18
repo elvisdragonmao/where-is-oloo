@@ -154,22 +154,22 @@ app.innerHTML = `
 		${page(
 			"stations",
 			"Q2：缺車率最高站點",
-			`${chartFigure("station-risk", "缺車率 Top 10：完全沒車與有車但不可借", "堆疊段落顯示缺車組成，另列低庫存率作為接近沒車的風險。")}
+			`${chartFigure("station-risk", "缺車率 Top 10：完全沒車與有車卻不能借", "堆疊段落顯示缺車組成，另列低庫存率作為接近沒車的風險。")}
 			${table(stationRiskTable)}`,
 			"page--dense"
 		)}
 		${page(
 			"reasons",
-			"Q3：有車但不能借的可能原因",
+			"Q3：有車卻不能借的可能原因",
 			`${paragraphs(q3Paragraphs)}
-			${chartFigure("reason-signals", "不可借快照中的重疊訊號", "低電量與 errorMsg 可能同時出現，比例不可直接相加。")}
+			${chartFigure("reason-signals", "不可借抽樣紀錄中的重疊訊號", "低電量與 errorMsg 可能同時出現，比例不可直接相加。")}
 			${table(reasonTable)}`,
 			"page--dense"
 		)}
 		${page(
 			"errors",
 			"Q3：官方 errorMsg 類型",
-			`${chartFigure("error-messages", "不可借快照中的官方 errorMsg Top 10", "errorMsg 保留官方字串，用來描述系統回報的異常類型。")}
+			`${chartFigure("error-messages", "不可借抽樣紀錄中的官方 errorMsg Top 10", "errorMsg 保留官方字串，用來描述系統回報的異常類型。")}
 			${table(errorMessageTable)}`,
 			"page--dense"
 		)}
@@ -177,7 +177,7 @@ app.innerHTML = `
 			"battery",
 			"Q4：電量與車況風險",
 			`${paragraphs(q4Paragraphs)}
-			${chartFigure("battery-bands", "每 10% 電量區間的不可借率估計", "分母是在站且非租借的車輛快照；快照每 6 小時抽取 15 分鐘。")}
+			${chartFigure("battery-bands", "每 10% 電量區間的不可借率估計", "分母是在站且非租借的車輛紀錄；每 6 小時抽取 15 分鐘。")}
 			${table(batteryTable)}`,
 			"page--dense"
 		)}
@@ -186,14 +186,14 @@ app.innerHTML = `
 			"recovery",
 			"Q5：缺車後多久恢復",
 			`${paragraphs(q5Paragraphs)}
-			${chartFigure("recovery-types", "缺車 episode 的恢復類型", "大多數恢復屬於一般歸還或零散恢復。")}
+			${chartFigure("recovery-types", "缺車事件的恢復類型", "恢復類型為站點層級的間接判斷。")}
 			${table(recoveryTable)}`,
 			"page--dense"
 		)}
 		${page(
 			"rebalance",
 			"Q5：疑似大量回補分布",
-			`${chartFigure("rebalance-events", "疑似大量回補站點分布", "疑似大量回補只代表一次恢復量較大，不直接等同人工補車。")}
+			`${chartFigure("rebalance-events", "疑似大量回補站點分布", "大量回補指可借車數或總車數短時間明顯增加，不直接等同人工補車。")}
 			${table(rebalanceTable)}`,
 			"page--dense"
 		)}

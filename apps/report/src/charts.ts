@@ -124,7 +124,7 @@ export const chartOptions: Record<ChartId, EChartsCoreOption> = {
 		},
 		series: [
 			{ name: "完全沒車", type: "bar", stack: "缺車", data: values(stationRisks, row => row.emptyStationRate) },
-			{ name: "有車但不可借", type: "bar", stack: "缺車", data: values(stationRisks, row => row.unavailableWithVehicleRate) },
+			{ name: "有車卻不能借", type: "bar", stack: "缺車", data: values(stationRisks, row => row.unavailableWithVehicleRate) },
 			{ name: "低庫存率", type: "bar", data: values(stationRisks, row => row.lowStockRate) }
 		]
 	},
