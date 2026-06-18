@@ -28,14 +28,22 @@ const rebalance = recoveryTypes.find(row => row.type === "大量回補");
 const chart = (id: ChartId) => `<div class="slide-chart" data-chart="${id}"></div>`;
 const bullets = (items: string[]) => `<ul>${items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
 const metric = (label: string, value: string) => `<div class="metric"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`;
+const titleMarkup = (title: string, variant: string) => {
+	if (variant.includes("slide--cover") && title === "清交校園 oloo 共享滑板車可用性分析") {
+		return ["清交校園 oloo 共享滑板車", "可用性分析"].map(line => `<span>${escapeHtml(line)}</span>`).join("");
+	}
+
+	return escapeHtml(title);
+};
 
 const slide = (eyebrow: string, title: string, body: string, variant = "") => `
 	<section class="slide ${variant}">
+		<div class="slide-photo-mark" aria-hidden="true"></div>
 		<header>
 			<span>${escapeHtml(eyebrow)}</span>
 			<small>${escapeHtml(reportMeta.subtitle)}</small>
 		</header>
-		<h1>${escapeHtml(title)}</h1>
+		<h1>${titleMarkup(title, variant)}</h1>
 		<div class="slide-body">${body}</div>
 	</section>
 `;

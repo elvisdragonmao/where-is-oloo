@@ -1,12 +1,14 @@
 :root {
 	color-scheme: light;
 	--ink: #111111;
-	--muted: #4a4a4a;
-	--line: #c8c8c8;
+	--muted: #484b4d;
+	--line: #c9cfcc;
 	--paper: #ffffff;
-	--canvas: #d8d8d8;
+	--soft: #f6f7f5;
+	--canvas: #d7d9d6;
 	--nthu: #6b4aa0;
 	--nctu: #1f5f9f;
+	--mint: #7ad7b8;
 }
 
 * {
@@ -45,9 +47,13 @@ button {
 	cursor: pointer;
 }
 
+.deck-toolbar button:hover {
+	background: var(--soft);
+}
+
 .deck {
 	display: grid;
-	gap: 18px;
+	gap: 22px;
 	justify-content: center;
 	padding: 28px 0;
 }
@@ -63,6 +69,13 @@ button {
 	break-after: page;
 }
 
+.slide > header,
+.slide > h1,
+.slide > .slide-body {
+	position: relative;
+	z-index: 1;
+}
+
 .slide::after {
 	position: absolute;
 	right: 18mm;
@@ -72,6 +85,22 @@ button {
 	background: var(--nctu);
 	border-left: 11mm solid var(--nthu);
 	content: "";
+	z-index: 1;
+}
+
+.slide-photo-mark {
+	display: none;
+	position: absolute;
+	top: 28mm;
+	right: 17mm;
+	width: 40mm;
+	height: 28mm;
+	border: 1px solid rgba(17, 17, 17, 0.16);
+	background-image: url("../oloo.png");
+	background-position: 64% 52%;
+	background-size: 130mm auto;
+	opacity: 0.16;
+	pointer-events: none;
 }
 
 .slide header {
@@ -84,10 +113,19 @@ button {
 	letter-spacing: 0;
 }
 
+.slide header span {
+	color: var(--nctu);
+}
+
+.slide header small {
+	color: var(--muted);
+	font-weight: 600;
+}
+
 .slide h1 {
-	max-width: 245mm;
+	max-width: 230mm;
 	margin: 6mm 0 6mm;
-	font-size: 10.5mm;
+	font-size: 10.2mm;
 	line-height: 1.16;
 	letter-spacing: 0;
 }
@@ -99,9 +137,10 @@ button {
 }
 
 .lead {
-	max-width: 250mm;
+	max-width: 168mm;
 	margin: 0;
-	font-size: 7mm;
+	color: var(--ink);
+	font-size: 7.2mm;
 	line-height: 1.35;
 }
 
@@ -128,7 +167,9 @@ li::marker {
 	grid-template-columns: repeat(2, max-content);
 	gap: 3mm 10mm;
 	margin-top: 8mm;
-	font-size: 4.4mm;
+	color: var(--muted);
+	font-size: 4.1mm;
+	font-weight: 600;
 }
 
 .metric-grid {
@@ -143,8 +184,11 @@ li::marker {
 
 .metric {
 	min-height: 23mm;
-	border-top: 1px solid var(--ink);
-	padding-top: 4mm;
+	border: 1px solid var(--line);
+	border-left: 2mm solid var(--mint);
+	border-radius: 2mm;
+	background: var(--soft);
+	padding: 4mm 5mm;
 }
 
 .metric span {
@@ -157,21 +201,23 @@ li::marker {
 .metric strong {
 	display: block;
 	margin-top: 2mm;
-	font-size: 6.8mm;
+	font-size: 6.4mm;
 	line-height: 1.1;
 }
 
 .slide-chart {
 	width: 100%;
 	height: 66mm;
-	border-top: 1px solid var(--line);
-	border-bottom: 1px solid var(--line);
+	border: 1px solid var(--line);
+	border-radius: 2mm;
+	background: #fbfbfb;
+	padding: 2mm;
 }
 
 .two-charts {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 8mm;
+	gap: 6mm;
 }
 
 .two-charts .slide-chart {
@@ -182,18 +228,49 @@ li::marker {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	padding-right: 130mm;
 }
 
 .slide--cover header {
 	position: absolute;
 	top: 14mm;
-	right: 18mm;
+	right: 130mm;
 	left: 18mm;
 }
 
+.slide--cover .slide-photo-mark {
+	display: block;
+	inset: 0 0 0 auto;
+	width: 118mm;
+	height: auto;
+	border: 0;
+	border-left: 1px solid var(--line);
+	background-position: 50% 52%;
+	background-size: cover;
+	opacity: 1;
+}
+
+.slide--cover .slide-photo-mark::after {
+	position: absolute;
+	inset: 0;
+	background: rgba(255, 255, 255, 0.08);
+	content: "";
+}
+
 .slide--cover h1 {
-	max-width: 250mm;
+	max-width: 165mm;
 	font-size: 13mm;
+}
+
+.slide--cover h1 span {
+	display: block;
+}
+
+.slide--cover::after {
+	right: auto;
+	left: 18mm;
+	width: 34mm;
+	border-left-width: 17mm;
 }
 
 @media screen and (max-width: 1200px) {
@@ -209,6 +286,18 @@ li::marker {
 
 	.slide h1 {
 		font-size: 5vw;
+	}
+
+	.slide-photo-mark {
+		display: none;
+	}
+
+	.slide--cover {
+		padding-right: 5vw;
+	}
+
+	.slide--cover header {
+		right: 5vw;
 	}
 }
 
